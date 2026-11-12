@@ -1,0 +1,16 @@
+# Base de données de développement.
+# Spring Boot la démarre automatiquement au lancement de l'application (spring-boot-docker-compose).
+services:
+  postgres:
+    image: 'postgres:17-alpine'
+    environment:
+      - 'POSTGRES_DB=aima'
+      - 'POSTGRES_USER=aima'
+      - 'POSTGRES_PASSWORD=aima_dev_password'
+    ports:
+      - '5433:5432'
+    volumes:
+      - aima-pgdata:/var/lib/postgresql/data
+
+volumes:
+  aima-pgdata:

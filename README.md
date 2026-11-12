@@ -9,12 +9,12 @@ OWASP Top 10 for LLM Applications.
 ## Structure du dépôt
 
 ```
-ai-maturity-assessment/
+PFS/
 ├── docs/                 Livrables méthodologiques (analyse, modèle, grille, étude de cas)
 ├── referential/          Référentiel AIMA au format JSON (source unique de vérité)
 │   └── questions/        Questionnaire : un fichier par domaine
 ├── scripts/              Outil de validation et de génération de la grille
-├── backend/              API Java 21 / Spring Boot          (à venir)
+├── backend/              API Java 21 / Spring Boot 4 (port 8090)
 ├── frontend/             Interface React / TypeScript       (à venir)
 └── docker-compose.yml    Lancement complet                  (à venir)
 ```
@@ -26,6 +26,7 @@ ai-maturity-assessment/
 3. [Modèle de maturité et méthode de scoring](docs/02-modele-maturite.md)
 4. [Grille d'audit : méthodologie](docs/03-grille-audit.md)
 5. [Grille d'audit détaillée — 59 questions](docs/03b-grille-audit-detaillee.md)
+6. [Architecture du backend](docs/04-architecture-backend.md)
 
 ## Mettre à jour le référentiel
 
@@ -37,3 +38,13 @@ node scripts/referential-tool.mjs   # valide le JSON et régénère docs/03b
 
 Java 21 · Spring Boot · Spring Security (JWT) · PostgreSQL · Flyway ·
 React · TypeScript · Vite · Tailwind CSS · Recharts · Docker
+
+## Lancer le backend
+
+Prérequis : Java 21 et Docker Desktop démarré.
+
+```bash
+cd backend
+./mvnw spring-boot:run    # API sur http://localhost:8090 — Swagger : /swagger-ui.html
+./mvnw test               # tests unitaires + intégration (PostgreSQL via Testcontainers)
+```

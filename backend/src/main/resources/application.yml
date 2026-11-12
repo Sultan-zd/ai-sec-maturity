@@ -1,0 +1,39 @@
+server:
+  port: 8090                       # 8080-8085 sont déjà utilisés sur le poste de développement
+
+spring:
+  application:
+    name: aima-backend
+  jpa:
+    open-in-view: false            # pas de requêtes SQL cachées dans la couche web
+    hibernate:
+      ddl-auto: validate           # Flyway crée le schéma, Hibernate vérifie seulement qu'il correspond aux entités
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100   # évite le problème des N+1 requêtes sur les collections
+  flyway:
+    locations: classpath:db/migration
+  mvc:
+    problemdetails:
+      enabled: true                # erreurs au format standard RFC 9457 (application/problem+json)
+  docker:
+    compose:
+      lifecycle-management: start-only   # garde la base démarrée entre deux lancements
+
+aima:
+  referential:
+    location: classpath:referential
+    import-on-startup: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
