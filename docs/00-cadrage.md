@@ -107,7 +107,7 @@ sans recompiler l'application — c'est ainsi que travaillent les vrais outils G
 | 2 | Modèle de maturité + méthode de scoring (livrable 2) | ✅ |
 | 3 | Grille d'audit et questionnaire complet (livrable 3) | ✅ |
 | 4 | Backend Spring Boot : modèle de données, API référentiel | ✅ |
-| 5 | Backend : évaluations, moteur de scoring, recommandations | ⏳ |
+| 5 | Backend : évaluations, moteur de scoring, recommandations | ✅ |
 | 6 | Backend : sécurité JWT, export PDF, tests | ⏳ |
 | 7 | Frontend React : questionnaire + dashboard + feuille de route | ⏳ |
 | 8 | Docker Compose + CI GitHub Actions | ⏳ |

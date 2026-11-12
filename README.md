@@ -27,6 +27,7 @@ PFS/
 4. [Grille d'audit : méthodologie](docs/03-grille-audit.md)
 5. [Grille d'audit détaillée — 59 questions](docs/03b-grille-audit-detaillee.md)
 6. [Architecture du backend](docs/04-architecture-backend.md)
+7. [Évaluations, scoring et feuille de route](docs/05-evaluations-scoring.md)
 
 ## Mettre à jour le référentiel
 
@@ -46,5 +47,5 @@ Prérequis : Java 21 et Docker Desktop démarré.
 ```bash
 cd backend
 ./mvnw spring-boot:run    # API sur http://localhost:8090 — Swagger : /swagger-ui.html
-./mvnw test               # tests unitaires + intégration (PostgreSQL via Testcontainers)
+./mvnw test               # 21 tests unitaires + intégration (PostgreSQL via Testcontainers)
 ```
