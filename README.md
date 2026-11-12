@@ -15,7 +15,7 @@ PFS/
 │   └── questions/        Questionnaire : un fichier par domaine
 ├── scripts/              Outil de validation et de génération de la grille
 ├── backend/              API Java 21 / Spring Boot 4 (port 8090)
-├── frontend/             Interface React / TypeScript       (à venir)
+├── frontend/             Interface React 19 / TypeScript (port 5173)
 └── docker-compose.yml    Lancement complet                  (à venir)
 ```
 
@@ -29,6 +29,7 @@ PFS/
 6. [Architecture du backend](docs/04-architecture-backend.md)
 7. [Évaluations, scoring et feuille de route](docs/05-evaluations-scoring.md)
 8. [Sécurité, mode audit et rapport PDF](docs/06-securite-audit-rapport.md)
+9. [Frontend React](docs/07-frontend.md)
 
 ## Mettre à jour le référentiel
 
@@ -56,3 +57,11 @@ cd backend
 Au premier démarrage, un administrateur est créé : `admin@aima.local` / `Admin@2026!`
 (à changer en production via la variable `AIMA_ADMIN_PASSWORD`). Il crée ensuite les
 organisations, les utilisateurs `ORG_USER` et les auditeurs (`AUDITOR`).
+
+## Lancer le frontend
+
+```bash
+cd frontend
+npm install
+npm run dev               # http://localhost:5173 (backend requis sur le port 8090)
+```

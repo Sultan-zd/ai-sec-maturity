@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/*
+ * Jetons de couleur de l'application. Les graphiques utilisent des rôles (--series-actual…)
+ * et non des couleurs codées en dur : le mode sombre ne redéfinit que ces variables.
+ * Couleurs des séries validées (daltonisme + contraste) avec le validateur de palette.
+ */
+:root {
+  color-scheme: light;
+  --surface: #fcfcfb;
+  --surface-2: #f3f4f2;
+  --border: #dedcd6;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #75736d;
+  --brand: #1f3a5f;
+  --series-actual: #2a78d6;
+  --series-target: #eb6834;
+  --grid: #e4e2dc;
+  /* Statuts (toujours accompagnés d'un libellé, jamais la couleur seule) */
+  --status-critical: #d03b3b;
+  --status-serious: #ec835a;
+  --status-warning: #fab219;
+  --status-good: #0ca30c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface: #1a1a19;
+    --surface-2: #232322;
+    --border: #3a3a37;
+    --ink: #f0efec;
+    --ink-2: #c3c2b7;
+    --ink-3: #9b9a90;
+    --brand: #8fb4e3;
+    --series-actual: #3987e5;
+    --series-target: #d95926;
+    --grid: #33332f;
+  }
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-brand: var(--brand);
+  --color-actual: var(--series-actual);
+  --color-target: var(--series-target);
+  --font-sans: "Inter", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background: var(--surface-2);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--series-actual);
+  outline-offset: 2px;
+}
