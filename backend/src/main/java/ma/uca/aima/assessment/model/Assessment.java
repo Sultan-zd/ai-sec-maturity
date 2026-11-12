@@ -80,6 +80,16 @@ public class Assessment {
     @Column(name = "submitted_at")
     private Instant submittedAt;
 
+    /** Traçabilité : qui a créé l'évaluation, qui l'a validée et quand. */
+    @Column(name = "created_by")
+    private UUID createdBy;
+
+    @Column(name = "validated_by")
+    private UUID validatedBy;
+
+    @Column(name = "validated_at")
+    private Instant validatedAt;
+
     @Version
     private Long version;
 
@@ -87,19 +97,38 @@ public class Assessment {
     }
 
     public Assessment(Organization organization, Referential referential, String title, String scope,
-                      Map<String, Integer> targets) {
+                      Map<String, Integer> targets, UUID createdBy) {
         this.organization = organization;
         this.referential = referential;
         this.title = title;
         this.scope = scope;
         this.targets.putAll(targets);
+        this.createdBy = createdBy;
+    }
+
+    /** Lève une erreur 409 si l'évaluation n'est pas en attente de revue par un auditeur. */
+    public void assertUnderReview() {
+        if (status != AssessmentStatus.SUBMITTED) {
+            throw BusinessRuleException.conflict("Seule une évaluation soumise peut être auditée");
+        }
+    }
+
+    /** Validation finale par l'auditeur : le score retenu est celui calculé avec les niveaux audités. */
+    public void validate(BigDecimal auditedScore, int auditedLevel, UUID auditorId) {
+        assertUnderReview();
+        this.status = AssessmentStatus.VALIDATED;
+        this.globalScore = auditedScore;
+        this.globalLevel = auditedLevel;
+        this.validatedBy = auditorId;
+        this.validatedAt = Instant.now();
     }
 
     /** Lève une erreur 409 si l'évaluation n'est plus modifiable. */
     public void assertEditable() {
         if (status != AssessmentStatus.DRAFT) {
-            throw BusinessRuleException.conflict(
-                    "L'évaluation est soumise : rouvrez-la avant de modifier les réponses ou les cibles");
+            throw BusinessRuleException.conflict(status == AssessmentStatus.VALIDATED
+                    ? "L'évaluation est validée par un auditeur : elle n'est plus modifiable"
+                    : "L'évaluation est soumise : rouvrez-la avant de modifier les réponses ou les cibles");
         }
     }
 
@@ -118,7 +147,8 @@ public class Assessment {
 
     public void reopen() {
         if (status != AssessmentStatus.SUBMITTED) {
-            throw BusinessRuleException.conflict("Seule une évaluation soumise peut être rouverte");
+            throw BusinessRuleException.conflict(
+                    "Seule une évaluation soumise (non encore validée) peut être rouverte");
         }
         this.status = AssessmentStatus.DRAFT;
         this.globalScore = null;
@@ -138,4 +168,7 @@ public class Assessment {
     public Instant getCreatedAt() { return createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
     public Instant getSubmittedAt() { return submittedAt; }
+    public UUID getCreatedBy() { return createdBy; }
+    public UUID getValidatedBy() { return validatedBy; }
+    public Instant getValidatedAt() { return validatedAt; }
 }

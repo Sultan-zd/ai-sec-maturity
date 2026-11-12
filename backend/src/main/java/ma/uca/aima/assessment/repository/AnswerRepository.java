@@ -17,4 +17,6 @@ public interface AnswerRepository extends JpaRepository<Answer, UUID> {
     Optional<Answer> findByAssessmentIdAndQuestionId(UUID assessmentId, Long questionId);
 
     long countByAssessmentId(UUID assessmentId);
+
+    long countByAssessmentIdAndReviewStatusNot(UUID assessmentId, ma.uca.aima.assessment.model.ReviewStatus status);
 }

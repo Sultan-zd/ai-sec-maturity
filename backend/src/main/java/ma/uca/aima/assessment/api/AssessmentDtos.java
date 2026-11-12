@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import ma.uca.aima.assessment.model.AssessmentStatus;
+import ma.uca.aima.assessment.model.ReviewStatus;
 import ma.uca.aima.scoring.Horizon;
 import ma.uca.aima.scoring.ScoringResult;
 import ma.uca.aima.scoring.ScoringResult.RecommendationItem;
@@ -52,6 +53,15 @@ public final class AssessmentDtos {
         }
     }
 
+    /**
+     * Décision de l'auditeur sur une réponse : CONFIRMED, ou ADJUSTED avec le niveau retenu.
+     */
+    public record ReviewRequest(
+            @NotNull ReviewStatus decision,
+            @Min(1) @Max(5) Integer auditedLevel,
+            @Size(max = 2000) String auditorComment) {
+    }
+
     // ------------------------------------------------------------------ réponses
 
     public record AssessmentSummary(UUID id, String title, String scope, AssessmentStatus status,
@@ -59,12 +69,19 @@ public final class AssessmentDtos {
                                     Long referentialId, String referentialVersion,
                                     Map<String, Integer> targets,
                                     long answeredCount, int totalQuestions, BigDecimal completionPercent,
+                                    long reviewedCount,
                                     BigDecimal globalScore, Integer globalLevel,
-                                    Instant createdAt, Instant updatedAt, Instant submittedAt) {
+                                    Instant createdAt, Instant updatedAt, Instant submittedAt,
+                                    Instant validatedAt) {
     }
 
+    /**
+     * @param effectiveLevel niveau utilisé dans le calcul (niveau audité s'il a été corrigé)
+     */
     public record AnswerDto(String questionCode, Integer level, boolean notApplicable, String justification,
-                            String comment, String evidence, Instant updatedAt) {
+                            String comment, String evidence, Instant updatedAt,
+                            ReviewStatus reviewStatus, Integer auditedLevel, String auditorComment,
+                            Instant reviewedAt, Integer effectiveLevel) {
     }
 
     /**

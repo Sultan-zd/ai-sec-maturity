@@ -2,6 +2,8 @@ package ma.uca.aima.assessment.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -57,6 +59,24 @@ public class Answer {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
+    // ---- Revue par l'auditeur
+    @Enumerated(EnumType.STRING)
+    @Column(name = "review_status", nullable = false, length = 20)
+    private ReviewStatus reviewStatus = ReviewStatus.PENDING;
+
+    /** Niveau retenu par l'auditeur quand il corrige la réponse (ADJUSTED). */
+    @Column(name = "audited_level")
+    private Integer auditedLevel;
+
+    @Column(name = "auditor_comment", length = 2000)
+    private String auditorComment;
+
+    @Column(name = "reviewed_by")
+    private UUID reviewedBy;
+
+    @Column(name = "reviewed_at")
+    private Instant reviewedAt;
+
     @Version
     private Long version;
 
@@ -68,6 +88,7 @@ public class Answer {
         this.question = question;
     }
 
+    /** Saisie par l'organisation. Toute modification annule une éventuelle revue précédente. */
     public void update(Integer level, boolean notApplicable, String justification, String comment,
                        String evidence) {
         this.level = notApplicable ? null : level;
@@ -75,6 +96,36 @@ public class Answer {
         this.justification = blankToNull(justification);
         this.comment = blankToNull(comment);
         this.evidence = blankToNull(evidence);
+        resetReview();
+    }
+
+    /** Décision de l'auditeur : confirmer la réponse, ou retenir un autre niveau. */
+    public void review(ReviewStatus decision, Integer auditedLevel, String auditorComment, UUID auditorId) {
+        this.reviewStatus = decision;
+        this.auditedLevel = decision == ReviewStatus.ADJUSTED ? auditedLevel : null;
+        this.auditorComment = blankToNull(auditorComment);
+        this.reviewedBy = auditorId;
+        this.reviewedAt = Instant.now();
+    }
+
+    public void resetReview() {
+        this.reviewStatus = ReviewStatus.PENDING;
+        this.auditedLevel = null;
+        this.auditorComment = null;
+        this.reviewedBy = null;
+        this.reviewedAt = null;
+    }
+
+    /**
+     * Niveau pris en compte dans le calcul : le niveau corrigé par l'auditeur s'il existe,
+     * sinon le niveau déclaré (null si « Non applicable » non contesté).
+     */
+    public Integer effectiveLevel() {
+        return reviewStatus == ReviewStatus.ADJUSTED ? auditedLevel : level;
+    }
+
+    public boolean effectivelyNotApplicable() {
+        return reviewStatus != ReviewStatus.ADJUSTED && notApplicable;
     }
 
     public boolean hasEvidence() {
@@ -95,4 +146,9 @@ public class Answer {
     public String getEvidence() { return evidence; }
     public Instant getCreatedAt() { return createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
+    public ReviewStatus getReviewStatus() { return reviewStatus; }
+    public Integer getAuditedLevel() { return auditedLevel; }
+    public String getAuditorComment() { return auditorComment; }
+    public UUID getReviewedBy() { return reviewedBy; }
+    public Instant getReviewedAt() { return reviewedAt; }
 }

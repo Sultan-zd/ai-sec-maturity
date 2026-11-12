@@ -28,6 +28,7 @@ PFS/
 5. [Grille d'audit détaillée — 59 questions](docs/03b-grille-audit-detaillee.md)
 6. [Architecture du backend](docs/04-architecture-backend.md)
 7. [Évaluations, scoring et feuille de route](docs/05-evaluations-scoring.md)
+8. [Sécurité, mode audit et rapport PDF](docs/06-securite-audit-rapport.md)
 
 ## Mettre à jour le référentiel
 
@@ -47,5 +48,11 @@ Prérequis : Java 21 et Docker Desktop démarré.
 ```bash
 cd backend
 ./mvnw spring-boot:run    # API sur http://localhost:8090 — Swagger : /swagger-ui.html
-./mvnw test               # 21 tests unitaires + intégration (PostgreSQL via Testcontainers)
+./mvnw test               # 31 tests unitaires + intégration (PostgreSQL via Testcontainers)
 ```
+
+## Comptes
+
+Au premier démarrage, un administrateur est créé : `admin@aima.local` / `Admin@2026!`
+(à changer en production via la variable `AIMA_ADMIN_PASSWORD`). Il crée ensuite les
+organisations, les utilisateurs `ORG_USER` et les auditeurs (`AUDITOR`).

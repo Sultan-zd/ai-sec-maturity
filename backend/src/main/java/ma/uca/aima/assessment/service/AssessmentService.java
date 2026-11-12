@@ -13,10 +13,12 @@ import ma.uca.aima.assessment.api.AssessmentDtos.AnswerRequest;
 import ma.uca.aima.assessment.api.AssessmentDtos.AssessmentResults;
 import ma.uca.aima.assessment.api.AssessmentDtos.AssessmentSummary;
 import ma.uca.aima.assessment.api.AssessmentDtos.CreateAssessmentRequest;
+import ma.uca.aima.assessment.api.AssessmentDtos.ReviewRequest;
 import ma.uca.aima.assessment.api.AssessmentDtos.Roadmap;
 import ma.uca.aima.assessment.api.AssessmentDtos.RoadmapPhase;
 import ma.uca.aima.assessment.model.Answer;
 import ma.uca.aima.assessment.model.Assessment;
+import ma.uca.aima.assessment.model.ReviewStatus;
 import ma.uca.aima.assessment.repository.AnswerRepository;
 import ma.uca.aima.assessment.repository.AssessmentRepository;
 import ma.uca.aima.common.BusinessRuleException;
@@ -35,11 +37,15 @@ import ma.uca.aima.scoring.ScoringModel.DomainSpec;
 import ma.uca.aima.scoring.ScoringModelFactory;
 import ma.uca.aima.scoring.ScoringResult;
 import ma.uca.aima.scoring.ScoringResult.RecommendationItem;
+import ma.uca.aima.security.AccessGuard;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Cas d'usage des évaluations : création, saisie des réponses, soumission, résultats et feuille de route.
+ * Cas d'usage des évaluations : création, saisie, soumission, audit, résultats et feuille de route.
+ * <p>
+ * Contrôle d'accès en deux niveaux : le <b>rôle</b> est vérifié dans le contrôleur (@PreAuthorize),
+ * l'<b>appartenance à l'organisation</b> est vérifiée ici, à chaque chargement d'évaluation.
  */
 @Service
 @Transactional
@@ -52,11 +58,12 @@ public class AssessmentService {
     private final ReferentialQueryService referentialService;
     private final ScoringModelFactory modelFactory;
     private final ScoringEngine engine;
+    private final AccessGuard accessGuard;
 
     public AssessmentService(AssessmentRepository assessmentRepository, AnswerRepository answerRepository,
                              QuestionRepository questionRepository, OrganizationService organizationService,
                              ReferentialQueryService referentialService, ScoringModelFactory modelFactory,
-                             ScoringEngine engine) {
+                             ScoringEngine engine, AccessGuard accessGuard) {
         this.assessmentRepository = assessmentRepository;
         this.answerRepository = answerRepository;
         this.questionRepository = questionRepository;
@@ -64,11 +71,13 @@ public class AssessmentService {
         this.referentialService = referentialService;
         this.modelFactory = modelFactory;
         this.engine = engine;
+        this.accessGuard = accessGuard;
     }
 
     // ------------------------------------------------------------------ cycle de vie
 
     public AssessmentSummary create(CreateAssessmentRequest request) {
+        accessGuard.checkOrganization(request.organizationId());
         Organization organization = organizationService.find(request.organizationId());
         Referential referential = referentialService.findActive();
         ScoringModel model = modelFactory.forReferential(referential.getId());
@@ -80,18 +89,18 @@ public class AssessmentService {
         targets.putAll(checkedTargets(model, request.targets()));
 
         Assessment assessment = new Assessment(organization, referential, request.title().trim(),
-                request.scope(), targets);
+                request.scope(), targets, accessGuard.current().id());
         return summary(assessmentRepository.saveAndFlush(assessment));
     }
 
     public AssessmentSummary updateTargets(UUID id, Map<String, Integer> targets) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         assessment.updateTargets(checkedTargets(model(assessment), targets));
         return summary(assessmentRepository.saveAndFlush(assessment));
     }
 
     public AssessmentSummary submit(UUID id) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         assessment.assertEditable();
         ScoringResult result = compute(assessment);
         int missing = result.total() - result.answered() - result.notApplicable();
@@ -106,35 +115,39 @@ public class AssessmentService {
         return summary(assessmentRepository.saveAndFlush(assessment));
     }
 
+    /** Rouvre une évaluation soumise : les revues éventuellement commencées par l'auditeur sont annulées. */
     public AssessmentSummary reopen(UUID id) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         assessment.reopen();
+        answerRepository.findByAssessmentWithQuestion(id).forEach(Answer::resetReview);
         return summary(assessmentRepository.saveAndFlush(assessment));
     }
 
     public void delete(UUID id) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         assessment.assertEditable();
         assessmentRepository.delete(assessment);
     }
 
     @Transactional(readOnly = true)
     public List<AssessmentSummary> list(UUID organizationId) {
-        List<Assessment> assessments = organizationId == null
+        UUID scope = accessGuard.organizationScope();
+        UUID filter = scope != null ? scope : organizationId;     // un ORG_USER ne voit que son organisation
+        List<Assessment> assessments = filter == null
                 ? assessmentRepository.findAllByOrderByCreatedAtDesc()
-                : assessmentRepository.findByOrganizationIdOrderByCreatedAtDesc(organizationId);
+                : assessmentRepository.findByOrganizationIdOrderByCreatedAtDesc(filter);
         return assessments.stream().map(this::summary).toList();
     }
 
     @Transactional(readOnly = true)
     public AssessmentSummary get(UUID id) {
-        return summary(find(id));
+        return summary(findAccessible(id));
     }
 
-    // ------------------------------------------------------------------ réponses
+    // ------------------------------------------------------------------ réponses (organisation)
 
     public AnswerDto saveAnswer(UUID id, String questionCode, AnswerRequest request) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         assessment.assertEditable();
         validate(request);
         Question question = findQuestion(assessment, questionCode);
@@ -147,7 +160,7 @@ public class AssessmentService {
     }
 
     public void deleteAnswer(UUID id, String questionCode) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         assessment.assertEditable();
         Question question = findQuestion(assessment, questionCode);
         answerRepository.findByAssessmentIdAndQuestionId(id, question.getId())
@@ -156,7 +169,7 @@ public class AssessmentService {
 
     @Transactional(readOnly = true)
     public List<AnswerDto> answers(UUID id) {
-        find(id);
+        findAccessible(id);
         return answerRepository.findByAssessmentWithQuestion(id).stream().map(AssessmentService::toDto).toList();
     }
 
@@ -173,11 +186,52 @@ public class AssessmentService {
         }
     }
 
+    // ------------------------------------------------------------------ audit (auditeur)
+
+    /** L'auditeur confirme une réponse ou retient un autre niveau. */
+    public AnswerDto review(UUID id, String questionCode, ReviewRequest request) {
+        Assessment assessment = findAccessible(id);
+        assessment.assertUnderReview();
+        if (request.decision() == ReviewStatus.PENDING) {
+            throw BusinessRuleException.invalid("La décision doit être CONFIRMED ou ADJUSTED");
+        }
+        if (request.decision() == ReviewStatus.ADJUSTED && request.auditedLevel() == null) {
+            throw BusinessRuleException.invalid("auditedLevel (1 à 5) est obligatoire pour une correction");
+        }
+        if (request.decision() == ReviewStatus.ADJUSTED
+                && (request.auditorComment() == null || request.auditorComment().isBlank())) {
+            throw BusinessRuleException.invalid("Un commentaire est obligatoire pour justifier une correction");
+        }
+        Question question = findQuestion(assessment, questionCode);
+        Answer answer = answerRepository.findByAssessmentIdAndQuestionId(id, question.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Aucune réponse pour la question " + questionCode));
+        answer.review(request.decision(), request.auditedLevel(), request.auditorComment(),
+                accessGuard.current().id());
+        return toDto(answerRepository.saveAndFlush(answer));
+    }
+
+    /** Validation finale : toutes les réponses doivent avoir été revues. */
+    public AssessmentSummary validateAudit(UUID id) {
+        Assessment assessment = findAccessible(id);
+        assessment.assertUnderReview();
+        long total = answerRepository.countByAssessmentId(id);
+        long reviewed = answerRepository.countByAssessmentIdAndReviewStatusNot(id, ReviewStatus.PENDING);
+        if (reviewed < total) {
+            throw BusinessRuleException.conflict((total - reviewed) + " réponse(s) n'ont pas encore été revues");
+        }
+        ScoringResult result = compute(assessment);
+        if (result.global() == null) {
+            throw BusinessRuleException.conflict("Aucun score calculable après audit");
+        }
+        assessment.validate(result.global().value(), result.global().level(), accessGuard.current().id());
+        return summary(assessmentRepository.saveAndFlush(assessment));
+    }
+
     // ------------------------------------------------------------------ résultats
 
     @Transactional(readOnly = true)
     public AssessmentResults results(UUID id) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         List<Answer> answers = answerRepository.findByAssessmentWithQuestion(id);
         long evaluated = answers.stream().filter(a -> !a.isNotApplicable()).count();
         long proven = answers.stream().filter(a -> !a.isNotApplicable() && a.hasEvidence()).count();
@@ -188,7 +242,7 @@ public class AssessmentService {
 
     @Transactional(readOnly = true)
     public Roadmap roadmap(UUID id) {
-        Assessment assessment = find(id);
+        Assessment assessment = findAccessible(id);
         List<RecommendationItem> items = compute(assessment).recommendations();
         List<RoadmapPhase> phases = Arrays.stream(Horizon.values())
                 .map(h -> new RoadmapPhase(h, h.label(), h.period(),
@@ -201,19 +255,24 @@ public class AssessmentService {
         return compute(assessment, answerRepository.findByAssessmentWithQuestion(assessment.getId()));
     }
 
+    /** Le calcul utilise les niveaux « effectifs » : niveau corrigé par l'auditeur s'il existe. */
     private ScoringResult compute(Assessment assessment, List<Answer> answers) {
         Map<String, AnswerInput> inputs = new HashMap<>();
         for (Answer a : answers) {
-            inputs.put(a.getQuestion().getCode(), new AnswerInput(a.getLevel(), a.isNotApplicable()));
+            inputs.put(a.getQuestion().getCode(),
+                    new AnswerInput(a.effectiveLevel(), a.effectivelyNotApplicable()));
         }
         return engine.compute(model(assessment), inputs, assessment.getTargets());
     }
 
     // ------------------------------------------------------------------ utilitaires
 
-    private Assessment find(UUID id) {
-        return assessmentRepository.findById(id)
+    /** Charge l'évaluation et vérifie que l'utilisateur a le droit d'y accéder. */
+    private Assessment findAccessible(UUID id) {
+        Assessment assessment = assessmentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Évaluation " + id + " introuvable"));
+        accessGuard.checkOrganization(assessment.getOrganization().getId());
+        return assessment;
     }
 
     private ScoringModel model(Assessment assessment) {
@@ -242,6 +301,7 @@ public class AssessmentService {
     private AssessmentSummary summary(Assessment a) {
         ScoringModel model = model(a);
         long answered = answerRepository.countByAssessmentId(a.getId());
+        long reviewed = answerRepository.countByAssessmentIdAndReviewStatusNot(a.getId(), ReviewStatus.PENDING);
         int total = model.totalQuestions();
         BigDecimal completion = total == 0 ? BigDecimal.ZERO
                 : BigDecimal.valueOf(100.0 * answered / total).setScale(2, RoundingMode.HALF_UP);
@@ -250,12 +310,13 @@ public class AssessmentService {
         return new AssessmentSummary(a.getId(), a.getTitle(), a.getScope(), a.getStatus(),
                 a.getOrganization().getId(), a.getOrganization().getName(),
                 a.getReferential().getId(), a.getReferential().getVersion(), orderedTargets,
-                answered, total, completion, a.getGlobalScore(), a.getGlobalLevel(),
-                a.getCreatedAt(), a.getUpdatedAt(), a.getSubmittedAt());
+                answered, total, completion, reviewed, a.getGlobalScore(), a.getGlobalLevel(),
+                a.getCreatedAt(), a.getUpdatedAt(), a.getSubmittedAt(), a.getValidatedAt());
     }
 
     private static AnswerDto toDto(Answer a) {
         return new AnswerDto(a.getQuestion().getCode(), a.getLevel(), a.isNotApplicable(), a.getJustification(),
-                a.getComment(), a.getEvidence(), a.getUpdatedAt());
+                a.getComment(), a.getEvidence(), a.getUpdatedAt(), a.getReviewStatus(), a.getAuditedLevel(),
+                a.getAuditorComment(), a.getReviewedAt(), a.effectiveLevel());
     }
 }

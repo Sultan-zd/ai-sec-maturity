@@ -24,6 +24,18 @@ aima:
   referential:
     location: classpath:referential
     import-on-startup: true
+  security:
+    jwt:
+      # En production : variable d'environnement AIMA_JWT_SECRET (>= 32 caractères aléatoires)
+      secret: ${AIMA_JWT_SECRET:dev-only-secret-change-me-in-production-0123456789}
+      ttl: 8h
+      issuer: aima
+    bootstrap-admin:
+      email: ${AIMA_ADMIN_EMAIL:admin@aima.local}
+      password: ${AIMA_ADMIN_PASSWORD:Admin@2026!}
+      full-name: Administrateur AIMA
+    cors-allowed-origins:
+      - http://localhost:5173
 
 springdoc:
   api-docs:

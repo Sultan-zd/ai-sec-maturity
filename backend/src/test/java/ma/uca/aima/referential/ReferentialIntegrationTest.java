@@ -1,7 +1,6 @@
 package ma.uca.aima.referential;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -16,9 +15,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import ma.uca.aima.support.ApiClient;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
@@ -38,11 +36,11 @@ class ReferentialIntegrationTest {
     @Autowired
     private WebApplicationContext context;
 
-    private MockMvc mvc;
+    private ApiClient api;
 
     @BeforeEach
     void setUp() {
-        mvc = MockMvcBuilders.webAppContextSetup(context).build();
+        api = new ApiClient(context);
     }
 
     @Test
@@ -80,7 +78,7 @@ class ReferentialIntegrationTest {
 
     @Test
     void apiReturnsActiveReferential() throws Exception {
-        mvc.perform(get("/api/v1/referentials/active"))
+        api.get(api.adminToken(), "/api/v1/referentials/active")
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.code").value("AIMA"))
                 .andExpect(jsonPath("$.domains.length()").value(8))
@@ -88,9 +86,17 @@ class ReferentialIntegrationTest {
     }
 
     @Test
+    void apiRequiresAuthentication() throws Exception {
+        api.get(null, "/api/v1/referentials/active")
+                .andExpect(status().isUnauthorized())
+                .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
+                .andExpect(jsonPath("$.title").value("Authentification requise"));
+    }
+
+    @Test
     void apiReturnsProblemDetailWhenQuestionIsUnknown() throws Exception {
         Long id = queryService.findActive().getId();
-        mvc.perform(get("/api/v1/referentials/{id}/questions/{code}", id, "NOPE.1.1"))
+        api.get(api.adminToken(), "/api/v1/referentials/" + id + "/questions/NOPE.1.1")
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
                 .andExpect(jsonPath("$.title").value("Ressource introuvable"));

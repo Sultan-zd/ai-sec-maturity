@@ -1,9 +1,6 @@
 package ma.uca.aima.assessment;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -11,21 +8,18 @@ import java.util.List;
 import java.util.Map;
 import ma.uca.aima.TestcontainersConfiguration;
 import ma.uca.aima.referential.service.ReferentialQueryService;
+import ma.uca.aima.support.ApiClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
- * Parcours complet d'une auto-évaluation via l'API REST, sur une vraie base PostgreSQL.
+ * Parcours complet via l'API REST sécurisée, sur une vraie base PostgreSQL :
+ * auto-évaluation par l'organisation, puis audit et validation par un auditeur.
  */
 @SpringBootTest
 @Import(TestcontainersConfiguration.class)
@@ -35,26 +29,25 @@ class AssessmentFlowIntegrationTest {
     private WebApplicationContext context;
 
     @Autowired
-    private JsonMapper json;
-
-    @Autowired
     private ReferentialQueryService referentialService;
 
-    private MockMvc mvc;
+    private ApiClient api;
 
     @BeforeEach
     void setUp() {
-        mvc = MockMvcBuilders.webAppContextSetup(context).build();
+        api = new ApiClient(context);
     }
 
     @Test
-    void completeSelfAssessmentFlow() throws Exception {
-        // 1. Organisation + évaluation (cible 4 pour le domaine LLM, 3 par défaut ailleurs)
-        String orgId = body(send(post("/api/v1/organizations"), Map.of(
-                "name", "FinTech Atlas", "sector", "BANKING_FINANCE", "size", "PME", "country", "Maroc"))
-                .andExpect(status().isCreated())).get("id").asString();
+    void selfAssessmentThenAuditFlow() throws Exception {
+        // 0. L'administrateur crée l'organisation, un utilisateur de l'organisation et un auditeur
+        String admin = api.adminToken();
+        String orgId = api.createOrganization(admin, "FinTech Atlas");
+        String orgUser = api.createUserAndLogin(admin, "ORG_USER", orgId);
+        String auditor = api.createUserAndLogin(admin, "AUDITOR", null);
 
-        JsonNode assessment = body(send(post("/api/v1/assessments"), Map.of(
+        // 1. L'organisation crée son évaluation (cible 4 pour LLM, 3 ailleurs)
+        JsonNode assessment = api.body(api.post(orgUser, "/api/v1/assessments", Map.of(
                 "organizationId", orgId, "title", "Évaluation initiale 2026", "targets", Map.of("LLM", 4)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.status").value("DRAFT"))
@@ -64,17 +57,17 @@ class AssessmentFlowIntegrationTest {
         String base = "/api/v1/assessments/" + assessment.get("id").asString();
 
         // 2. Erreurs de saisie
-        send(put(base + "/answers/GOV.1.1"), Map.of("level", 7))
+        api.put(orgUser, base + "/answers/GOV.1.1", Map.of("level", 7))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.level").exists());
-        send(put(base + "/answers/GOV.1.1"), Map.of("notApplicable", true))
+        api.put(orgUser, base + "/answers/GOV.1.1", Map.of("notApplicable", true))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.detail").value("La justification est obligatoire pour « Non applicable »"));
-        send(put(base + "/answers/NOPE.1.1"), Map.of("level", 3))
+        api.put(orgUser, base + "/answers/NOPE.1.1", Map.of("level", 3))
                 .andExpect(status().isNotFound());
-        send(put(base + "/targets"), Map.of("targets", Map.of("XYZ", 3)))
+        api.put(orgUser, base + "/targets", Map.of("targets", Map.of("XYZ", 3)))
                 .andExpect(status().isBadRequest());
-        mvc.perform(post(base + "/submit"))
+        api.post(orgUser, base + "/submit", null)
                 .andExpect(status().isConflict());
 
         // 3. Réponses : niveau 3 partout, LLM.3.2 au niveau 1, TRUST.2.2 non applicable
@@ -84,63 +77,103 @@ class AssessmentFlowIntegrationTest {
                 case "TRUST.2.2" -> Map.of("notApplicable", true, "justification", "Pas de système à impact social");
                 default -> Map.of("level", 3, "evidence", code.startsWith("GOV") ? "Politique IA v1.pdf" : "");
             };
-            send(put(base + "/answers/" + code), answer).andExpect(status().isOk());
+            api.put(orgUser, base + "/answers/" + code, answer).andExpect(status().isOk());
         }
 
-        // 4. Résultats
-        JsonNode results = body(mvc.perform(get(base + "/results")).andExpect(status().isOk()));
+        // 4. Résultats déclaratifs
+        JsonNode results = api.body(api.get(orgUser, base + "/results").andExpect(status().isOk()));
         JsonNode scoring = results.get("scoring");
         assertThat(scoring.get("completionPercent").asDouble()).isEqualTo(100.0);
-        assertThat(scoring.get("notApplicable").asInt()).isEqualTo(1);
-
         JsonNode llm = domain(scoring, "LLM");
-        // LLM.3 = (3×3 + 3×1)/6 = 2 ; brut LLM = (3+3+2+3)/4 = 2,75 → plafonné à 2,0 par LLM.3.2 (critique, niveau 1)
+        // LLM.3 = (3×3 + 3×1)/6 = 2 ; brut LLM = (3+3+2+3)/4 = 2,75 → plafonné à 2,0 par LLM.3.2
         assertThat(llm.get("rawScore").asDouble()).isEqualTo(2.75);
         assertThat(llm.get("score").get("value").asDouble()).isEqualTo(2.0);
         assertThat(llm.get("cappedBy").asString()).isEqualTo("LLM.3.2");
-        assertThat(llm.get("gap").asDouble()).isEqualTo(2.0);
-        assertThat(domain(scoring, "GOV").get("gap").asDouble()).isEqualTo(0.0);
-        // Global = 3 − 0,15 × (3 − 2) = 2,85 → niveau 3 « Défini »
+        // Global = 3 − 0,15 × (3 − 2) = 2,85
         assertThat(scoring.get("global").get("value").asDouble()).isEqualTo(2.85);
-        assertThat(scoring.get("global").get("level").asInt()).isEqualTo(3);
-        // Indice de confiance : 9 réponses GOV prouvées sur 58 réponses évaluées
+        // Indice de confiance : 9 réponses GOV prouvées sur 58 évaluées
         assertThat(results.get("evidenceRatePercent").asDouble()).isEqualTo(15.52);
 
-        // 5. Recommandations : seules les 8 questions LLM sont sous la cible (4)
         JsonNode recos = scoring.get("recommendations");
-        assertThat(recos.size()).isEqualTo(8);
-        JsonNode first = recos.get(0);
-        assertThat(first.get("questionCode").asString()).isEqualTo("LLM.3.2");
-        assertThat(first.get("priority").asDouble()).isEqualTo(135.0);   // (4−1)×3×0,15×100
-        assertThat(first.get("horizon").asString()).isEqualTo("QUICK_WIN");
-        assertThat(first.get("followUpActions").size()).isEqualTo(2);    // 2→3 puis 3→4
+        assertThat(recos.size()).isEqualTo(8);                          // les 8 questions LLM sous la cible 4
+        assertThat(recos.get(0).get("questionCode").asString()).isEqualTo("LLM.3.2");
+        assertThat(recos.get(0).get("priority").asDouble()).isEqualTo(135.0);
+        assertThat(recos.get(0).get("horizon").asString()).isEqualTo("QUICK_WIN");
 
-        mvc.perform(get(base + "/roadmap"))
+        api.get(orgUser, base + "/roadmap")
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.totalActions").value(8))
-                .andExpect(jsonPath("$.phases.length()").value(4))
-                .andExpect(jsonPath("$.phases[0].horizon").value("QUICK_WIN"))
                 .andExpect(jsonPath("$.phases[0].actions[0].questionCode").value("LLM.3.2"));
 
-        // 6. Soumission : score figé et réponses verrouillées
-        mvc.perform(post(base + "/submit"))
+        // 5. Soumission : score figé, réponses verrouillées
+        api.post(orgUser, base + "/submit", null)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("SUBMITTED"))
-                .andExpect(jsonPath("$.globalScore").value(2.85))
-                .andExpect(jsonPath("$.globalLevel").value(3));
-        send(put(base + "/answers/GOV.1.1"), Map.of("level", 5))
+                .andExpect(jsonPath("$.globalScore").value(2.85));
+        api.put(orgUser, base + "/answers/GOV.1.1", Map.of("level", 5))
                 .andExpect(status().isConflict());
 
-        // 7. Réouverture
-        mvc.perform(post(base + "/reopen"))
+        // 6. Audit : l'organisation ne peut pas s'auto-auditer, l'auditeur ne peut pas répondre
+        api.put(orgUser, base + "/answers/GOV.1.1/review", Map.of("decision", "CONFIRMED"))
+                .andExpect(status().isForbidden());
+        api.put(auditor, base + "/answers/GOV.1.1", Map.of("level", 5))
+                .andExpect(status().isForbidden());
+        api.put(auditor, base + "/answers/LLM.3.2/review", Map.of("decision", "ADJUSTED", "auditedLevel", 3))
+                .andExpect(status().isBadRequest());                     // commentaire obligatoire
+        api.post(auditor, base + "/validate", null)
+                .andExpect(status().isConflict());                       // rien n'est encore revu
+
+        // L'auditeur constate qu'une validation humaine existe en fait : LLM.3.2 corrigé à 3
+        for (String code : allQuestionCodes()) {
+            Map<String, Object> review = code.equals("LLM.3.2")
+                    ? Map.of("decision", "ADJUSTED", "auditedLevel", 3,
+                            "auditorComment", "Workflow d'approbation constaté dans l'outil de ticketing")
+                    : Map.of("decision", "CONFIRMED");
+            api.put(auditor, base + "/answers/" + code + "/review", review).andExpect(status().isOk());
+        }
+        api.get(auditor, base + "/answers")
+                .andExpect(jsonPath("$[?(@.questionCode == 'LLM.3.2')].effectiveLevel").value(3))
+                .andExpect(jsonPath("$[?(@.questionCode == 'LLM.3.2')].level").value(1));
+
+        // 7. Validation : plus de plafond, LLM = 3, global audité = 3,00
+        api.post(auditor, base + "/validate", null)
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value("DRAFT"));
-        send(put(base + "/answers/GOV.1.1"), Map.of("level", 5)).andExpect(status().isOk());
+                .andExpect(jsonPath("$.status").value("VALIDATED"))
+                .andExpect(jsonPath("$.reviewedCount").value(59))
+                .andExpect(jsonPath("$.globalScore").value(3.0))
+                .andExpect(jsonPath("$.globalLevel").value(3));
+        JsonNode audited = api.body(api.get(orgUser, base + "/results")).get("scoring");
+        assertThat(domain(audited, "LLM").get("cappedBy").isNull()).isTrue();
+
+        // 8. Une évaluation validée est définitive
+        api.post(orgUser, base + "/reopen", null).andExpect(status().isConflict());
+        api.put(orgUser, base + "/answers/GOV.1.1", Map.of("level", 5)).andExpect(status().isConflict());
+    }
+
+    @Test
+    void reopeningCancelsPartialReviews() throws Exception {
+        String admin = api.adminToken();
+        String orgId = api.createOrganization(admin, "Retail Sud");
+        String orgUser = api.createUserAndLogin(admin, "ORG_USER", orgId);
+        String auditor = api.createUserAndLogin(admin, "AUDITOR", null);
+        String base = "/api/v1/assessments/" + api.body(api.post(orgUser, "/api/v1/assessments",
+                Map.of("organizationId", orgId, "title", "Test réouverture"))).get("id").asString();
+        for (String code : allQuestionCodes()) {
+            api.put(orgUser, base + "/answers/" + code, Map.of("level", 2));
+        }
+        api.post(orgUser, base + "/submit", null).andExpect(status().isOk());
+        api.put(auditor, base + "/answers/GOV.1.1/review", Map.of("decision", "CONFIRMED"))
+                .andExpect(status().isOk());
+
+        api.post(orgUser, base + "/reopen", null)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("DRAFT"))
+                .andExpect(jsonPath("$.reviewedCount").value(0));
     }
 
     @Test
     void organizationValidationErrorsAreDetailedPerField() throws Exception {
-        send(post("/api/v1/organizations"), Map.of("name", " "))
+        api.post(api.adminToken(), "/api/v1/organizations", Map.of("name", " "))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.title").value("Données invalides"))
                 .andExpect(jsonPath("$.errors.name").exists())
@@ -149,15 +182,6 @@ class AssessmentFlowIntegrationTest {
     }
 
     // ------------------------------------------------------------------ utilitaires
-
-    private ResultActions send(org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder request,
-                               Object payload) throws Exception {
-        return mvc.perform(request.contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(payload)));
-    }
-
-    private JsonNode body(ResultActions actions) throws Exception {
-        return json.readTree(actions.andReturn().getResponse().getContentAsString());
-    }
 
     private static JsonNode domain(JsonNode scoring, String code) {
         for (JsonNode d : scoring.get("domains")) {

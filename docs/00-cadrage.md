@@ -108,7 +108,7 @@ sans recompiler l'application — c'est ainsi que travaillent les vrais outils G
 | 3 | Grille d'audit et questionnaire complet (livrable 3) | ✅ |
 | 4 | Backend Spring Boot : modèle de données, API référentiel | ✅ |
 | 5 | Backend : évaluations, moteur de scoring, recommandations | ✅ |
-| 6 | Backend : sécurité JWT, export PDF, tests | ⏳ |
+| 6 | Backend : sécurité JWT, mode audit, export PDF, tests | ✅ |
 | 7 | Frontend React : questionnaire + dashboard + feuille de route | ⏳ |
 | 8 | Docker Compose + CI GitHub Actions | ⏳ |
 | 9 | Étude de cas sur entreprise fictive (livrable 5) | ⏳ |
