@@ -1,0 +1,2968 @@
+{
+  "organization": "Banque Atlas Digitale (fictive)",
+  "assessmentId": "1e4e7462-b398-4269-bfad-8319d30ca4b2",
+  "declared": {
+    "global": {
+      "value": 2.39,
+      "level": 2,
+      "levelName": "Reproductible",
+      "percent": 34.75
+    },
+    "answered": 59,
+    "notApplicable": 0,
+    "total": 59,
+    "completionPercent": 100,
+    "domains": [
+      {
+        "code": "GOV",
+        "name": "Gouvernance & stratégie IA",
+        "weight": 0.15,
+        "score": {
+          "value": 2.34,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 33.5
+        },
+        "rawScore": 2.34,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 0.66,
+        "subdomains": [
+          {
+            "code": "GOV.1",
+            "name": "Stratégie et politique IA",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "GOV.2",
+            "name": "Rôles, responsabilités et redevabilité",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 3,
+            "notApplicable": 0,
+            "total": 3
+          },
+          {
+            "code": "GOV.3",
+            "name": "Inventaire et classification des systèmes IA",
+            "score": {
+              "value": 1.6,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 15
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "GOV.4",
+            "name": "Conformité légale et réglementaire",
+            "score": {
+              "value": 2.75,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 43.75
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "RISK",
+        "name": "Gestion des risques IA",
+        "weight": 0.15,
+        "score": {
+          "value": 2,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25
+        },
+        "rawScore": 2,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 1,
+        "subdomains": [
+          {
+            "code": "RISK.1",
+            "name": "Méthodologie d'appréciation des risques IA",
+            "score": {
+              "value": 1.6,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 15
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "RISK.2",
+            "name": "Analyse d'impact des systèmes IA",
+            "score": {
+              "value": 2.4,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 35
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "RISK.3",
+            "name": "Traitement et suivi des risques",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "DATA",
+        "name": "Données & vie privée",
+        "weight": 0.15,
+        "score": {
+          "value": 2.93,
+          "level": 3,
+          "levelName": "Défini",
+          "percent": 48.25
+        },
+        "rawScore": 2.93,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 4,
+        "gap": 1.07,
+        "subdomains": [
+          {
+            "code": "DATA.1",
+            "name": "Qualité, provenance et traçabilité des données",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DATA.2",
+            "name": "Protection des données personnelles",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DATA.3",
+            "name": "Sécurité des données d'entraînement",
+            "score": {
+              "value": 2.8,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 45
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "DEV",
+        "name": "Sécurité du cycle de vie des modèles",
+        "weight": 0.15,
+        "score": {
+          "value": 2.74,
+          "level": 3,
+          "levelName": "Défini",
+          "percent": 43.5
+        },
+        "rawScore": 2.74,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 0.26,
+        "subdomains": [
+          {
+            "code": "DEV.1",
+            "name": "Développement sécurisé des systèmes IA",
+            "score": {
+              "value": 3.6,
+              "level": 4,
+              "levelName": "Maîtrisé",
+              "percent": 65
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DEV.2",
+            "name": "Chaîne d'approvisionnement IA",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DEV.3",
+            "name": "Tests, validation et red teaming",
+            "score": {
+              "value": 2.2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 30
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DEV.4",
+            "name": "Déploiement et gestion des changements",
+            "score": {
+              "value": 2.67,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 41.75
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "LLM",
+        "name": "Sécurité des applications LLM / GenAI",
+        "weight": 0.15,
+        "score": {
+          "value": 2,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25
+        },
+        "rawScore": 2.15,
+        "cappedBy": "LLM.3.2",
+        "cap": 2,
+        "targetLevel": 4,
+        "gap": 2,
+        "subdomains": [
+          {
+            "code": "LLM.1",
+            "name": "Injection de prompt et manipulation des entrées",
+            "score": {
+              "value": 2.6,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 40
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "LLM.2",
+            "name": "Divulgation d'informations et gestion des sorties",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "LLM.3",
+            "name": "Agentivité et permissions des agents",
+            "score": {
+              "value": 1.5,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 12.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "LLM.4",
+            "name": "Sécurité RAG, vecteurs et embeddings",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "OPS",
+        "name": "Opérations & résilience",
+        "weight": 0.1,
+        "score": {
+          "value": 2.88,
+          "level": 3,
+          "levelName": "Défini",
+          "percent": 47
+        },
+        "rawScore": 2.88,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 4,
+        "gap": 1.12,
+        "subdomains": [
+          {
+            "code": "OPS.1",
+            "name": "Gestion des identités et des accès",
+            "score": {
+              "value": 4,
+              "level": 4,
+              "levelName": "Maîtrisé",
+              "percent": 75
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "OPS.2",
+            "name": "Surveillance et journalisation",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "OPS.3",
+            "name": "Disponibilité et consommation des ressources",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "OPS.4",
+            "name": "Gestion des incidents IA",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "TRUST",
+        "name": "IA digne de confiance",
+        "weight": 0.1,
+        "score": {
+          "value": 2,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25
+        },
+        "rawScore": 2.38,
+        "cappedBy": "TRUST.2.1",
+        "cap": 2,
+        "targetLevel": 3,
+        "gap": 1,
+        "subdomains": [
+          {
+            "code": "TRUST.1",
+            "name": "Transparence et explicabilité",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "TRUST.2",
+            "name": "Équité et gestion des biais",
+            "score": {
+              "value": 1,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 0
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "TRUST.3",
+            "name": "Supervision humaine",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "TRUST.4",
+            "name": "Fiabilité et désinformation",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "PEOPLE",
+        "name": "Culture & amélioration continue",
+        "weight": 0.05,
+        "score": {
+          "value": 2.03,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25.75
+        },
+        "rawScore": 2.03,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 0.97,
+        "subdomains": [
+          {
+            "code": "PEOPLE.1",
+            "name": "Sensibilisation et formation",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "PEOPLE.2",
+            "name": "Usage encadré de l'IA par les collaborateurs",
+            "score": {
+              "value": 1.6,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 15
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "PEOPLE.3",
+            "name": "Audit interne et amélioration continue",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      }
+    ],
+    "recommendations": [
+      {
+        "questionCode": "LLM.3.2",
+        "questionText": "Les actions sensibles déclenchées par une IA (paiement, suppression, envoi externe) nécessitent-elles une validation humaine ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.3",
+        "currentLevel": 1,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "LOW",
+        "priority": 135,
+        "horizon": "QUICK_WIN",
+        "action": "Identifier toutes les actions sensibles qu'une IA peut déclencher.",
+        "followUpActions": [
+          "Imposer une validation humaine documentée pour ces actions.",
+          "Implémenter la validation techniquement et tester son contournement."
+        ]
+      },
+      {
+        "questionCode": "GOV.3.2",
+        "questionText": "Les systèmes IA sont-ils classés selon leur niveau de risque (par exemple selon les catégories de l'AI Act) ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.3",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 60,
+        "horizon": "QUICK_WIN",
+        "action": "Définir des critères simples de sensibilité (données personnelles, décisions sur des personnes, exposition externe).",
+        "followUpActions": [
+          "Adopter une grille documentée inspirée de l'AI Act et l'appliquer à l'inventaire."
+        ]
+      },
+      {
+        "questionCode": "LLM.1.2",
+        "questionText": "Le prompt système est-il protégé et dépourvu d'informations sensibles ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.1",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 60,
+        "horizon": "QUICK_WIN",
+        "action": "Déplacer les contrôles d'autorisation hors du LLM, dans le code applicatif.",
+        "followUpActions": [
+          "Tester régulièrement l'extraction du prompt système."
+        ]
+      },
+      {
+        "questionCode": "GOV.2.1",
+        "questionText": "Les rôles et responsabilités liés à l'IA sont-ils formellement attribués ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "LOW",
+        "priority": 45,
+        "horizon": "QUICK_WIN",
+        "action": "Formaliser une matrice RACI couvrant conception, déploiement, risques et conformité.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "DATA.2.2",
+        "questionText": "Des mesures empêchent-elles l'envoi de données sensibles vers des services IA externes non autorisés ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.2",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Formaliser la règle et mettre à disposition des outils IA approuvés.",
+        "followUpActions": [
+          "Déployer des contrôles DLP / CASB sur les services IA."
+        ]
+      },
+      {
+        "questionCode": "DATA.3.1",
+        "questionText": "L'intégrité des données d'entraînement est-elle protégée contre l'empoisonnement ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.3",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "HIGH",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Versionner les jeux de données et contrôler leur intégrité par empreintes.",
+        "followUpActions": [
+          "Ajouter une détection d'anomalies dans le pipeline d'entraînement."
+        ]
+      },
+      {
+        "questionCode": "LLM.2.2",
+        "questionText": "Des mécanismes empêchent-ils le LLM de divulguer des données sensibles ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.2",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Mettre en place le masquage des données personnelles et le cloisonnement par utilisateur.",
+        "followUpActions": [
+          "Tester l'extraction de données et mettre en place des alertes."
+        ]
+      },
+      {
+        "questionCode": "LLM.3.1",
+        "questionText": "Les outils et permissions des agents IA sont-ils limités au strict nécessaire ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.3",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Appliquer le moindre privilège : liste blanche d'outils et comptes dédiés.",
+        "followUpActions": [
+          "Revoir les permissions périodiquement et journaliser les actions des agents."
+        ]
+      },
+      {
+        "questionCode": "LLM.4.1",
+        "questionText": "L'accès aux documents d'une base RAG respecte-t-il les droits de l'utilisateur qui interroge ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.4",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "HIGH",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Appliquer un filtrage par permissions au niveau document lors de la recherche.",
+        "followUpActions": [
+          "Tester le cloisonnement entre utilisateurs et journaliser les accès."
+        ]
+      },
+      {
+        "questionCode": "DEV.3.2",
+        "questionText": "Des exercices de red teaming ou des tests d'intrusion spécifiques à l'IA sont-ils réalisés ?",
+        "domainCode": "DEV",
+        "subdomainCode": "DEV.3",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "HIGH",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Réaliser un premier test adversarial sur le système IA le plus exposé.",
+        "followUpActions": [
+          "Rendre le red teaming obligatoire avant production selon une méthodologie reconnue."
+        ]
+      },
+      {
+        "questionCode": "LLM.4.2",
+        "questionText": "L'intégrité des documents indexés et de la base vectorielle est-elle contrôlée ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.4",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Contrôler le processus d'ingestion et restreindre l'accès en écriture.",
+        "followUpActions": [
+          "Détecter les contenus malveillants à l'ingestion."
+        ]
+      },
+      {
+        "questionCode": "RISK.1.2",
+        "questionText": "Les menaces adversariales propres à l'IA (empoisonnement, évasion, extraction de modèle, injection) sont-elles prises en compte ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.1",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Sensibiliser les équipes aux menaces adversariales (MITRE ATLAS, OWASP Top 10 LLM).",
+        "followUpActions": [
+          "Réaliser une modélisation des menaces pour chaque système IA exposé."
+        ]
+      },
+      {
+        "questionCode": "TRUST.2.1",
+        "questionText": "Les biais des modèles sont-ils mesurés et corrigés ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.2",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "HIGH",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Identifier les groupes potentiellement affectés par chaque système IA.",
+        "followUpActions": [
+          "Définir des métriques d'équité et les mesurer avant chaque déploiement."
+        ]
+      },
+      {
+        "questionCode": "DEV.2.2",
+        "questionText": "Les modèles pré-entraînés et bibliothèques open source sont-ils vérifiés (origine, intégrité, vulnérabilités) ?",
+        "domainCode": "DEV",
+        "subdomainCode": "DEV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Définir les sources autorisées, imposer des formats sûrs et produire un AI-BOM.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.3.1",
+        "questionText": "L'entreprise dispose-t-elle d'un inventaire de ses systèmes IA (développés en interne, achetés, SaaS) ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Étendre l'inventaire aux outils achetés et SaaS et attribuer un propriétaire à chaque système.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "LLM.1.1",
+        "questionText": "Des protections contre l'injection de prompt (directe et indirecte) sont-elles en place ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.1",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Tester régulièrement les défenses et journaliser les tentatives d'injection.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "LLM.2.1",
+        "questionText": "Les sorties des LLM sont-elles validées avant d'être affichées ou transmises à d'autres systèmes ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.2",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Automatiser et tester la validation des sorties.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.1.1",
+        "questionText": "Une méthode d'appréciation des risques spécifiques à l'IA est-elle définie et appliquée ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Formaliser une méthode d'appréciation des risques IA basée sur ISO/IEC 23894.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.2.1",
+        "questionText": "Une analyse d'impact sur les personnes, les groupes et la société est-elle réalisée avant le déploiement d'un système IA ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Rendre l'analyse d'impact obligatoire pour les systèmes à risque élevé (modèle ISO/IEC 42005).",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.2.1",
+        "questionText": "Les interactions avec les systèmes IA (requêtes, réponses, décisions) sont-elles journalisées ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.2",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 40,
+        "horizon": "MEDIUM_TERM",
+        "action": "Définir le contenu, la durée de conservation et la protection des journaux.",
+        "followUpActions": [
+          "Centraliser les journaux dans le SIEM et créer des règles de détection IA."
+        ]
+      },
+      {
+        "questionCode": "OPS.2.2",
+        "questionText": "La performance et la dérive des modèles en production sont-elles surveillées ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.2",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 40,
+        "horizon": "MEDIUM_TERM",
+        "action": "Suivre régulièrement la performance et la dérive des données.",
+        "followUpActions": [
+          "Automatiser les alertes et les seuils d'intervention."
+        ]
+      },
+      {
+        "questionCode": "OPS.3.2",
+        "questionText": "La continuité des services IA critiques est-elle assurée (plan de secours, fournisseur alternatif, mode dégradé) ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.3",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "HIGH",
+        "priority": 40,
+        "horizon": "MEDIUM_TERM",
+        "action": "Documenter un plan de continuité incluant un mode dégradé.",
+        "followUpActions": [
+          "Tester le plan et identifier un fournisseur alternatif."
+        ]
+      },
+      {
+        "questionCode": "DATA.1.1",
+        "questionText": "L'origine, les droits d'utilisation et le lignage des données utilisées par les systèmes IA sont-ils documentés ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.1",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Outiller le traçage automatique du lignage (DVC, MLflow, OpenLineage).",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "DATA.1.2",
+        "questionText": "La qualité des données (exactitude, complétude, représentativité) est-elle évaluée avant l'entraînement ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.1",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Automatiser les contrôles qualité dans le pipeline (ex. Great Expectations).",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.2.2",
+        "questionText": "Un comité de gouvernance IA supervise-t-il les décisions et les risques liés à l'IA ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Créer un comité IA pluridisciplinaire doté d'une charte et d'un calendrier de réunions.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.2.3",
+        "questionText": "La direction générale (ou le conseil d'administration) reçoit-elle un reporting régulier sur les risques et la performance de l'IA ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Instaurer un reporting semestriel formalisé vers la direction.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.4.1",
+        "questionText": "La procédure de gestion des incidents couvre-t-elle les incidents propres à l'IA ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.4",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Réaliser des exercices et suivre des indicateurs de traitement.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.3.1",
+        "questionText": "Chaque risque IA identifié dispose-t-il d'un plan de traitement, d'un propriétaire et d'une échéance ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Formaliser des plans de traitement avec échéances et acceptation du risque résiduel.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.3.2",
+        "questionText": "Les risques IA sont-ils réévalués périodiquement et à chaque changement (nouveau modèle, nouvelles données, nouvel usage) ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Définir les changements significatifs qui imposent une réévaluation.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.3.1",
+        "questionText": "Des limites (quotas, limitation de débit, taille des requêtes) protègent-elles contre la consommation excessive de ressources ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.3",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Surveiller les coûts avec alertes et réaliser des tests de charge.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.2.2",
+        "questionText": "L'usage d'outils IA non autorisés (shadow AI) est-il détecté ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.2",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Interroger les équipes sur les outils IA qu'elles utilisent.",
+        "followUpActions": [
+          "Analyser périodiquement les journaux réseau pour identifier les services IA."
+        ]
+      },
+      {
+        "questionCode": "TRUST.1.2",
+        "questionText": "Les décisions des systèmes IA ayant un impact sur les personnes sont-elles explicables ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "HIGH",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Documenter les modèles (model cards) et appliquer des méthodes d'explicabilité.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "TRUST.2.2",
+        "questionText": "Les parties prenantes concernées sont-elles consultées et la diversité des équipes est-elle prise en compte dans les projets IA à impact ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.2",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 1,
+        "effort": "MEDIUM",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Identifier les parties prenantes concernées par chaque projet à impact.",
+        "followUpActions": [
+          "Organiser leur consultation et veiller à la diversité des équipes."
+        ]
+      },
+      {
+        "questionCode": "TRUST.4.1",
+        "questionText": "Des mesures limitent-elles les hallucinations et la désinformation produites par les systèmes IA ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.4",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Ancrer les réponses sur des sources fiables, citer les sources et imposer une vérification humaine.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "DEV.4.2",
+        "questionText": "Les modèles sont-ils versionnés avec leur documentation (model card), avec possibilité de revenir à une version antérieure ?",
+        "domainCode": "DEV",
+        "subdomainCode": "DEV.4",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 1,
+        "effort": "LOW",
+        "priority": 15,
+        "horizon": "LONG_TERM",
+        "action": "Mettre en place un registre de modèles (ex. MLflow) avec model cards.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.4.2",
+        "questionText": "Les questions de propriété intellectuelle et de responsabilité liées à l'IA (contenus générés, données d'entraînement, contrats) sont-elles traitées ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.4",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 1,
+        "effort": "MEDIUM",
+        "priority": 15,
+        "horizon": "LONG_TERM",
+        "action": "Rédiger des clauses types IA avec le service juridique.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.2.1",
+        "questionText": "Une charte d'usage de l'IA générative définit-elle les outils autorisés et les usages interdits ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "LOW",
+        "priority": 15,
+        "horizon": "LONG_TERM",
+        "action": "Rédiger et faire approuver une charte d'usage de l'IA générative.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.4.2",
+        "questionText": "Les utilisateurs peuvent-ils facilement signaler un comportement anormal d'un système IA ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.4",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 1,
+        "effort": "LOW",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Analyser les signalements et les suivre par des indicateurs.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.1.1",
+        "questionText": "Les collaborateurs sont-ils sensibilisés aux risques liés à l'IA ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Mettre en place un programme de sensibilisation pour tous les collaborateurs.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.1.2",
+        "questionText": "Les équipes techniques (data scientists, développeurs, exploitants) sont-elles formées à la sécurité de l'IA ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Mettre en place un parcours de formation à la sécurité de l'IA.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.3.1",
+        "questionText": "Des audits internes du dispositif de gouvernance et de sécurité de l'IA sont-ils réalisés ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Planifier un programme d'audit annuel.",
+        "followUpActions": []
+      }
+    ]
+  },
+  "audited": {
+    "global": {
+      "value": 2.38,
+      "level": 2,
+      "levelName": "Reproductible",
+      "percent": 34.5
+    },
+    "answered": 59,
+    "notApplicable": 0,
+    "total": 59,
+    "completionPercent": 100,
+    "domains": [
+      {
+        "code": "GOV",
+        "name": "Gouvernance & stratégie IA",
+        "weight": 0.15,
+        "score": {
+          "value": 2.19,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 29.75
+        },
+        "rawScore": 2.19,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 0.81,
+        "subdomains": [
+          {
+            "code": "GOV.1",
+            "name": "Stratégie et politique IA",
+            "score": {
+              "value": 2.4,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 35
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "GOV.2",
+            "name": "Rôles, responsabilités et redevabilité",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 3,
+            "notApplicable": 0,
+            "total": 3
+          },
+          {
+            "code": "GOV.3",
+            "name": "Inventaire et classification des systèmes IA",
+            "score": {
+              "value": 1.6,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 15
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "GOV.4",
+            "name": "Conformité légale et réglementaire",
+            "score": {
+              "value": 2.75,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 43.75
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "RISK",
+        "name": "Gestion des risques IA",
+        "weight": 0.15,
+        "score": {
+          "value": 2,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25
+        },
+        "rawScore": 2,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 1,
+        "subdomains": [
+          {
+            "code": "RISK.1",
+            "name": "Méthodologie d'appréciation des risques IA",
+            "score": {
+              "value": 1.6,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 15
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "RISK.2",
+            "name": "Analyse d'impact des systèmes IA",
+            "score": {
+              "value": 2.4,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 35
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "RISK.3",
+            "name": "Traitement et suivi des risques",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "DATA",
+        "name": "Données & vie privée",
+        "weight": 0.15,
+        "score": {
+          "value": 2.93,
+          "level": 3,
+          "levelName": "Défini",
+          "percent": 48.25
+        },
+        "rawScore": 2.93,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 4,
+        "gap": 1.07,
+        "subdomains": [
+          {
+            "code": "DATA.1",
+            "name": "Qualité, provenance et traçabilité des données",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DATA.2",
+            "name": "Protection des données personnelles",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DATA.3",
+            "name": "Sécurité des données d'entraînement",
+            "score": {
+              "value": 2.8,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 45
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "DEV",
+        "name": "Sécurité du cycle de vie des modèles",
+        "weight": 0.15,
+        "score": {
+          "value": 2.74,
+          "level": 3,
+          "levelName": "Défini",
+          "percent": 43.5
+        },
+        "rawScore": 2.74,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 0.26,
+        "subdomains": [
+          {
+            "code": "DEV.1",
+            "name": "Développement sécurisé des systèmes IA",
+            "score": {
+              "value": 3.6,
+              "level": 4,
+              "levelName": "Maîtrisé",
+              "percent": 65
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DEV.2",
+            "name": "Chaîne d'approvisionnement IA",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DEV.3",
+            "name": "Tests, validation et red teaming",
+            "score": {
+              "value": 2.2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 30
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "DEV.4",
+            "name": "Déploiement et gestion des changements",
+            "score": {
+              "value": 2.67,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 41.75
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "LLM",
+        "name": "Sécurité des applications LLM / GenAI",
+        "weight": 0.15,
+        "score": {
+          "value": 2,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25
+        },
+        "rawScore": 2,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 4,
+        "gap": 2,
+        "subdomains": [
+          {
+            "code": "LLM.1",
+            "name": "Injection de prompt et manipulation des entrées",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "LLM.2",
+            "name": "Divulgation d'informations et gestion des sorties",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "LLM.3",
+            "name": "Agentivité et permissions des agents",
+            "score": {
+              "value": 1.5,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 12.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "LLM.4",
+            "name": "Sécurité RAG, vecteurs et embeddings",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "OPS",
+        "name": "Opérations & résilience",
+        "weight": 0.1,
+        "score": {
+          "value": 3,
+          "level": 3,
+          "levelName": "Défini",
+          "percent": 50
+        },
+        "rawScore": 3,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 4,
+        "gap": 1,
+        "subdomains": [
+          {
+            "code": "OPS.1",
+            "name": "Gestion des identités et des accès",
+            "score": {
+              "value": 4,
+              "level": 4,
+              "levelName": "Maîtrisé",
+              "percent": 75
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "OPS.2",
+            "name": "Surveillance et journalisation",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "OPS.3",
+            "name": "Disponibilité et consommation des ressources",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "OPS.4",
+            "name": "Gestion des incidents IA",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "TRUST",
+        "name": "IA digne de confiance",
+        "weight": 0.1,
+        "score": {
+          "value": 2,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25
+        },
+        "rawScore": 2.38,
+        "cappedBy": "TRUST.2.1",
+        "cap": 2,
+        "targetLevel": 3,
+        "gap": 1,
+        "subdomains": [
+          {
+            "code": "TRUST.1",
+            "name": "Transparence et explicabilité",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "TRUST.2",
+            "name": "Équité et gestion des biais",
+            "score": {
+              "value": 1,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 0
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "TRUST.3",
+            "name": "Supervision humaine",
+            "score": {
+              "value": 3,
+              "level": 3,
+              "levelName": "Défini",
+              "percent": 50
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "TRUST.4",
+            "name": "Fiabilité et désinformation",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      },
+      {
+        "code": "PEOPLE",
+        "name": "Culture & amélioration continue",
+        "weight": 0.05,
+        "score": {
+          "value": 2.03,
+          "level": 2,
+          "levelName": "Reproductible",
+          "percent": 25.75
+        },
+        "rawScore": 2.03,
+        "cappedBy": null,
+        "cap": null,
+        "targetLevel": 3,
+        "gap": 0.97,
+        "subdomains": [
+          {
+            "code": "PEOPLE.1",
+            "name": "Sensibilisation et formation",
+            "score": {
+              "value": 2,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 25
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "PEOPLE.2",
+            "name": "Usage encadré de l'IA par les collaborateurs",
+            "score": {
+              "value": 1.6,
+              "level": 1,
+              "levelName": "Initial",
+              "percent": 15
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          },
+          {
+            "code": "PEOPLE.3",
+            "name": "Audit interne et amélioration continue",
+            "score": {
+              "value": 2.5,
+              "level": 2,
+              "levelName": "Reproductible",
+              "percent": 37.5
+            },
+            "answered": 2,
+            "notApplicable": 0,
+            "total": 2
+          }
+        ]
+      }
+    ],
+    "recommendations": [
+      {
+        "questionCode": "LLM.3.2",
+        "questionText": "Les actions sensibles déclenchées par une IA (paiement, suppression, envoi externe) nécessitent-elles une validation humaine ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.3",
+        "currentLevel": 1,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "LOW",
+        "priority": 135,
+        "horizon": "QUICK_WIN",
+        "action": "Identifier toutes les actions sensibles qu'une IA peut déclencher.",
+        "followUpActions": [
+          "Imposer une validation humaine documentée pour ces actions.",
+          "Implémenter la validation techniquement et tester son contournement."
+        ]
+      },
+      {
+        "questionCode": "GOV.3.2",
+        "questionText": "Les systèmes IA sont-ils classés selon leur niveau de risque (par exemple selon les catégories de l'AI Act) ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.3",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 60,
+        "horizon": "QUICK_WIN",
+        "action": "Définir des critères simples de sensibilité (données personnelles, décisions sur des personnes, exposition externe).",
+        "followUpActions": [
+          "Adopter une grille documentée inspirée de l'AI Act et l'appliquer à l'inventaire."
+        ]
+      },
+      {
+        "questionCode": "LLM.1.2",
+        "questionText": "Le prompt système est-il protégé et dépourvu d'informations sensibles ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.1",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 60,
+        "horizon": "QUICK_WIN",
+        "action": "Déplacer les contrôles d'autorisation hors du LLM, dans le code applicatif.",
+        "followUpActions": [
+          "Tester régulièrement l'extraction du prompt système."
+        ]
+      },
+      {
+        "questionCode": "GOV.1.2",
+        "questionText": "Existe-t-il une politique IA (usage acceptable, principes éthiques, exigences de sécurité) approuvée et diffusée ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "LOW",
+        "priority": 45,
+        "horizon": "QUICK_WIN",
+        "action": "Consolider les règles existantes dans une politique unique, la faire approuver et la diffuser.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.2.1",
+        "questionText": "Les rôles et responsabilités liés à l'IA sont-ils formellement attribués ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "LOW",
+        "priority": 45,
+        "horizon": "QUICK_WIN",
+        "action": "Formaliser une matrice RACI couvrant conception, déploiement, risques et conformité.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "DATA.2.2",
+        "questionText": "Des mesures empêchent-elles l'envoi de données sensibles vers des services IA externes non autorisés ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.2",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Formaliser la règle et mettre à disposition des outils IA approuvés.",
+        "followUpActions": [
+          "Déployer des contrôles DLP / CASB sur les services IA."
+        ]
+      },
+      {
+        "questionCode": "DATA.3.1",
+        "questionText": "L'intégrité des données d'entraînement est-elle protégée contre l'empoisonnement ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.3",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "HIGH",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Versionner les jeux de données et contrôler leur intégrité par empreintes.",
+        "followUpActions": [
+          "Ajouter une détection d'anomalies dans le pipeline d'entraînement."
+        ]
+      },
+      {
+        "questionCode": "LLM.1.1",
+        "questionText": "Des protections contre l'injection de prompt (directe et indirecte) sont-elles en place ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.1",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Mettre en place séparation instructions / données, filtrage des entrées et guardrails.",
+        "followUpActions": [
+          "Tester régulièrement les défenses et journaliser les tentatives d'injection."
+        ]
+      },
+      {
+        "questionCode": "LLM.2.2",
+        "questionText": "Des mécanismes empêchent-ils le LLM de divulguer des données sensibles ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.2",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Mettre en place le masquage des données personnelles et le cloisonnement par utilisateur.",
+        "followUpActions": [
+          "Tester l'extraction de données et mettre en place des alertes."
+        ]
+      },
+      {
+        "questionCode": "LLM.3.1",
+        "questionText": "Les outils et permissions des agents IA sont-ils limités au strict nécessaire ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.3",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Appliquer le moindre privilège : liste blanche d'outils et comptes dédiés.",
+        "followUpActions": [
+          "Revoir les permissions périodiquement et journaliser les actions des agents."
+        ]
+      },
+      {
+        "questionCode": "LLM.4.1",
+        "questionText": "L'accès aux documents d'une base RAG respecte-t-il les droits de l'utilisateur qui interroge ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.4",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "HIGH",
+        "priority": 90,
+        "horizon": "SHORT_TERM",
+        "action": "Appliquer un filtrage par permissions au niveau document lors de la recherche.",
+        "followUpActions": [
+          "Tester le cloisonnement entre utilisateurs et journaliser les accès."
+        ]
+      },
+      {
+        "questionCode": "DEV.3.2",
+        "questionText": "Des exercices de red teaming ou des tests d'intrusion spécifiques à l'IA sont-ils réalisés ?",
+        "domainCode": "DEV",
+        "subdomainCode": "DEV.3",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "HIGH",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Réaliser un premier test adversarial sur le système IA le plus exposé.",
+        "followUpActions": [
+          "Rendre le red teaming obligatoire avant production selon une méthodologie reconnue."
+        ]
+      },
+      {
+        "questionCode": "LLM.4.2",
+        "questionText": "L'intégrité des documents indexés et de la base vectorielle est-elle contrôlée ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.4",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Contrôler le processus d'ingestion et restreindre l'accès en écriture.",
+        "followUpActions": [
+          "Détecter les contenus malveillants à l'ingestion."
+        ]
+      },
+      {
+        "questionCode": "RISK.1.2",
+        "questionText": "Les menaces adversariales propres à l'IA (empoisonnement, évasion, extraction de modèle, injection) sont-elles prises en compte ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.1",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Sensibiliser les équipes aux menaces adversariales (MITRE ATLAS, OWASP Top 10 LLM).",
+        "followUpActions": [
+          "Réaliser une modélisation des menaces pour chaque système IA exposé."
+        ]
+      },
+      {
+        "questionCode": "TRUST.2.1",
+        "questionText": "Les biais des modèles sont-ils mesurés et corrigés ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.2",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "HIGH",
+        "priority": 60,
+        "horizon": "SHORT_TERM",
+        "action": "Identifier les groupes potentiellement affectés par chaque système IA.",
+        "followUpActions": [
+          "Définir des métriques d'équité et les mesurer avant chaque déploiement."
+        ]
+      },
+      {
+        "questionCode": "DEV.2.2",
+        "questionText": "Les modèles pré-entraînés et bibliothèques open source sont-ils vérifiés (origine, intégrité, vulnérabilités) ?",
+        "domainCode": "DEV",
+        "subdomainCode": "DEV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Définir les sources autorisées, imposer des formats sûrs et produire un AI-BOM.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.3.1",
+        "questionText": "L'entreprise dispose-t-elle d'un inventaire de ses systèmes IA (développés en interne, achetés, SaaS) ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Étendre l'inventaire aux outils achetés et SaaS et attribuer un propriétaire à chaque système.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "LLM.2.1",
+        "questionText": "Les sorties des LLM sont-elles validées avant d'être affichées ou transmises à d'autres systèmes ?",
+        "domainCode": "LLM",
+        "subdomainCode": "LLM.2",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Automatiser et tester la validation des sorties.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.1.1",
+        "questionText": "Une méthode d'appréciation des risques spécifiques à l'IA est-elle définie et appliquée ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Formaliser une méthode d'appréciation des risques IA basée sur ISO/IEC 23894.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.2.1",
+        "questionText": "Une analyse d'impact sur les personnes, les groupes et la société est-elle réalisée avant le déploiement d'un système IA ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 45,
+        "horizon": "SHORT_TERM",
+        "action": "Rendre l'analyse d'impact obligatoire pour les systèmes à risque élevé (modèle ISO/IEC 42005).",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.2.2",
+        "questionText": "La performance et la dérive des modèles en production sont-elles surveillées ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.2",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 40,
+        "horizon": "MEDIUM_TERM",
+        "action": "Suivre régulièrement la performance et la dérive des données.",
+        "followUpActions": [
+          "Automatiser les alertes et les seuils d'intervention."
+        ]
+      },
+      {
+        "questionCode": "OPS.3.2",
+        "questionText": "La continuité des services IA critiques est-elle assurée (plan de secours, fournisseur alternatif, mode dégradé) ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.3",
+        "currentLevel": 2,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "HIGH",
+        "priority": 40,
+        "horizon": "MEDIUM_TERM",
+        "action": "Documenter un plan de continuité incluant un mode dégradé.",
+        "followUpActions": [
+          "Tester le plan et identifier un fournisseur alternatif."
+        ]
+      },
+      {
+        "questionCode": "DATA.1.1",
+        "questionText": "L'origine, les droits d'utilisation et le lignage des données utilisées par les systèmes IA sont-ils documentés ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.1",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Outiller le traçage automatique du lignage (DVC, MLflow, OpenLineage).",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "DATA.1.2",
+        "questionText": "La qualité des données (exactitude, complétude, représentativité) est-elle évaluée avant l'entraînement ?",
+        "domainCode": "DATA",
+        "subdomainCode": "DATA.1",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Automatiser les contrôles qualité dans le pipeline (ex. Great Expectations).",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.2.2",
+        "questionText": "Un comité de gouvernance IA supervise-t-il les décisions et les risques liés à l'IA ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Créer un comité IA pluridisciplinaire doté d'une charte et d'un calendrier de réunions.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.2.3",
+        "questionText": "La direction générale (ou le conseil d'administration) reçoit-elle un reporting régulier sur les risques et la performance de l'IA ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Instaurer un reporting semestriel formalisé vers la direction.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.4.1",
+        "questionText": "La procédure de gestion des incidents couvre-t-elle les incidents propres à l'IA ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.4",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 3,
+        "effort": "MEDIUM",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Réaliser des exercices et suivre des indicateurs de traitement.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.3.1",
+        "questionText": "Chaque risque IA identifié dispose-t-il d'un plan de traitement, d'un propriétaire et d'une échéance ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Formaliser des plans de traitement avec échéances et acceptation du risque résiduel.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "RISK.3.2",
+        "questionText": "Les risques IA sont-ils réévalués périodiquement et à chaque changement (nouveau modèle, nouvelles données, nouvel usage) ?",
+        "domainCode": "RISK",
+        "subdomainCode": "RISK.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 30,
+        "horizon": "MEDIUM_TERM",
+        "action": "Définir les changements significatifs qui imposent une réévaluation.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.2.1",
+        "questionText": "Les interactions avec les systèmes IA (requêtes, réponses, décisions) sont-elles journalisées ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.2",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Centraliser les journaux dans le SIEM et créer des règles de détection IA.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.3.1",
+        "questionText": "Des limites (quotas, limitation de débit, taille des requêtes) protègent-elles contre la consommation excessive de ressources ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.3",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Surveiller les coûts avec alertes et réaliser des tests de charge.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.2.2",
+        "questionText": "L'usage d'outils IA non autorisés (shadow AI) est-il détecté ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.2",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Interroger les équipes sur les outils IA qu'elles utilisent.",
+        "followUpActions": [
+          "Analyser périodiquement les journaux réseau pour identifier les services IA."
+        ]
+      },
+      {
+        "questionCode": "TRUST.1.2",
+        "questionText": "Les décisions des systèmes IA ayant un impact sur les personnes sont-elles explicables ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "HIGH",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Documenter les modèles (model cards) et appliquer des méthodes d'explicabilité.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "TRUST.2.2",
+        "questionText": "Les parties prenantes concernées sont-elles consultées et la diversité des équipes est-elle prise en compte dans les projets IA à impact ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.2",
+        "currentLevel": 1,
+        "targetLevel": 3,
+        "criticality": 1,
+        "effort": "MEDIUM",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Identifier les parties prenantes concernées par chaque projet à impact.",
+        "followUpActions": [
+          "Organiser leur consultation et veiller à la diversité des équipes."
+        ]
+      },
+      {
+        "questionCode": "TRUST.4.1",
+        "questionText": "Des mesures limitent-elles les hallucinations et la désinformation produites par les systèmes IA ?",
+        "domainCode": "TRUST",
+        "subdomainCode": "TRUST.4",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 20,
+        "horizon": "MEDIUM_TERM",
+        "action": "Ancrer les réponses sur des sources fiables, citer les sources et imposer une vérification humaine.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "DEV.4.2",
+        "questionText": "Les modèles sont-ils versionnés avec leur documentation (model card), avec possibilité de revenir à une version antérieure ?",
+        "domainCode": "DEV",
+        "subdomainCode": "DEV.4",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 1,
+        "effort": "LOW",
+        "priority": 15,
+        "horizon": "LONG_TERM",
+        "action": "Mettre en place un registre de modèles (ex. MLflow) avec model cards.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "GOV.4.2",
+        "questionText": "Les questions de propriété intellectuelle et de responsabilité liées à l'IA (contenus générés, données d'entraînement, contrats) sont-elles traitées ?",
+        "domainCode": "GOV",
+        "subdomainCode": "GOV.4",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 1,
+        "effort": "MEDIUM",
+        "priority": 15,
+        "horizon": "LONG_TERM",
+        "action": "Rédiger des clauses types IA avec le service juridique.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.2.1",
+        "questionText": "Une charte d'usage de l'IA générative définit-elle les outils autorisés et les usages interdits ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.2",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 3,
+        "effort": "LOW",
+        "priority": 15,
+        "horizon": "LONG_TERM",
+        "action": "Rédiger et faire approuver une charte d'usage de l'IA générative.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "OPS.4.2",
+        "questionText": "Les utilisateurs peuvent-ils facilement signaler un comportement anormal d'un système IA ?",
+        "domainCode": "OPS",
+        "subdomainCode": "OPS.4",
+        "currentLevel": 3,
+        "targetLevel": 4,
+        "criticality": 1,
+        "effort": "LOW",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Analyser les signalements et les suivre par des indicateurs.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.1.1",
+        "questionText": "Les collaborateurs sont-ils sensibilisés aux risques liés à l'IA ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "LOW",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Mettre en place un programme de sensibilisation pour tous les collaborateurs.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.1.2",
+        "questionText": "Les équipes techniques (data scientists, développeurs, exploitants) sont-elles formées à la sécurité de l'IA ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.1",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Mettre en place un parcours de formation à la sécurité de l'IA.",
+        "followUpActions": []
+      },
+      {
+        "questionCode": "PEOPLE.3.1",
+        "questionText": "Des audits internes du dispositif de gouvernance et de sécurité de l'IA sont-ils réalisés ?",
+        "domainCode": "PEOPLE",
+        "subdomainCode": "PEOPLE.3",
+        "currentLevel": 2,
+        "targetLevel": 3,
+        "criticality": 2,
+        "effort": "MEDIUM",
+        "priority": 10,
+        "horizon": "LONG_TERM",
+        "action": "Planifier un programme d'audit annuel.",
+        "followUpActions": []
+      }
+    ]
+  },
+  "evidenceRatePercent": 25.42,
+  "roadmap": {
+    "assessmentId": "1e4e7462-b398-4269-bfad-8319d30ca4b2",
+    "totalActions": 42,
+    "phases": [
+      {
+        "horizon": "QUICK_WIN",
+        "label": "Quick wins",
+        "period": "0-3 mois",
+        "actions": [
+          {
+            "questionCode": "LLM.3.2",
+            "questionText": "Les actions sensibles déclenchées par une IA (paiement, suppression, envoi externe) nécessitent-elles une validation humaine ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.3",
+            "currentLevel": 1,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "LOW",
+            "priority": 135,
+            "horizon": "QUICK_WIN",
+            "action": "Identifier toutes les actions sensibles qu'une IA peut déclencher.",
+            "followUpActions": [
+              "Imposer une validation humaine documentée pour ces actions.",
+              "Implémenter la validation techniquement et tester son contournement."
+            ]
+          },
+          {
+            "questionCode": "GOV.3.2",
+            "questionText": "Les systèmes IA sont-ils classés selon leur niveau de risque (par exemple selon les catégories de l'AI Act) ?",
+            "domainCode": "GOV",
+            "subdomainCode": "GOV.3",
+            "currentLevel": 1,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "LOW",
+            "priority": 60,
+            "horizon": "QUICK_WIN",
+            "action": "Définir des critères simples de sensibilité (données personnelles, décisions sur des personnes, exposition externe).",
+            "followUpActions": [
+              "Adopter une grille documentée inspirée de l'AI Act et l'appliquer à l'inventaire."
+            ]
+          },
+          {
+            "questionCode": "LLM.1.2",
+            "questionText": "Le prompt système est-il protégé et dépourvu d'informations sensibles ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.1",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "LOW",
+            "priority": 60,
+            "horizon": "QUICK_WIN",
+            "action": "Déplacer les contrôles d'autorisation hors du LLM, dans le code applicatif.",
+            "followUpActions": [
+              "Tester régulièrement l'extraction du prompt système."
+            ]
+          },
+          {
+            "questionCode": "GOV.1.2",
+            "questionText": "Existe-t-il une politique IA (usage acceptable, principes éthiques, exigences de sécurité) approuvée et diffusée ?",
+            "domainCode": "GOV",
+            "subdomainCode": "GOV.1",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "LOW",
+            "priority": 45,
+            "horizon": "QUICK_WIN",
+            "action": "Consolider les règles existantes dans une politique unique, la faire approuver et la diffuser.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "GOV.2.1",
+            "questionText": "Les rôles et responsabilités liés à l'IA sont-ils formellement attribués ?",
+            "domainCode": "GOV",
+            "subdomainCode": "GOV.2",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "LOW",
+            "priority": 45,
+            "horizon": "QUICK_WIN",
+            "action": "Formaliser une matrice RACI couvrant conception, déploiement, risques et conformité.",
+            "followUpActions": []
+          }
+        ]
+      },
+      {
+        "horizon": "SHORT_TERM",
+        "label": "Court terme",
+        "period": "3-6 mois",
+        "actions": [
+          {
+            "questionCode": "DATA.2.2",
+            "questionText": "Des mesures empêchent-elles l'envoi de données sensibles vers des services IA externes non autorisés ?",
+            "domainCode": "DATA",
+            "subdomainCode": "DATA.2",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 90,
+            "horizon": "SHORT_TERM",
+            "action": "Formaliser la règle et mettre à disposition des outils IA approuvés.",
+            "followUpActions": [
+              "Déployer des contrôles DLP / CASB sur les services IA."
+            ]
+          },
+          {
+            "questionCode": "DATA.3.1",
+            "questionText": "L'intégrité des données d'entraînement est-elle protégée contre l'empoisonnement ?",
+            "domainCode": "DATA",
+            "subdomainCode": "DATA.3",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "HIGH",
+            "priority": 90,
+            "horizon": "SHORT_TERM",
+            "action": "Versionner les jeux de données et contrôler leur intégrité par empreintes.",
+            "followUpActions": [
+              "Ajouter une détection d'anomalies dans le pipeline d'entraînement."
+            ]
+          },
+          {
+            "questionCode": "LLM.1.1",
+            "questionText": "Des protections contre l'injection de prompt (directe et indirecte) sont-elles en place ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.1",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 90,
+            "horizon": "SHORT_TERM",
+            "action": "Mettre en place séparation instructions / données, filtrage des entrées et guardrails.",
+            "followUpActions": [
+              "Tester régulièrement les défenses et journaliser les tentatives d'injection."
+            ]
+          },
+          {
+            "questionCode": "LLM.2.2",
+            "questionText": "Des mécanismes empêchent-ils le LLM de divulguer des données sensibles ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.2",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 90,
+            "horizon": "SHORT_TERM",
+            "action": "Mettre en place le masquage des données personnelles et le cloisonnement par utilisateur.",
+            "followUpActions": [
+              "Tester l'extraction de données et mettre en place des alertes."
+            ]
+          },
+          {
+            "questionCode": "LLM.3.1",
+            "questionText": "Les outils et permissions des agents IA sont-ils limités au strict nécessaire ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.3",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 90,
+            "horizon": "SHORT_TERM",
+            "action": "Appliquer le moindre privilège : liste blanche d'outils et comptes dédiés.",
+            "followUpActions": [
+              "Revoir les permissions périodiquement et journaliser les actions des agents."
+            ]
+          },
+          {
+            "questionCode": "LLM.4.1",
+            "questionText": "L'accès aux documents d'une base RAG respecte-t-il les droits de l'utilisateur qui interroge ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.4",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "HIGH",
+            "priority": 90,
+            "horizon": "SHORT_TERM",
+            "action": "Appliquer un filtrage par permissions au niveau document lors de la recherche.",
+            "followUpActions": [
+              "Tester le cloisonnement entre utilisateurs et journaliser les accès."
+            ]
+          },
+          {
+            "questionCode": "DEV.3.2",
+            "questionText": "Des exercices de red teaming ou des tests d'intrusion spécifiques à l'IA sont-ils réalisés ?",
+            "domainCode": "DEV",
+            "subdomainCode": "DEV.3",
+            "currentLevel": 1,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "HIGH",
+            "priority": 60,
+            "horizon": "SHORT_TERM",
+            "action": "Réaliser un premier test adversarial sur le système IA le plus exposé.",
+            "followUpActions": [
+              "Rendre le red teaming obligatoire avant production selon une méthodologie reconnue."
+            ]
+          },
+          {
+            "questionCode": "LLM.4.2",
+            "questionText": "L'intégrité des documents indexés et de la base vectorielle est-elle contrôlée ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.4",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 60,
+            "horizon": "SHORT_TERM",
+            "action": "Contrôler le processus d'ingestion et restreindre l'accès en écriture.",
+            "followUpActions": [
+              "Détecter les contenus malveillants à l'ingestion."
+            ]
+          },
+          {
+            "questionCode": "RISK.1.2",
+            "questionText": "Les menaces adversariales propres à l'IA (empoisonnement, évasion, extraction de modèle, injection) sont-elles prises en compte ?",
+            "domainCode": "RISK",
+            "subdomainCode": "RISK.1",
+            "currentLevel": 1,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 60,
+            "horizon": "SHORT_TERM",
+            "action": "Sensibiliser les équipes aux menaces adversariales (MITRE ATLAS, OWASP Top 10 LLM).",
+            "followUpActions": [
+              "Réaliser une modélisation des menaces pour chaque système IA exposé."
+            ]
+          },
+          {
+            "questionCode": "TRUST.2.1",
+            "questionText": "Les biais des modèles sont-ils mesurés et corrigés ?",
+            "domainCode": "TRUST",
+            "subdomainCode": "TRUST.2",
+            "currentLevel": 1,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "HIGH",
+            "priority": 60,
+            "horizon": "SHORT_TERM",
+            "action": "Identifier les groupes potentiellement affectés par chaque système IA.",
+            "followUpActions": [
+              "Définir des métriques d'équité et les mesurer avant chaque déploiement."
+            ]
+          },
+          {
+            "questionCode": "DEV.2.2",
+            "questionText": "Les modèles pré-entraînés et bibliothèques open source sont-ils vérifiés (origine, intégrité, vulnérabilités) ?",
+            "domainCode": "DEV",
+            "subdomainCode": "DEV.2",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 45,
+            "horizon": "SHORT_TERM",
+            "action": "Définir les sources autorisées, imposer des formats sûrs et produire un AI-BOM.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "GOV.3.1",
+            "questionText": "L'entreprise dispose-t-elle d'un inventaire de ses systèmes IA (développés en interne, achetés, SaaS) ?",
+            "domainCode": "GOV",
+            "subdomainCode": "GOV.3",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 45,
+            "horizon": "SHORT_TERM",
+            "action": "Étendre l'inventaire aux outils achetés et SaaS et attribuer un propriétaire à chaque système.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "LLM.2.1",
+            "questionText": "Les sorties des LLM sont-elles validées avant d'être affichées ou transmises à d'autres systèmes ?",
+            "domainCode": "LLM",
+            "subdomainCode": "LLM.2",
+            "currentLevel": 3,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 45,
+            "horizon": "SHORT_TERM",
+            "action": "Automatiser et tester la validation des sorties.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "RISK.1.1",
+            "questionText": "Une méthode d'appréciation des risques spécifiques à l'IA est-elle définie et appliquée ?",
+            "domainCode": "RISK",
+            "subdomainCode": "RISK.1",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 45,
+            "horizon": "SHORT_TERM",
+            "action": "Formaliser une méthode d'appréciation des risques IA basée sur ISO/IEC 23894.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "RISK.2.1",
+            "questionText": "Une analyse d'impact sur les personnes, les groupes et la société est-elle réalisée avant le déploiement d'un système IA ?",
+            "domainCode": "RISK",
+            "subdomainCode": "RISK.2",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 45,
+            "horizon": "SHORT_TERM",
+            "action": "Rendre l'analyse d'impact obligatoire pour les systèmes à risque élevé (modèle ISO/IEC 42005).",
+            "followUpActions": []
+          }
+        ]
+      },
+      {
+        "horizon": "MEDIUM_TERM",
+        "label": "Moyen terme",
+        "period": "6-12 mois",
+        "actions": [
+          {
+            "questionCode": "OPS.2.2",
+            "questionText": "La performance et la dérive des modèles en production sont-elles surveillées ?",
+            "domainCode": "OPS",
+            "subdomainCode": "OPS.2",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 40,
+            "horizon": "MEDIUM_TERM",
+            "action": "Suivre régulièrement la performance et la dérive des données.",
+            "followUpActions": [
+              "Automatiser les alertes et les seuils d'intervention."
+            ]
+          },
+          {
+            "questionCode": "OPS.3.2",
+            "questionText": "La continuité des services IA critiques est-elle assurée (plan de secours, fournisseur alternatif, mode dégradé) ?",
+            "domainCode": "OPS",
+            "subdomainCode": "OPS.3",
+            "currentLevel": 2,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "HIGH",
+            "priority": 40,
+            "horizon": "MEDIUM_TERM",
+            "action": "Documenter un plan de continuité incluant un mode dégradé.",
+            "followUpActions": [
+              "Tester le plan et identifier un fournisseur alternatif."
+            ]
+          },
+          {
+            "questionCode": "DATA.1.1",
+            "questionText": "L'origine, les droits d'utilisation et le lignage des données utilisées par les systèmes IA sont-ils documentés ?",
+            "domainCode": "DATA",
+            "subdomainCode": "DATA.1",
+            "currentLevel": 3,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 30,
+            "horizon": "MEDIUM_TERM",
+            "action": "Outiller le traçage automatique du lignage (DVC, MLflow, OpenLineage).",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "DATA.1.2",
+            "questionText": "La qualité des données (exactitude, complétude, représentativité) est-elle évaluée avant l'entraînement ?",
+            "domainCode": "DATA",
+            "subdomainCode": "DATA.1",
+            "currentLevel": 3,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 30,
+            "horizon": "MEDIUM_TERM",
+            "action": "Automatiser les contrôles qualité dans le pipeline (ex. Great Expectations).",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "GOV.2.2",
+            "questionText": "Un comité de gouvernance IA supervise-t-il les décisions et les risques liés à l'IA ?",
+            "domainCode": "GOV",
+            "subdomainCode": "GOV.2",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 30,
+            "horizon": "MEDIUM_TERM",
+            "action": "Créer un comité IA pluridisciplinaire doté d'une charte et d'un calendrier de réunions.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "GOV.2.3",
+            "questionText": "La direction générale (ou le conseil d'administration) reçoit-elle un reporting régulier sur les risques et la performance de l'IA ?",
+            "domainCode": "GOV",
+            "subdomainCode": "GOV.2",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "LOW",
+            "priority": 30,
+            "horizon": "MEDIUM_TERM",
+            "action": "Instaurer un reporting semestriel formalisé vers la direction.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "OPS.4.1",
+            "questionText": "La procédure de gestion des incidents couvre-t-elle les incidents propres à l'IA ?",
+            "domainCode": "OPS",
+            "subdomainCode": "OPS.4",
+            "currentLevel": 3,
+            "targetLevel": 4,
+            "criticality": 3,
+            "effort": "MEDIUM",
+            "priority": 30,
+            "horizon": "MEDIUM_TERM",
+            "action": "Réaliser des exercices et suivre des indicateurs de traitement.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "RISK.3.1",
+            "questionText": "Chaque risque IA identifié dispose-t-il d'un plan de traitement, d'un propriétaire et d'une échéance ?",
+            "domainCode": "RISK",
+            "subdomainCode": "RISK.3",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "LOW",
+            "priority": 30,
+            "horizon": "MEDIUM_TERM",
+            "action": "Formaliser des plans de traitement avec échéances et acceptation du risque résiduel.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "RISK.3.2",
+            "questionText": "Les risques IA sont-ils réévalués périodiquement et à chaque changement (nouveau modèle, nouvelles données, nouvel usage) ?",
+            "domainCode": "RISK",
+            "subdomainCode": "RISK.3",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "LOW",
+            "priority": 30,
+            "horizon": "MEDIUM_TERM",
+            "action": "Définir les changements significatifs qui imposent une réévaluation.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "OPS.2.1",
+            "questionText": "Les interactions avec les systèmes IA (requêtes, réponses, décisions) sont-elles journalisées ?",
+            "domainCode": "OPS",
+            "subdomainCode": "OPS.2",
+            "currentLevel": 3,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 20,
+            "horizon": "MEDIUM_TERM",
+            "action": "Centraliser les journaux dans le SIEM et créer des règles de détection IA.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "OPS.3.1",
+            "questionText": "Des limites (quotas, limitation de débit, taille des requêtes) protègent-elles contre la consommation excessive de ressources ?",
+            "domainCode": "OPS",
+            "subdomainCode": "OPS.3",
+            "currentLevel": 3,
+            "targetLevel": 4,
+            "criticality": 2,
+            "effort": "LOW",
+            "priority": 20,
+            "horizon": "MEDIUM_TERM",
+            "action": "Surveiller les coûts avec alertes et réaliser des tests de charge.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "PEOPLE.2.2",
+            "questionText": "L'usage d'outils IA non autorisés (shadow AI) est-il détecté ?",
+            "domainCode": "PEOPLE",
+            "subdomainCode": "PEOPLE.2",
+            "currentLevel": 1,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 20,
+            "horizon": "MEDIUM_TERM",
+            "action": "Interroger les équipes sur les outils IA qu'elles utilisent.",
+            "followUpActions": [
+              "Analyser périodiquement les journaux réseau pour identifier les services IA."
+            ]
+          },
+          {
+            "questionCode": "TRUST.1.2",
+            "questionText": "Les décisions des systèmes IA ayant un impact sur les personnes sont-elles explicables ?",
+            "domainCode": "TRUST",
+            "subdomainCode": "TRUST.1",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "HIGH",
+            "priority": 20,
+            "horizon": "MEDIUM_TERM",
+            "action": "Documenter les modèles (model cards) et appliquer des méthodes d'explicabilité.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "TRUST.2.2",
+            "questionText": "Les parties prenantes concernées sont-elles consultées et la diversité des équipes est-elle prise en compte dans les projets IA à impact ?",
+            "domainCode": "TRUST",
+            "subdomainCode": "TRUST.2",
+            "currentLevel": 1,
+            "targetLevel": 3,
+            "criticality": 1,
+            "effort": "MEDIUM",
+            "priority": 20,
+            "horizon": "MEDIUM_TERM",
+            "action": "Identifier les parties prenantes concernées par chaque projet à impact.",
+            "followUpActions": [
+              "Organiser leur consultation et veiller à la diversité des équipes."
+            ]
+          },
+          {
+            "questionCode": "TRUST.4.1",
+            "questionText": "Des mesures limitent-elles les hallucinations et la désinformation produites par les systèmes IA ?",
+            "domainCode": "TRUST",
+            "subdomainCode": "TRUST.4",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 20,
+            "horizon": "MEDIUM_TERM",
+            "action": "Ancrer les réponses sur des sources fiables, citer les sources et imposer une vérification humaine.",
+            "followUpActions": []
+          }
+        ]
+      },
+      {
+        "horizon": "LONG_TERM",
+        "label": "Long terme",
+        "period": "12-18 mois",
+        "actions": [
+          {
+            "questionCode": "DEV.4.2",
+            "questionText": "Les modèles sont-ils versionnés avec leur documentation (model card), avec possibilité de revenir à une version antérieure ?",
+            "domainCode": "DEV",
+            "subdomainCode": "DEV.4",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 1,
+            "effort": "LOW",
+            "priority": 15,
+            "horizon": "LONG_TERM",
+            "action": "Mettre en place un registre de modèles (ex. MLflow) avec model cards.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "GOV.4.2",
+            "questionText": "Les questions de propriété intellectuelle et de responsabilité liées à l'IA (contenus générés, données d'entraînement, contrats) sont-elles traitées ?",
+            "domainCode": "GOV",
+            "subdomainCode": "GOV.4",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 1,
+            "effort": "MEDIUM",
+            "priority": 15,
+            "horizon": "LONG_TERM",
+            "action": "Rédiger des clauses types IA avec le service juridique.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "PEOPLE.2.1",
+            "questionText": "Une charte d'usage de l'IA générative définit-elle les outils autorisés et les usages interdits ?",
+            "domainCode": "PEOPLE",
+            "subdomainCode": "PEOPLE.2",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 3,
+            "effort": "LOW",
+            "priority": 15,
+            "horizon": "LONG_TERM",
+            "action": "Rédiger et faire approuver une charte d'usage de l'IA générative.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "OPS.4.2",
+            "questionText": "Les utilisateurs peuvent-ils facilement signaler un comportement anormal d'un système IA ?",
+            "domainCode": "OPS",
+            "subdomainCode": "OPS.4",
+            "currentLevel": 3,
+            "targetLevel": 4,
+            "criticality": 1,
+            "effort": "LOW",
+            "priority": 10,
+            "horizon": "LONG_TERM",
+            "action": "Analyser les signalements et les suivre par des indicateurs.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "PEOPLE.1.1",
+            "questionText": "Les collaborateurs sont-ils sensibilisés aux risques liés à l'IA ?",
+            "domainCode": "PEOPLE",
+            "subdomainCode": "PEOPLE.1",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "LOW",
+            "priority": 10,
+            "horizon": "LONG_TERM",
+            "action": "Mettre en place un programme de sensibilisation pour tous les collaborateurs.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "PEOPLE.1.2",
+            "questionText": "Les équipes techniques (data scientists, développeurs, exploitants) sont-elles formées à la sécurité de l'IA ?",
+            "domainCode": "PEOPLE",
+            "subdomainCode": "PEOPLE.1",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 10,
+            "horizon": "LONG_TERM",
+            "action": "Mettre en place un parcours de formation à la sécurité de l'IA.",
+            "followUpActions": []
+          },
+          {
+            "questionCode": "PEOPLE.3.1",
+            "questionText": "Des audits internes du dispositif de gouvernance et de sécurité de l'IA sont-ils réalisés ?",
+            "domainCode": "PEOPLE",
+            "subdomainCode": "PEOPLE.3",
+            "currentLevel": 2,
+            "targetLevel": 3,
+            "criticality": 2,
+            "effort": "MEDIUM",
+            "priority": 10,
+            "horizon": "LONG_TERM",
+            "action": "Planifier un programme d'audit annuel.",
+            "followUpActions": []
+          }
+        ]
+      }
+    ]
+  }
+}

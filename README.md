@@ -15,7 +15,7 @@ PFS/
 ├── docs/                 Livrables méthodologiques (analyse, modèle, grille, étude de cas)
 ├── referential/          Référentiel AIMA au format JSON (source unique de vérité)
 │   └── questions/        Questionnaire : un fichier par domaine
-├── scripts/              Outil de validation et de génération de la grille
+├── scripts/              Outil de validation du référentiel et scénario d'étude de cas
 ├── backend/              API Java 21 / Spring Boot 4 (port 8090)
 ├── frontend/             Interface React 19 / TypeScript (port 5173)
 ├── .github/              Intégration continue (GitHub Actions) et Dependabot
@@ -34,6 +34,7 @@ PFS/
 8. [Sécurité, mode audit et rapport PDF](docs/06-securite-audit-rapport.md)
 9. [Frontend React](docs/07-frontend.md)
 10. [Conteneurisation et intégration continue](docs/08-docker-ci.md)
+11. [Étude de cas : Banque Atlas Digitale](docs/09-etude-de-cas.md)
 
 ## Démarrage rapide (Docker)
 

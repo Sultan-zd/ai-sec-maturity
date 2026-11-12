@@ -1,0 +1,89 @@
+{
+  "organization": {
+    "name": "Banque Atlas Digitale (fictive)",
+    "sector": "BANKING_FINANCE",
+    "size": "ETI",
+    "country": "Maroc",
+    "description": "Banque de détail fictive, 1 800 collaborateurs, 45 agences. Certifiée ISO/IEC 27001 depuis 2022. Trois systèmes IA en production : assistant conversationnel client (LLM + RAG), score d'octroi de crédit, détection de fraude carte."
+  },
+  "respondent": { "email": "rssi@atlas-digitale.example", "fullName": "Nadia El Amrani (RSSI)", "password": "EtudeDeCas2026" },
+  "auditor": { "email": "auditeur@cabinet-audit.example", "fullName": "Youssef Bennani (auditeur)", "password": "EtudeDeCas2026" },
+  "assessment": {
+    "title": "Évaluation initiale de la maturité IA — novembre 2026",
+    "scope": "Assistant conversationnel « Atlas Assistant » (LLM hébergé chez un fournisseur cloud, RAG sur la documentation produits, appels à l'API de gestion des cartes), modèle de score crédit, modèle de détection de fraude.",
+    "targets": { "GOV": 3, "RISK": 3, "DATA": 4, "DEV": 3, "LLM": 4, "OPS": 4, "TRUST": 3, "PEOPLE": 3 }
+  },
+  "answers": {
+    "GOV.1.1": { "level": 3, "evidence": "Plan stratégique 2025-2028, volet IA", "comment": "Stratégie IA validée par le comité exécutif en 2025." },
+    "GOV.1.2": { "level": 3, "evidence": "Politique IA v0.9", "comment": "Politique IA rédigée par la DSI." },
+    "GOV.2.1": { "level": 2, "comment": "Le RSSI et le Chief Data Officer se partagent le sujet sans fiche de rôle formelle." },
+    "GOV.2.2": { "level": 2, "comment": "Pas de comité dédié ; les sujets IA passent ponctuellement en comité des risques." },
+    "GOV.2.3": { "level": 2, "comment": "Reporting IA ponctuel, à la demande de la direction générale." },
+    "GOV.3.1": { "level": 2, "evidence": "Tableur d'inventaire IA (DSI)", "comment": "Inventaire partiel : les outils SaaS achetés par les métiers ne sont pas recensés." },
+    "GOV.3.2": { "level": 1, "comment": "Aucune classification des systèmes IA par niveau de risque." },
+    "GOV.4.1": { "level": 3, "evidence": "Registre de conformité (loi 09-08, exigences du régulateur bancaire)" },
+    "GOV.4.2": { "level": 2 },
+
+    "RISK.1.1": { "level": 2, "comment": "Les risques IA sont traités dans l'analyse de risques SI générale (EBIOS RM), sans méthode spécifique." },
+    "RISK.1.2": { "level": 1, "comment": "Menaces adversariales (empoisonnement, extraction de modèle) non étudiées." },
+    "RISK.2.1": { "level": 2, "comment": "Impact sur les clients évoqué en comité projet, sans analyse formalisée." },
+    "RISK.2.2": { "level": 3, "evidence": "AIPD de l'assistant conversationnel validée par le DPO" },
+    "RISK.3.1": { "level": 2 },
+    "RISK.3.2": { "level": 2 },
+
+    "DATA.1.1": { "level": 3, "evidence": "Catalogue de données, domaine crédit" },
+    "DATA.1.2": { "level": 3 },
+    "DATA.2.1": { "level": 4, "evidence": "Déclarations CNDP et registre des traitements", "comment": "DPO désigné, durées de conservation appliquées." },
+    "DATA.2.2": { "level": 2, "comment": "Le proxy bloque quelques sites d'IA générative, mais aucun contrôle DLP sur les données envoyées." },
+    "DATA.3.1": { "level": 2 },
+    "DATA.3.2": { "level": 4, "evidence": "Politique de chiffrement et rapport de test de restauration 2026" },
+
+    "DEV.1.1": { "level": 3 },
+    "DEV.1.2": { "level": 4, "evidence": "Coffre-fort de secrets : configuration et rotation des clés API" },
+    "DEV.2.1": { "level": 3, "evidence": "Questionnaire de sécurité du fournisseur LLM et clauses contractuelles" },
+    "DEV.2.2": { "level": 2, "comment": "Les bibliothèques sont scannées, mais pas les modèles pré-entraînés téléchargés." },
+    "DEV.3.1": { "level": 3, "evidence": "Rapport de validation du modèle de score crédit" },
+    "DEV.3.2": { "level": 1, "comment": "Aucun red teaming de l'assistant avant sa mise en production." },
+    "DEV.4.1": { "level": 3 },
+    "DEV.4.2": { "level": 2 },
+
+    "LLM.1.1": { "level": 3, "comment": "Filtrage des requêtes en place." },
+    "LLM.1.2": { "level": 2, "comment": "Le prompt système contient le nom des API internes appelées." },
+    "LLM.2.1": { "level": 3 },
+    "LLM.2.2": { "level": 2 },
+    "LLM.3.1": { "level": 2, "comment": "L'assistant appelle l'API de gestion des cartes avec un compte technique aux droits étendus." },
+    "LLM.3.2": { "level": 1, "comment": "Le blocage et le déblocage de carte sont exécutés directement par l'assistant, sans confirmation." },
+    "LLM.4.1": { "level": 2, "comment": "Base RAG commune ; le filtrage des documents internes par métadonnées n'est pas systématique." },
+    "LLM.4.2": { "level": 2 },
+
+    "OPS.1.1": { "level": 4, "evidence": "Revue trimestrielle des habilitations (ISO 27001, A.5.18)" },
+    "OPS.1.2": { "level": 4, "evidence": "Passerelle API : authentification OAuth2 et TLS 1.3" },
+    "OPS.2.1": { "level": 2, "comment": "Journalisation des conversations à confirmer." },
+    "OPS.2.2": { "level": 2 },
+    "OPS.3.1": { "level": 3 },
+    "OPS.3.2": { "level": 2, "comment": "Pas de fournisseur LLM de secours ; mode dégradé vers le centre d'appels." },
+    "OPS.4.1": { "level": 3, "evidence": "Procédure de gestion des incidents v4, scénario « fuite via l'assistant »" },
+    "OPS.4.2": { "level": 3 },
+
+    "TRUST.1.1": { "level": 4, "evidence": "Capture du bandeau « Vous échangez avec un assistant virtuel »" },
+    "TRUST.1.2": { "level": 2 },
+    "TRUST.2.1": { "level": 1, "comment": "Aucune mesure de biais sur le modèle de score crédit." },
+    "TRUST.2.2": { "level": 1 },
+    "TRUST.3.1": { "level": 3, "comment": "Chaque refus de crédit proposé par le modèle est revu par un analyste." },
+    "TRUST.3.2": { "level": 3 },
+    "TRUST.4.1": { "level": 2 },
+    "TRUST.4.2": { "level": 3 },
+
+    "PEOPLE.1.1": { "level": 2 },
+    "PEOPLE.1.2": { "level": 2 },
+    "PEOPLE.2.1": { "level": 2, "comment": "Note de service interdisant les IA publiques, sans charte d'usage formalisée." },
+    "PEOPLE.2.2": { "level": 1 },
+    "PEOPLE.3.1": { "level": 2 },
+    "PEOPLE.3.2": { "level": 3 }
+  },
+  "audit": {
+    "GOV.1.2": { "auditedLevel": 2, "auditorComment": "La politique IA est un projet (v0.9) : elle n'est ni approuvée par la direction ni diffusée." },
+    "LLM.1.1": { "auditedLevel": 2, "auditorComment": "Filtrage par mots-clés uniquement ; aucun test d'injection indirecte via les documents indexés." },
+    "OPS.2.1": { "auditedLevel": 3, "auditorComment": "Les conversations de l'assistant sont bien collectées dans le SIEM (constaté sur la console, rétention 12 mois)." }
+  }
+}
