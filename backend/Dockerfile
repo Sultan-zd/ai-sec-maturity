@@ -6,7 +6,7 @@
 # =====================================================================
 
 # ---- Étape 1 : compilation (JDK complet + Maven Wrapper) -------------
-FROM eclipse-temurin:21-jdk AS build
+FROM eclipse-temurin:24-jdk AS build
 WORKDIR /workspace
 
 # Dépendances d'abord : cette couche n'est reconstruite que si pom.xml change
@@ -23,7 +23,7 @@ RUN --mount=type=cache,target=/root/.m2 cd backend && ./mvnw -B -q -DskipTests p
     && java -Djarmode=tools -jar /workspace/app.jar extract --layers --launcher --destination /workspace/extracted
 
 # ---- Étape 2 : exécution (JRE seul, utilisateur non-root) ------------
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:25-jre-alpine
 RUN addgroup -S aima && adduser -S aima -G aima
 WORKDIR /app
 
