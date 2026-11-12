@@ -1,0 +1,146 @@
+{
+  "code": "AIMA",
+  "version": "1.0.0",
+  "name": "AI Security Maturity Assessment",
+  "description": "Référentiel d'évaluation de la maturité en cybersécurité et gouvernance de l'intelligence artificielle.",
+  "sources": [
+    { "code": "ISO27001", "name": "ISO/IEC 27001:2022" },
+    { "code": "ISO42001", "name": "ISO/IEC 42001:2023" },
+    { "code": "ISO23894", "name": "ISO/IEC 23894:2023" },
+    { "code": "ISO38507", "name": "ISO/IEC 38507:2022" },
+    { "code": "NIST_AI_RMF", "name": "NIST AI RMF 1.0 (AI 100-1)" },
+    { "code": "NIST_600_1", "name": "NIST AI 600-1 Generative AI Profile" },
+    { "code": "OWASP_LLM", "name": "OWASP Top 10 for LLM Applications 2025" }
+  ],
+  "maturityLevels": [
+    { "level": 1, "name": "Initial", "minScore": 1.0, "description": "Pratiques absentes ou improvisées ; dépendance aux individus." },
+    { "level": 2, "name": "Reproductible", "minScore": 1.8, "description": "Pratiques existantes mais informelles et appliquées de manière inégale." },
+    { "level": 3, "name": "Défini", "minScore": 2.6, "description": "Pratiques documentées, approuvées, communiquées et appliquées sur tout le périmètre." },
+    { "level": 4, "name": "Maîtrisé", "minScore": 3.4, "description": "Pratiques mesurées par des indicateurs, contrôlées et auditées." },
+    { "level": 5, "name": "Optimisé", "minScore": 4.2, "description": "Amélioration continue fondée sur les mesures, la veille et l'innovation." }
+  ],
+  "scoringRules": {
+    "criticalityWeights": { "1": 1, "2": 2, "3": 3 },
+    "weakestLinkCaps": [
+      { "criticality": 3, "answerLevel": 1, "domainCap": 2.0 },
+      { "criticality": 3, "answerLevel": 2, "domainCap": 3.0 }
+    ],
+    "defaultTargetLevel": 3
+  },
+  "domains": [
+    {
+      "code": "GOV", "order": 1, "weight": 0.15,
+      "name": "Gouvernance & stratégie IA",
+      "description": "Engagement de la direction, politique IA, organisation, inventaire et conformité.",
+      "subdomains": [
+        { "code": "GOV.1", "name": "Stratégie et politique IA", "description": "Existence d'une stratégie IA alignée sur les objectifs métier et d'une politique IA approuvée par la direction.",
+          "references": { "ISO42001": ["5.2", "A.2.2", "A.2.3"], "ISO38507": ["4", "6.2"], "NIST_AI_RMF": ["GOVERN 1.1", "GOVERN 1.2"], "ISO27001": ["5.2", "A.5.1"] } },
+        { "code": "GOV.2", "name": "Rôles, responsabilités et redevabilité", "description": "Rôles IA définis (responsable IA, comité), redevabilité de la direction, séparation des tâches.",
+          "references": { "ISO42001": ["5.3", "A.3.2"], "ISO38507": ["5"], "NIST_AI_RMF": ["GOVERN 2.1", "GOVERN 2.3"], "ISO27001": ["5.3", "A.5.2"] } },
+        { "code": "GOV.3", "name": "Inventaire et classification des systèmes IA", "description": "Registre à jour des systèmes IA (internes, achetés, SaaS) classés par niveau de risque.",
+          "references": { "ISO42001": ["A.4.2", "A.6.2.2"], "NIST_AI_RMF": ["GOVERN 1.6", "MAP 1.1"], "ISO27001": ["A.5.9"] } },
+        { "code": "GOV.4", "name": "Conformité légale et réglementaire", "description": "Identification et respect des obligations légales applicables (AI Act, RGPD, loi 09-08, réglementations sectorielles).",
+          "references": { "ISO42001": ["4.1", "A.2.4"], "NIST_AI_RMF": ["GOVERN 1.1"], "ISO27001": ["A.5.31", "A.5.34"] } }
+      ]
+    },
+    {
+      "code": "RISK", "order": 2, "weight": 0.15,
+      "name": "Gestion des risques IA",
+      "description": "Appréciation, analyse d'impact, traitement et suivi des risques propres à l'IA.",
+      "subdomains": [
+        { "code": "RISK.1", "name": "Méthodologie d'appréciation des risques IA", "description": "Méthode formalisée d'identification, d'analyse et d'évaluation des risques IA intégrée à la gestion des risques de l'entreprise.",
+          "references": { "ISO23894": ["6.4"], "ISO42001": ["6.1.2", "8.2"], "NIST_AI_RMF": ["MAP 1", "MAP 4", "MEASURE 1"], "NIST_600_1": ["GAI risks 2.1-2.12"] } },
+        { "code": "RISK.2", "name": "Analyse d'impact des systèmes IA", "description": "Évaluation des impacts sur les personnes, les groupes et la société avant déploiement.",
+          "references": { "ISO42001": ["6.1.4", "A.5.2", "A.5.4", "A.5.5"], "NIST_AI_RMF": ["MAP 5.1", "MAP 5.2"] } },
+        { "code": "RISK.3", "name": "Traitement et suivi des risques", "description": "Plans de traitement, propriétaires de risques, risques résiduels acceptés et revus périodiquement.",
+          "references": { "ISO23894": ["6.5", "6.6"], "ISO42001": ["6.1.3", "8.3"], "NIST_AI_RMF": ["MANAGE 1", "MANAGE 2"] } }
+      ]
+    },
+    {
+      "code": "DATA", "order": 3, "weight": 0.15,
+      "name": "Données & vie privée",
+      "description": "Qualité, provenance, protection et sécurité des données utilisées par les systèmes IA.",
+      "subdomains": [
+        { "code": "DATA.1", "name": "Qualité, provenance et traçabilité des données", "description": "Documentation de l'origine, de la qualité et du lignage des données d'entraînement et d'inférence.",
+          "references": { "ISO42001": ["A.7.2", "A.7.3", "A.7.4", "A.7.5"], "NIST_AI_RMF": ["MAP 2.3", "MEASURE 2.1"] } },
+        { "code": "DATA.2", "name": "Protection des données personnelles", "description": "Minimisation, base légale, anonymisation et droits des personnes appliqués aux traitements IA.",
+          "references": { "ISO27001": ["A.5.34", "A.8.11"], "ISO42001": ["A.7.6"], "NIST_AI_RMF": ["MEASURE 2.10"], "NIST_600_1": ["Data Privacy"], "OWASP_LLM": ["LLM02"] } },
+        { "code": "DATA.3", "name": "Sécurité des données d'entraînement", "description": "Protection contre l'empoisonnement des données et du modèle, contrôle d'intégrité des jeux de données.",
+          "references": { "ISO27001": ["A.8.24"], "NIST_AI_RMF": ["MEASURE 2.7"], "NIST_600_1": ["Information Security"], "OWASP_LLM": ["LLM04"] } }
+      ]
+    },
+    {
+      "code": "DEV", "order": 4, "weight": 0.15,
+      "name": "Sécurité du cycle de vie des modèles",
+      "description": "Conception, développement, approvisionnement, tests et déploiement sécurisés des systèmes IA (MLSecOps).",
+      "subdomains": [
+        { "code": "DEV.1", "name": "Développement sécurisé des systèmes IA", "description": "Exigences de sécurité dès la conception, revue de code, gestion des secrets, pipelines MLOps sécurisés.",
+          "references": { "ISO27001": ["A.8.25", "A.8.26", "A.8.27", "A.8.28"], "ISO42001": ["A.6.1.2", "A.6.2.3"], "NIST_AI_RMF": ["MAP 3"] } },
+        { "code": "DEV.2", "name": "Chaîne d'approvisionnement IA", "description": "Évaluation des fournisseurs IA, des modèles pré-entraînés, des bibliothèques et des API tierces (SBOM / AI-BOM).",
+          "references": { "ISO27001": ["A.5.19", "A.5.20", "A.5.21", "A.5.22"], "ISO42001": ["A.10.2", "A.10.3"], "NIST_AI_RMF": ["GOVERN 6.1", "GOVERN 6.2"], "NIST_600_1": ["Value Chain and Component Integration"], "OWASP_LLM": ["LLM03"] } },
+        { "code": "DEV.3", "name": "Tests, validation et red teaming", "description": "Tests de performance, robustesse, sécurité adversariale et red teaming avant mise en production.",
+          "references": { "ISO42001": ["A.6.2.4"], "NIST_AI_RMF": ["MEASURE 2.3", "MEASURE 2.7"], "NIST_600_1": ["MS-2.7"], "ISO27001": ["A.8.29"] } },
+        { "code": "DEV.4", "name": "Déploiement et gestion des changements", "description": "Validation formelle avant mise en production, versionnage des modèles, retour arrière possible.",
+          "references": { "ISO42001": ["A.6.2.5", "A.6.2.6"], "ISO27001": ["A.8.32"], "NIST_AI_RMF": ["MANAGE 2.4"] } }
+      ]
+    },
+    {
+      "code": "LLM", "order": 5, "weight": 0.15,
+      "name": "Sécurité des applications LLM / GenAI",
+      "description": "Mesures techniques spécifiques aux applications fondées sur des grands modèles de langage.",
+      "subdomains": [
+        { "code": "LLM.1", "name": "Injection de prompt et manipulation des entrées", "description": "Défenses contre les injections directes et indirectes, filtrage des entrées, protection du prompt système.",
+          "references": { "OWASP_LLM": ["LLM01", "LLM07"], "NIST_600_1": ["Information Security"], "NIST_AI_RMF": ["MEASURE 2.7"], "ISO27001": ["A.8.28"] } },
+        { "code": "LLM.2", "name": "Divulgation d'informations et gestion des sorties", "description": "Prévention des fuites de données sensibles et validation des sorties avant usage par d'autres composants.",
+          "references": { "OWASP_LLM": ["LLM02", "LLM05"], "NIST_600_1": ["Data Privacy", "Information Integrity"], "ISO27001": ["A.8.12"] } },
+        { "code": "LLM.3", "name": "Agentivité et permissions des agents", "description": "Limitation des outils, des permissions et de l'autonomie des agents IA ; validation humaine des actions sensibles.",
+          "references": { "OWASP_LLM": ["LLM06"], "NIST_600_1": ["Human-AI Configuration"], "ISO27001": ["A.8.2", "A.5.15"] } },
+        { "code": "LLM.4", "name": "Sécurité RAG, vecteurs et embeddings", "description": "Contrôle d'accès aux bases vectorielles, intégrité des documents indexés, cloisonnement des données.",
+          "references": { "OWASP_LLM": ["LLM08", "LLM04"], "NIST_600_1": ["Information Security"], "ISO27001": ["A.8.3"] } }
+      ]
+    },
+    {
+      "code": "OPS", "order": 6, "weight": 0.10,
+      "name": "Opérations & résilience",
+      "description": "Exploitation sécurisée des systèmes IA : accès, surveillance, disponibilité, incidents.",
+      "subdomains": [
+        { "code": "OPS.1", "name": "Gestion des identités et des accès", "description": "Authentification forte, moindre privilège et revue des accès aux modèles, données et API IA.",
+          "references": { "ISO27001": ["A.5.15", "A.5.16", "A.5.17", "A.5.18", "A.8.5"] } },
+        { "code": "OPS.2", "name": "Surveillance et journalisation", "description": "Journalisation des requêtes et décisions IA, détection des dérives et des comportements anormaux.",
+          "references": { "ISO27001": ["A.8.15", "A.8.16"], "ISO42001": ["A.6.2.6", "A.6.2.8"], "NIST_AI_RMF": ["MANAGE 4.1", "MEASURE 2.4"] } },
+        { "code": "OPS.3", "name": "Disponibilité et consommation des ressources", "description": "Quotas, limitation de débit, maîtrise des coûts et plans de continuité des services IA.",
+          "references": { "OWASP_LLM": ["LLM10"], "ISO27001": ["A.8.6", "A.5.30"], "NIST_600_1": ["Environmental Impacts"] } },
+        { "code": "OPS.4", "name": "Gestion des incidents IA", "description": "Procédure de détection, de réponse et de retour d'expérience pour les incidents propres à l'IA.",
+          "references": { "ISO27001": ["A.5.24", "A.5.25", "A.5.26", "A.5.27"], "NIST_AI_RMF": ["MANAGE 4.3"], "ISO42001": ["A.8.4"] } }
+      ]
+    },
+    {
+      "code": "TRUST", "order": 7, "weight": 0.10,
+      "name": "IA digne de confiance",
+      "description": "Transparence, équité, supervision humaine et fiabilité des systèmes IA.",
+      "subdomains": [
+        { "code": "TRUST.1", "name": "Transparence et explicabilité", "description": "Information des utilisateurs sur l'usage de l'IA, documentation des modèles, explicabilité des décisions.",
+          "references": { "ISO42001": ["A.8.2", "A.6.2.7"], "NIST_AI_RMF": ["MEASURE 2.8", "MEASURE 2.9"] } },
+        { "code": "TRUST.2", "name": "Équité et gestion des biais", "description": "Détection, mesure et correction des biais discriminatoires.",
+          "references": { "ISO42001": ["A.5.4"], "NIST_AI_RMF": ["MEASURE 2.11"], "NIST_600_1": ["Harmful Bias and Homogenization"] } },
+        { "code": "TRUST.3", "name": "Supervision humaine", "description": "Capacité humaine à surveiller, interpréter, contester et interrompre les décisions IA.",
+          "references": { "ISO42001": ["A.9.2", "A.9.3", "A.9.4"], "NIST_AI_RMF": ["GOVERN 3.2", "MAP 3.5"], "NIST_600_1": ["Human-AI Configuration"] } },
+        { "code": "TRUST.4", "name": "Fiabilité et désinformation", "description": "Maîtrise des hallucinations (confabulation), validation des réponses, sources vérifiables.",
+          "references": { "OWASP_LLM": ["LLM09"], "NIST_600_1": ["Confabulation", "Information Integrity"], "NIST_AI_RMF": ["MEASURE 2.5"] } }
+      ]
+    },
+    {
+      "code": "PEOPLE", "order": 8, "weight": 0.05,
+      "name": "Culture & amélioration continue",
+      "description": "Compétences, usage responsable de l'IA par les collaborateurs, audit et amélioration.",
+      "subdomains": [
+        { "code": "PEOPLE.1", "name": "Sensibilisation et formation", "description": "Formation des équipes aux risques IA, adaptée aux rôles (direction, développeurs, utilisateurs).",
+          "references": { "ISO27001": ["7.2", "7.3", "A.6.3"], "ISO42001": ["7.2", "7.3", "A.4.6"], "NIST_AI_RMF": ["GOVERN 2.2"] } },
+        { "code": "PEOPLE.2", "name": "Usage encadré de l'IA par les collaborateurs", "description": "Charte d'usage de l'IA générative, outils autorisés, lutte contre le shadow AI.",
+          "references": { "ISO42001": ["A.9.2"], "ISO27001": ["A.5.10"], "NIST_600_1": ["Data Privacy", "Intellectual Property"] } },
+        { "code": "PEOPLE.3", "name": "Audit interne et amélioration continue", "description": "Audits internes du dispositif IA, revue de direction, actions correctives.",
+          "references": { "ISO42001": ["9.2", "9.3", "10.1", "10.2"], "ISO27001": ["9.2", "9.3", "10"], "NIST_AI_RMF": ["GOVERN 1.5"] } }
+      ]
+    }
+  ]
+}
