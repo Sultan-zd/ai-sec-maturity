@@ -1,0 +1,149 @@
+{
+  "domain": "TRUST",
+  "questions": [
+    {
+      "code": "TRUST.1.1", "subdomain": "TRUST.1", "criticality": 2, "effort": "LOW",
+      "text": "Les utilisateurs sont-ils informés lorsqu'ils interagissent avec une IA ou reçoivent un contenu généré par IA ?",
+      "evidence": "Mentions d'information dans les interfaces, marquage des contenus générés.",
+      "levels": [
+        "Les utilisateurs ne sont pas informés.",
+        "Information parfois présente, selon les applications.",
+        "Information systématique et claire ; les contenus générés sont marqués.",
+        "La conformité est contrôlée et la compréhension des utilisateurs est mesurée.",
+        "Les pratiques de transparence sont améliorées à partir des retours des utilisateurs."
+      ],
+      "recommendations": [
+        "Ajouter une mention claire sur les interfaces utilisant l'IA.",
+        "Rendre l'information et le marquage des contenus générés systématiques.",
+        "Contrôler la conformité et mesurer la compréhension des utilisateurs.",
+        "Améliorer la transparence à partir des retours des utilisateurs."
+      ]
+    },
+    {
+      "code": "TRUST.1.2", "subdomain": "TRUST.1", "criticality": 2, "effort": "HIGH",
+      "text": "Les décisions des systèmes IA ayant un impact sur les personnes sont-elles explicables ?",
+      "evidence": "Model cards, méthodes d'explicabilité utilisées (SHAP, LIME), exemples d'explications fournies.",
+      "levels": [
+        "Les modèles fonctionnent comme des boîtes noires.",
+        "Des explications sont fournies au cas par cas par des experts.",
+        "Documentation (model cards) et méthodes d'explicabilité pour tous les systèmes à impact.",
+        "Des explications compréhensibles sont fournies aux personnes concernées et leur qualité est évaluée.",
+        "L'explicabilité est intégrée dès la conception de chaque système."
+      ],
+      "recommendations": [
+        "Identifier les décisions IA qui ont un impact sur des personnes.",
+        "Documenter les modèles (model cards) et appliquer des méthodes d'explicabilité.",
+        "Fournir des explications compréhensibles aux personnes concernées et en évaluer la qualité.",
+        "Intégrer l'explicabilité comme exigence de conception."
+      ]
+    },
+    {
+      "code": "TRUST.2.1", "subdomain": "TRUST.2", "criticality": 3, "effort": "HIGH",
+      "text": "Les biais des modèles sont-ils mesurés et corrigés ?",
+      "evidence": "Métriques d'équité retenues, rapports d'analyse des biais, plans de correction.",
+      "levels": [
+        "Les biais ne sont pas mesurés.",
+        "Vérifications ponctuelles et informelles.",
+        "Des métriques d'équité sont définies et mesurées avant déploiement sur les groupes concernés.",
+        "Les biais sont mesurés en continu en production avec seuils et plans de correction.",
+        "Amélioration continue et audit externe des biais."
+      ],
+      "recommendations": [
+        "Identifier les groupes potentiellement affectés par chaque système IA.",
+        "Définir des métriques d'équité et les mesurer avant chaque déploiement.",
+        "Surveiller les biais en production avec des seuils et plans de correction.",
+        "Faire auditer les biais par un tiers indépendant."
+      ]
+    },
+    {
+      "code": "TRUST.2.2", "subdomain": "TRUST.2", "criticality": 1, "effort": "MEDIUM",
+      "text": "Les parties prenantes concernées sont-elles consultées et la diversité des équipes est-elle prise en compte dans les projets IA à impact ?",
+      "evidence": "Comptes rendus de consultation, composition des équipes projet.",
+      "levels": [
+        "Aucune consultation.",
+        "Consultations ponctuelles.",
+        "Consultation des parties prenantes et diversité des équipes prises en compte dans les projets à impact.",
+        "Processus formel de consultation ; les retours sont intégrés et tracés.",
+        "Participation continue des parties prenantes tout au long du cycle de vie."
+      ],
+      "recommendations": [
+        "Identifier les parties prenantes concernées par chaque projet à impact.",
+        "Organiser leur consultation et veiller à la diversité des équipes.",
+        "Formaliser le processus de consultation et tracer la prise en compte des retours.",
+        "Associer les parties prenantes à tout le cycle de vie."
+      ]
+    },
+    {
+      "code": "TRUST.3.1", "subdomain": "TRUST.3", "criticality": 3, "effort": "MEDIUM",
+      "text": "Un humain peut-il surveiller, contester et corriger les décisions d'un système IA à risque élevé ?",
+      "evidence": "Description du dispositif de supervision humaine, procédure de contestation, statistiques de correction.",
+      "levels": [
+        "Décisions entièrement automatisées, sans recours.",
+        "Un recours est possible mais n'est pas organisé.",
+        "La supervision humaine est définie (humain dans la boucle / sur la boucle) avec une procédure de contestation.",
+        "L'efficacité de la supervision est contrôlée (taux de correction, biais d'automatisation).",
+        "Le niveau de supervision est optimisé en fonction du risque."
+      ],
+      "recommendations": [
+        "Identifier les décisions automatisées à risque élevé.",
+        "Définir le mode de supervision humaine et une procédure de contestation.",
+        "Mesurer l'efficacité de la supervision et le biais d'automatisation.",
+        "Ajuster le niveau de supervision selon le risque."
+      ]
+    },
+    {
+      "code": "TRUST.3.2", "subdomain": "TRUST.3", "criticality": 2, "effort": "LOW",
+      "text": "Est-il possible d'arrêter ou de désactiver rapidement un système IA en cas de problème ?",
+      "evidence": "Procédure d'arrêt d'urgence (kill switch), responsables désignés, test d'arrêt.",
+      "levels": [
+        "Impossible ou non prévu.",
+        "Possible, mais la procédure n'est pas connue.",
+        "Un mécanisme d'arrêt documenté existe avec des responsables désignés.",
+        "Le mécanisme d'arrêt est testé périodiquement.",
+        "Arrêt automatique déclenché par des seuils de risque."
+      ],
+      "recommendations": [
+        "Prévoir un moyen technique d'arrêter chaque système IA critique.",
+        "Documenter la procédure d'arrêt et désigner les responsables.",
+        "Tester périodiquement le mécanisme d'arrêt.",
+        "Mettre en place un arrêt automatique sur seuils de risque."
+      ]
+    },
+    {
+      "code": "TRUST.4.1", "subdomain": "TRUST.4", "criticality": 2, "effort": "MEDIUM",
+      "text": "Des mesures limitent-elles les hallucinations et la désinformation produites par les systèmes IA ?",
+      "evidence": "Architecture RAG, citations des sources, avertissements, résultats des jeux d'évaluation.",
+      "levels": [
+        "Aucune mesure.",
+        "Un avertissement générique est affiché.",
+        "Ancrage sur des sources fiables (RAG), citation des sources et vérification humaine pour les usages critiques.",
+        "Le taux d'hallucination est mesuré par des jeux d'évaluation.",
+        "Amélioration continue fondée sur les mesures."
+      ],
+      "recommendations": [
+        "Afficher des avertissements et identifier les usages critiques.",
+        "Ancrer les réponses sur des sources fiables, citer les sources et imposer une vérification humaine.",
+        "Mesurer le taux d'hallucination avec des jeux d'évaluation.",
+        "Améliorer en continu à partir des mesures."
+      ]
+    },
+    {
+      "code": "TRUST.4.2", "subdomain": "TRUST.4", "criticality": 2, "effort": "MEDIUM",
+      "text": "L'exactitude des systèmes IA est-elle évaluée par rapport à des critères métier définis ?",
+      "evidence": "Critères d'exactitude, jeux d'évaluation de référence, rapports d'évaluation.",
+      "levels": [
+        "Aucune évaluation.",
+        "Évaluation subjective par les utilisateurs.",
+        "Des critères d'exactitude et des jeux d'évaluation de référence sont définis.",
+        "L'exactitude est évaluée régulièrement en production et comparée aux critères.",
+        "Comparaison à l'état de l'art et amélioration continue."
+      ],
+      "recommendations": [
+        "Définir avec le métier ce qu'est une réponse correcte.",
+        "Construire des jeux d'évaluation de référence.",
+        "Évaluer régulièrement en production et comparer aux critères.",
+        "Comparer à l'état de l'art et améliorer en continu."
+      ]
+    }
+  ]
+}

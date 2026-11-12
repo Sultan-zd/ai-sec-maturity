@@ -1,0 +1,113 @@
+{
+  "domain": "DATA",
+  "questions": [
+    {
+      "code": "DATA.1.1", "subdomain": "DATA.1", "criticality": 2, "effort": "MEDIUM",
+      "text": "L'origine, les droits d'utilisation et le lignage des données utilisées par les systèmes IA sont-ils documentés ?",
+      "evidence": "Fiches descriptives des jeux de données (datasheets), outil de lignage, catalogue de données.",
+      "levels": [
+        "Aucune documentation des données.",
+        "Documentation partielle selon les projets.",
+        "Chaque jeu de données dispose d'une fiche (source, licence, date, finalité, transformations).",
+        "Le lignage est tracé automatiquement de la source jusqu'au modèle déployé.",
+        "La gouvernance des données IA est intégrée au catalogue de données de l'entreprise et améliorée en continu."
+      ],
+      "recommendations": [
+        "Recenser les jeux de données utilisés par les systèmes IA.",
+        "Rendre obligatoire une fiche descriptive (datasheet) pour chaque jeu de données.",
+        "Outiller le traçage automatique du lignage (DVC, MLflow, OpenLineage).",
+        "Intégrer ces fiches au catalogue de données de l'entreprise."
+      ]
+    },
+    {
+      "code": "DATA.1.2", "subdomain": "DATA.1", "criticality": 2, "effort": "MEDIUM",
+      "text": "La qualité des données (exactitude, complétude, représentativité) est-elle évaluée avant l'entraînement ?",
+      "evidence": "Critères de qualité documentés, rapports de contrôle qualité des données.",
+      "levels": [
+        "Aucune évaluation de la qualité.",
+        "Contrôles manuels ponctuels.",
+        "Des critères de qualité documentés (ISO/IEC 5259) sont vérifiés pour chaque jeu de données.",
+        "Des contrôles automatisés avec seuils bloquent les données non conformes dans le pipeline.",
+        "Les indicateurs de qualité sont suivis dans le temps et utilisés pour améliorer la collecte."
+      ],
+      "recommendations": [
+        "Définir les critères de qualité essentiels pour les données d'entraînement.",
+        "Documenter et appliquer ces critères à chaque jeu de données.",
+        "Automatiser les contrôles qualité dans le pipeline (ex. Great Expectations).",
+        "Suivre les tendances de qualité et corriger les problèmes à la source."
+      ]
+    },
+    {
+      "code": "DATA.2.1", "subdomain": "DATA.2", "criticality": 3, "effort": "MEDIUM",
+      "text": "Les principes de protection des données personnelles (base légale, minimisation, durée de conservation) sont-ils appliqués aux traitements IA ?",
+      "evidence": "Registre des traitements, déclarations / autorisations CNDP, mentions d'information.",
+      "levels": [
+        "Ces principes ne sont pas appliqués.",
+        "Ils sont appliqués partiellement, sans vérification.",
+        "Les traitements IA figurent au registre avec base légale, minimisation et durées définies ; les formalités CNDP / RGPD sont effectuées.",
+        "Des contrôles réguliers vérifient la conformité et l'effectivité des droits des personnes.",
+        "Des techniques avancées (données synthétiques, confidentialité différentielle, apprentissage fédéré) réduisent l'usage de données personnelles."
+      ],
+      "recommendations": [
+        "Recenser avec le DPO les données personnelles utilisées par les systèmes IA.",
+        "Inscrire les traitements au registre et effectuer les formalités CNDP / RGPD.",
+        "Contrôler régulièrement la conformité et l'exercice des droits des personnes.",
+        "Étudier les techniques de protection avancées (données synthétiques, confidentialité différentielle)."
+      ]
+    },
+    {
+      "code": "DATA.2.2", "subdomain": "DATA.2", "criticality": 3, "effort": "MEDIUM",
+      "text": "Des mesures empêchent-elles l'envoi de données sensibles vers des services IA externes non autorisés ?",
+      "evidence": "Règle écrite, liste des outils IA autorisés, configuration DLP / CASB / proxy.",
+      "levels": [
+        "Aucune mesure.",
+        "Des consignes orales ou des e-mails de sensibilisation.",
+        "Une règle écrite définit les données interdites et des outils IA approuvés sont proposés.",
+        "Des contrôles techniques (DLP, proxy, CASB) détectent ou bloquent les envois de données sensibles.",
+        "Les contrôles sont ajustés en continu selon les détections et les nouveaux usages."
+      ],
+      "recommendations": [
+        "Informer les collaborateurs des données à ne jamais soumettre à une IA externe.",
+        "Formaliser la règle et mettre à disposition des outils IA approuvés.",
+        "Déployer des contrôles DLP / CASB sur les services IA.",
+        "Analyser les alertes et affiner les règles en continu."
+      ]
+    },
+    {
+      "code": "DATA.3.1", "subdomain": "DATA.3", "criticality": 3, "effort": "HIGH",
+      "text": "L'intégrité des données d'entraînement est-elle protégée contre l'empoisonnement ?",
+      "evidence": "Contrôles d'accès aux jeux de données, empreintes (hash), rapports de détection d'anomalies.",
+      "levels": [
+        "Aucune protection.",
+        "Accès aux données restreint de manière informelle.",
+        "Les jeux de données sont stockés avec contrôle d'accès, versionnés et leur intégrité est vérifiée par empreintes.",
+        "Une détection d'anomalies et de données aberrantes est appliquée avant chaque entraînement.",
+        "Des techniques d'entraînement robuste et des tests d'empoisonnement réguliers sont mis en œuvre."
+      ],
+      "recommendations": [
+        "Restreindre et tracer l'accès aux données d'entraînement.",
+        "Versionner les jeux de données et contrôler leur intégrité par empreintes.",
+        "Ajouter une détection d'anomalies dans le pipeline d'entraînement.",
+        "Conduire des tests d'empoisonnement et adopter des techniques d'entraînement robuste."
+      ]
+    },
+    {
+      "code": "DATA.3.2", "subdomain": "DATA.3", "criticality": 2, "effort": "LOW",
+      "text": "Les données d'entraînement et les modèles sont-ils chiffrés et sauvegardés ?",
+      "evidence": "Configuration du chiffrement, politique de sauvegarde, procès-verbaux de tests de restauration.",
+      "levels": [
+        "Ni chiffrés ni sauvegardés.",
+        "Sauvegardes ponctuelles, sans chiffrement systématique.",
+        "Chiffrement au repos et en transit ; sauvegardes régulières documentées.",
+        "Les restaurations sont testées périodiquement ; la gestion des clés est centralisée.",
+        "Stratégie optimisée : sauvegardes immuables et hors ligne, rotation automatique des clés."
+      ],
+      "recommendations": [
+        "Mettre en place des sauvegardes régulières des données et des modèles.",
+        "Activer le chiffrement au repos et en transit.",
+        "Tester les restaurations et centraliser la gestion des clés.",
+        "Adopter des sauvegardes immuables et la rotation automatique des clés."
+      ]
+    }
+  ]
+}

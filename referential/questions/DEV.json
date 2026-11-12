@@ -1,0 +1,149 @@
+{
+  "domain": "DEV",
+  "questions": [
+    {
+      "code": "DEV.1.1", "subdomain": "DEV.1", "criticality": 2, "effort": "MEDIUM",
+      "text": "Des exigences de sécurité sont-elles intégrées dès la conception des systèmes IA (security by design) ?",
+      "evidence": "Catalogue d'exigences de sécurité IA, comptes rendus de revue de conception, configuration CI/CD.",
+      "levels": [
+        "Aucune exigence de sécurité.",
+        "La sécurité est traitée en fin de projet.",
+        "Un catalogue d'exigences de sécurité IA est appliqué dès la conception et validé par l'équipe sécurité.",
+        "Les exigences sont vérifiées automatiquement dans la CI/CD (SAST, scan des dépendances, scan des modèles).",
+        "Les exigences évoluent avec les incidents et les menaces ; des champions sécurité sont présents dans chaque équipe."
+      ],
+      "recommendations": [
+        "Impliquer l'équipe sécurité dès le lancement de chaque projet IA.",
+        "Rédiger un catalogue d'exigences de sécurité IA appliqué dès la conception.",
+        "Intégrer des contrôles de sécurité automatiques dans la CI/CD.",
+        "Créer un réseau de champions sécurité et mettre à jour les exigences en continu."
+      ]
+    },
+    {
+      "code": "DEV.1.2", "subdomain": "DEV.1", "criticality": 3, "effort": "LOW",
+      "text": "Les secrets (clés API des fournisseurs IA, identifiants) sont-ils gérés de manière sécurisée ?",
+      "evidence": "Coffre-fort de secrets, rapport de scan de secrets (gitleaks), procédure de rotation.",
+      "levels": [
+        "Des secrets sont en clair dans le code ou les notebooks.",
+        "Les secrets sont dans des fichiers de configuration non versionnés.",
+        "Un coffre-fort de secrets est utilisé et le code est scanné pour détecter les secrets.",
+        "Rotation régulière, droits minimaux par clé et alertes sur usage anormal.",
+        "Secrets éphémères générés à la demande avec rotation automatique."
+      ],
+      "recommendations": [
+        "Retirer les secrets du code et révoquer immédiatement les clés exposées.",
+        "Adopter un coffre-fort de secrets et un scanner de secrets dans les dépôts.",
+        "Mettre en place la rotation des clés et le moindre privilège par clé.",
+        "Passer à des identifiants éphémères avec rotation automatique."
+      ]
+    },
+    {
+      "code": "DEV.2.1", "subdomain": "DEV.2", "criticality": 3, "effort": "MEDIUM",
+      "text": "Les fournisseurs et services IA tiers (API de LLM, SaaS IA) sont-ils évalués avant utilisation ?",
+      "evidence": "Questionnaires fournisseurs, clauses contractuelles (non-réutilisation des données, localisation), certifications.",
+      "levels": [
+        "Aucune évaluation.",
+        "Évaluation informelle selon le coût et les fonctionnalités.",
+        "Un questionnaire sécurité/IA est obligatoire avant contrat (localisation des données, réutilisation pour l'entraînement, certifications).",
+        "Les fournisseurs critiques sont réévalués périodiquement et leurs engagements contractuels sont contrôlés.",
+        "Évaluation continue (notation automatisée, veille sur les incidents) intégrée à la gestion des tiers."
+      ],
+      "recommendations": [
+        "Recenser les fournisseurs IA utilisés.",
+        "Mettre en place un questionnaire d'évaluation sécurité/IA obligatoire avant contrat.",
+        "Réévaluer périodiquement les fournisseurs critiques et contrôler leurs engagements.",
+        "Mettre en place une surveillance continue des tiers IA."
+      ]
+    },
+    {
+      "code": "DEV.2.2", "subdomain": "DEV.2", "criticality": 3, "effort": "MEDIUM",
+      "text": "Les modèles pré-entraînés et bibliothèques open source sont-ils vérifiés (origine, intégrité, vulnérabilités) ?",
+      "evidence": "Liste des sources autorisées, AI-BOM / SBOM, rapports de scan des modèles.",
+      "levels": [
+        "Les modèles sont téléchargés et utilisés sans vérification.",
+        "Vérification manuelle occasionnelle de la réputation.",
+        "Sources autorisées définies, formats sûrs imposés (ex. safetensors), inventaire des composants (AI-BOM).",
+        "Scans automatiques des modèles et dépendances et vérification des signatures dans la CI/CD.",
+        "Registre interne de modèles approuvés et surveillance continue des vulnérabilités."
+      ],
+      "recommendations": [
+        "Lister les modèles et bibliothèques IA utilisés.",
+        "Définir les sources autorisées, imposer des formats sûrs et produire un AI-BOM.",
+        "Automatiser le scan des modèles et la vérification des signatures.",
+        "Mettre en place un registre interne de modèles approuvés."
+      ]
+    },
+    {
+      "code": "DEV.3.1", "subdomain": "DEV.3", "criticality": 3, "effort": "MEDIUM",
+      "text": "Les modèles sont-ils testés (performance, robustesse, biais, sécurité) avant leur mise en production ?",
+      "evidence": "Plan de tests, critères d'acceptation, rapports de tests archivés.",
+      "levels": [
+        "Aucun test formalisé.",
+        "Tests de performance uniquement.",
+        "Un plan de tests documenté couvre performance, robustesse, biais et sécurité, avec des critères d'acceptation.",
+        "Les tests sont automatisés à chaque version ; les résultats sont archivés et revus.",
+        "La couverture des tests est étendue en continu à partir des incidents et des nouvelles menaces."
+      ],
+      "recommendations": [
+        "Définir des critères d'acceptation minimaux pour chaque modèle.",
+        "Formaliser un plan de tests (performance, robustesse, biais, sécurité).",
+        "Automatiser les tests dans le pipeline et archiver les résultats.",
+        "Enrichir les tests à partir des incidents et de la veille sur les menaces."
+      ]
+    },
+    {
+      "code": "DEV.3.2", "subdomain": "DEV.3", "criticality": 2, "effort": "HIGH",
+      "text": "Des exercices de red teaming ou des tests d'intrusion spécifiques à l'IA sont-ils réalisés ?",
+      "evidence": "Rapports de red teaming, méthodologie utilisée, plan de remédiation.",
+      "levels": [
+        "Jamais.",
+        "Tests ponctuels réalisés par l'équipe projet.",
+        "Un red teaming est réalisé avant la mise en production de tout système exposé, selon une méthodologie reconnue (OWASP, MITRE ATLAS).",
+        "Red teaming périodique par une équipe indépendante, avec outils automatisés (garak, PyRIT).",
+        "Red teaming continu et programme de bug bounty incluant les systèmes IA."
+      ],
+      "recommendations": [
+        "Réaliser un premier test adversarial sur le système IA le plus exposé.",
+        "Rendre le red teaming obligatoire avant production selon une méthodologie reconnue.",
+        "Faire intervenir une équipe indépendante et outiller les tests.",
+        "Étendre au red teaming continu et à un programme de bug bounty."
+      ]
+    },
+    {
+      "code": "DEV.4.1", "subdomain": "DEV.4", "criticality": 2, "effort": "MEDIUM",
+      "text": "Le déploiement des modèles suit-il un processus de validation et de gestion des changements ?",
+      "evidence": "Procédure de mise en production, tickets de changement, historique des déploiements.",
+      "levels": [
+        "Déploiement manuel sans validation.",
+        "Validation informelle par l'équipe projet.",
+        "Processus de mise en production documenté avec validation formelle métier et sécurité.",
+        "Déploiement automatisé (MLOps) avec contrôles bloquants et traçabilité complète.",
+        "Déploiements progressifs (canary, shadow) avec retour arrière automatique."
+      ],
+      "recommendations": [
+        "Formaliser une checklist de mise en production des modèles.",
+        "Mettre en place une validation formelle métier et sécurité.",
+        "Automatiser le déploiement avec des contrôles bloquants.",
+        "Adopter les déploiements progressifs avec retour arrière automatique."
+      ]
+    },
+    {
+      "code": "DEV.4.2", "subdomain": "DEV.4", "criticality": 1, "effort": "LOW",
+      "text": "Les modèles sont-ils versionnés avec leur documentation (model card), avec possibilité de revenir à une version antérieure ?",
+      "evidence": "Registre de modèles, model cards, test de retour arrière.",
+      "levels": [
+        "Aucun versionnage.",
+        "Versionnage manuel des fichiers.",
+        "Un registre de modèles conserve versions, métadonnées et model cards.",
+        "Lien complet modèle ↔ données ↔ code ↔ résultats de tests ; retour arrière testé.",
+        "Gouvernance complète du cycle de vie, y compris le retrait des modèles obsolètes."
+      ],
+      "recommendations": [
+        "Versionner systématiquement les modèles.",
+        "Mettre en place un registre de modèles (ex. MLflow) avec model cards.",
+        "Relier modèles, données, code et tests ; tester le retour arrière.",
+        "Formaliser la procédure de retrait des modèles obsolètes."
+      ]
+    }
+  ]
+}

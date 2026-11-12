@@ -1,0 +1,149 @@
+{
+  "domain": "LLM",
+  "questions": [
+    {
+      "code": "LLM.1.1", "subdomain": "LLM.1", "criticality": 3, "effort": "MEDIUM",
+      "text": "Des protections contre l'injection de prompt (directe et indirecte) sont-elles en place ?",
+      "evidence": "Architecture des garde-fous, configuration des filtres, rapports de tests d'injection.",
+      "levels": [
+        "Aucune protection.",
+        "Uniquement des instructions défensives dans le prompt système.",
+        "Séparation instructions / données, filtrage des entrées, garde-fous (guardrails) et marquage des contenus externes.",
+        "Défenses en profondeur testées régulièrement ; tentatives détectées et journalisées.",
+        "Défenses adaptatives mises à jour selon les nouvelles techniques d'attaque et le red teaming."
+      ],
+      "recommendations": [
+        "Recenser les points d'entrée des applications LLM (utilisateurs, documents, pages web, e-mails).",
+        "Mettre en place séparation instructions / données, filtrage des entrées et guardrails.",
+        "Tester régulièrement les défenses et journaliser les tentatives d'injection.",
+        "Mettre à jour les défenses selon la veille et les résultats de red teaming."
+      ]
+    },
+    {
+      "code": "LLM.1.2", "subdomain": "LLM.1", "criticality": 2, "effort": "LOW",
+      "text": "Le prompt système est-il protégé et dépourvu d'informations sensibles ?",
+      "evidence": "Revue des prompts système, tests d'extraction du prompt.",
+      "levels": [
+        "Le prompt système contient des secrets ou des règles de sécurité sensibles.",
+        "Le risque est connu mais aucune règle n'existe.",
+        "Règle : aucune donnée sensible dans le prompt système ; les contrôles d'autorisation sont appliqués hors du LLM.",
+        "Des tests réguliers tentent d'extraire le prompt système.",
+        "Les fuites sont surveillées et les prompts revus en continu."
+      ],
+      "recommendations": [
+        "Retirer les secrets et informations sensibles des prompts système.",
+        "Déplacer les contrôles d'autorisation hors du LLM, dans le code applicatif.",
+        "Tester régulièrement l'extraction du prompt système.",
+        "Surveiller les fuites et revoir les prompts en continu."
+      ]
+    },
+    {
+      "code": "LLM.2.1", "subdomain": "LLM.2", "criticality": 3, "effort": "MEDIUM",
+      "text": "Les sorties des LLM sont-elles validées avant d'être affichées ou transmises à d'autres systèmes ?",
+      "evidence": "Code de validation / encodage des sorties, tests XSS / injection SQL sur les sorties.",
+      "levels": [
+        "Les sorties sont utilisées directement.",
+        "Validation ponctuelle sur certaines applications.",
+        "Les sorties sont traitées comme non fiables : encodage, validation de format, requêtes paramétrées.",
+        "La validation est automatisée et testée (XSS, injection SQL, exécution de code).",
+        "Les contrôles de sortie sont améliorés en continu à partir des incidents."
+      ],
+      "recommendations": [
+        "Identifier les flux où les sorties LLM sont exécutées, stockées ou affichées.",
+        "Traiter les sorties LLM comme des entrées utilisateur non fiables (encodage, validation).",
+        "Automatiser et tester la validation des sorties.",
+        "Améliorer les contrôles à partir des incidents et du red teaming."
+      ]
+    },
+    {
+      "code": "LLM.2.2", "subdomain": "LLM.2", "criticality": 3, "effort": "MEDIUM",
+      "text": "Des mécanismes empêchent-ils le LLM de divulguer des données sensibles ?",
+      "evidence": "Configuration du masquage des données personnelles, tests d'extraction de données.",
+      "levels": [
+        "Aucun mécanisme.",
+        "Uniquement des consignes dans le prompt.",
+        "Filtrage des données sensibles en entrée et en sortie (masquage des données personnelles) et cloisonnement par utilisateur.",
+        "Tests réguliers d'extraction de données et alertes en cas de fuite.",
+        "Protections avancées : classification automatique, confidentialité différentielle à l'entraînement."
+      ],
+      "recommendations": [
+        "Identifier les données sensibles accessibles au LLM.",
+        "Mettre en place le masquage des données personnelles et le cloisonnement par utilisateur.",
+        "Tester l'extraction de données et mettre en place des alertes.",
+        "Adopter des protections avancées (classification automatique, confidentialité différentielle)."
+      ]
+    },
+    {
+      "code": "LLM.3.1", "subdomain": "LLM.3", "criticality": 3, "effort": "MEDIUM",
+      "text": "Les outils et permissions des agents IA sont-ils limités au strict nécessaire ?",
+      "evidence": "Liste des outils accessibles aux agents, comptes de service dédiés, revue des permissions.",
+      "levels": [
+        "Les agents ont des accès larges (lecture, écriture, suppression) sans restriction.",
+        "Restrictions partielles décidées au cas par cas.",
+        "Moindre privilège : liste blanche d'outils, comptes dédiés, droits minimaux.",
+        "Permissions revues périodiquement ; actions des agents journalisées et surveillées.",
+        "Permissions dynamiques et contextuelles avec détection des comportements anormaux."
+      ],
+      "recommendations": [
+        "Inventorier les outils et permissions de chaque agent IA.",
+        "Appliquer le moindre privilège : liste blanche d'outils et comptes dédiés.",
+        "Revoir les permissions périodiquement et journaliser les actions des agents.",
+        "Mettre en place des permissions dynamiques et une détection d'anomalies."
+      ]
+    },
+    {
+      "code": "LLM.3.2", "subdomain": "LLM.3", "criticality": 3, "effort": "LOW",
+      "text": "Les actions sensibles déclenchées par une IA (paiement, suppression, envoi externe) nécessitent-elles une validation humaine ?",
+      "evidence": "Liste des actions sensibles, captures du flux de validation, journaux d'approbation.",
+      "levels": [
+        "Aucune validation humaine.",
+        "Validation pour certaines actions seulement, de manière informelle.",
+        "Une liste documentée d'actions sensibles impose une validation humaine.",
+        "La validation est imposée techniquement, tracée, et sa résistance au contournement est testée.",
+        "Les seuils de validation sont ajustés selon le risque et les retours d'expérience."
+      ],
+      "recommendations": [
+        "Identifier toutes les actions sensibles qu'une IA peut déclencher.",
+        "Imposer une validation humaine documentée pour ces actions.",
+        "Implémenter la validation techniquement et tester son contournement.",
+        "Ajuster les seuils de validation selon le niveau de risque."
+      ]
+    },
+    {
+      "code": "LLM.4.1", "subdomain": "LLM.4", "criticality": 3, "effort": "HIGH",
+      "text": "L'accès aux documents d'une base RAG respecte-t-il les droits de l'utilisateur qui interroge ?",
+      "evidence": "Conception du filtrage par permissions, tests de cloisonnement entre utilisateurs.",
+      "levels": [
+        "Tous les documents sont accessibles à tous les utilisateurs.",
+        "Séparation grossière par application.",
+        "Un contrôle d'accès au niveau document est appliqué lors de la recherche (filtrage par permissions).",
+        "Le cloisonnement est testé et les accès sont journalisés.",
+        "Les droits sont synchronisés automatiquement avec les sources et audités en continu."
+      ],
+      "recommendations": [
+        "Cartographier les sources indexées et leur niveau de sensibilité.",
+        "Appliquer un filtrage par permissions au niveau document lors de la recherche.",
+        "Tester le cloisonnement entre utilisateurs et journaliser les accès.",
+        "Synchroniser automatiquement les droits avec les systèmes sources."
+      ]
+    },
+    {
+      "code": "LLM.4.2", "subdomain": "LLM.4", "criticality": 2, "effort": "MEDIUM",
+      "text": "L'intégrité des documents indexés et de la base vectorielle est-elle contrôlée ?",
+      "evidence": "Procédure d'ingestion, liste des sources autorisées, droits d'écriture sur la base vectorielle.",
+      "levels": [
+        "Aucun contrôle sur ce qui est indexé.",
+        "Contrôle manuel ponctuel.",
+        "Sources validées, processus d'ingestion contrôlé, accès en écriture restreint.",
+        "Détection des contenus malveillants (instructions cachées) à l'ingestion ; traçabilité des sources.",
+        "Surveillance continue et nettoyage automatique de la base."
+      ],
+      "recommendations": [
+        "Définir les sources autorisées pour l'indexation.",
+        "Contrôler le processus d'ingestion et restreindre l'accès en écriture.",
+        "Détecter les contenus malveillants à l'ingestion.",
+        "Surveiller et nettoyer la base vectorielle en continu."
+      ]
+    }
+  ]
+}

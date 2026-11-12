@@ -1,0 +1,113 @@
+{
+  "domain": "PEOPLE",
+  "questions": [
+    {
+      "code": "PEOPLE.1.1", "subdomain": "PEOPLE.1", "criticality": 2, "effort": "LOW",
+      "text": "Les collaborateurs sont-ils sensibilisés aux risques liés à l'IA ?",
+      "evidence": "Supports de sensibilisation, taux de participation, résultats de quiz.",
+      "levels": [
+        "Aucune sensibilisation.",
+        "Communications ponctuelles.",
+        "Un programme de sensibilisation couvre tous les collaborateurs (shadow AI, fuite de données, hallucinations).",
+        "L'efficacité est mesurée (quiz, simulations) et le programme est obligatoire.",
+        "Le programme est adapté en continu aux incidents et aux nouveaux usages."
+      ],
+      "recommendations": [
+        "Organiser une première session de sensibilisation aux risques de l'IA.",
+        "Mettre en place un programme de sensibilisation pour tous les collaborateurs.",
+        "Rendre le programme obligatoire et mesurer son efficacité.",
+        "Actualiser le programme à partir des incidents et des nouveaux usages."
+      ]
+    },
+    {
+      "code": "PEOPLE.1.2", "subdomain": "PEOPLE.1", "criticality": 2, "effort": "MEDIUM",
+      "text": "Les équipes techniques (data scientists, développeurs, exploitants) sont-elles formées à la sécurité de l'IA ?",
+      "evidence": "Plan de formation, attestations, certifications obtenues.",
+      "levels": [
+        "Aucune formation.",
+        "Autoformation individuelle.",
+        "Un parcours de formation à la sécurité de l'IA (OWASP LLM, MLSecOps) est suivi par les équipes techniques.",
+        "Les compétences sont évaluées et la formation est mise à jour régulièrement.",
+        "Les équipes contribuent à la communauté (publications, conférences, outils)."
+      ],
+      "recommendations": [
+        "Identifier les besoins de formation des équipes techniques.",
+        "Mettre en place un parcours de formation à la sécurité de l'IA.",
+        "Évaluer les compétences et actualiser régulièrement la formation.",
+        "Encourager la contribution à la communauté sécurité IA."
+      ]
+    },
+    {
+      "code": "PEOPLE.2.1", "subdomain": "PEOPLE.2", "criticality": 3, "effort": "LOW",
+      "text": "Une charte d'usage de l'IA générative définit-elle les outils autorisés et les usages interdits ?",
+      "evidence": "Charte d'usage de l'IA, liste des outils autorisés, preuve d'acceptation par les collaborateurs.",
+      "levels": [
+        "Aucune charte ; chacun utilise les outils de son choix.",
+        "Recommandations informelles.",
+        "Une charte approuvée définit les outils autorisés, les usages interdits et les données à ne pas partager.",
+        "L'acceptation de la charte est tracée et son respect contrôlé.",
+        "La charte est révisée régulièrement avec les retours des utilisateurs."
+      ],
+      "recommendations": [
+        "Communiquer rapidement des règles de base sur l'usage de l'IA générative.",
+        "Rédiger et faire approuver une charte d'usage de l'IA générative.",
+        "Tracer l'acceptation de la charte et contrôler son respect.",
+        "Réviser régulièrement la charte avec les utilisateurs."
+      ]
+    },
+    {
+      "code": "PEOPLE.2.2", "subdomain": "PEOPLE.2", "criticality": 2, "effort": "MEDIUM",
+      "text": "L'usage d'outils IA non autorisés (shadow AI) est-il détecté ?",
+      "evidence": "Rapports du proxy / CASB sur les services IA, actions de suivi.",
+      "levels": [
+        "Aucune détection.",
+        "Découverte fortuite.",
+        "Des analyses périodiques des journaux réseau identifient les services IA utilisés.",
+        "Détection automatique avec alertes et proposition d'alternatives autorisées.",
+        "Le catalogue d'outils autorisés évolue selon les besoins détectés."
+      ],
+      "recommendations": [
+        "Interroger les équipes sur les outils IA qu'elles utilisent.",
+        "Analyser périodiquement les journaux réseau pour identifier les services IA.",
+        "Automatiser la détection et proposer des alternatives autorisées.",
+        "Faire évoluer le catalogue d'outils selon les besoins détectés."
+      ]
+    },
+    {
+      "code": "PEOPLE.3.1", "subdomain": "PEOPLE.3", "criticality": 2, "effort": "MEDIUM",
+      "text": "Des audits internes du dispositif de gouvernance et de sécurité de l'IA sont-ils réalisés ?",
+      "evidence": "Programme d'audit, rapports d'audit, revue de direction.",
+      "levels": [
+        "Aucun audit.",
+        "Audits ponctuels à la suite d'un incident.",
+        "Un programme d'audit interne couvre le dispositif IA au moins une fois par an.",
+        "Les résultats d'audit alimentent la revue de direction et des indicateurs.",
+        "Audits externes ou certification ISO/IEC 42001 visée ou obtenue."
+      ],
+      "recommendations": [
+        "Réaliser un premier audit interne du dispositif IA (cette évaluation peut servir de base).",
+        "Planifier un programme d'audit annuel.",
+        "Présenter les résultats en revue de direction et suivre des indicateurs.",
+        "Préparer un audit externe ou une certification ISO/IEC 42001."
+      ]
+    },
+    {
+      "code": "PEOPLE.3.2", "subdomain": "PEOPLE.3", "criticality": 2, "effort": "LOW",
+      "text": "Les non-conformités et incidents donnent-ils lieu à des actions correctives suivies jusqu'à leur clôture ?",
+      "evidence": "Registre des actions correctives, taux de clôture, analyses des causes.",
+      "levels": [
+        "Aucune action corrective.",
+        "Corrections ponctuelles sans suivi.",
+        "Un registre des actions correctives avec responsables et échéances est tenu.",
+        "Les causes sont analysées et l'efficacité des actions est vérifiée.",
+        "Les tendances sont analysées pour prévenir les récurrences."
+      ],
+      "recommendations": [
+        "Recenser les non-conformités et incidents récents.",
+        "Tenir un registre des actions correctives avec responsables et échéances.",
+        "Analyser les causes et vérifier l'efficacité des actions.",
+        "Analyser les tendances pour prévenir les récurrences."
+      ]
+    }
+  ]
+}

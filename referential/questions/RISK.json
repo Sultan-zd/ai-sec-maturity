@@ -1,0 +1,113 @@
+{
+  "domain": "RISK",
+  "questions": [
+    {
+      "code": "RISK.1.1", "subdomain": "RISK.1", "criticality": 3, "effort": "MEDIUM",
+      "text": "Une méthode d'appréciation des risques spécifiques à l'IA est-elle définie et appliquée ?",
+      "evidence": "Méthodologie documentée, analyses de risques par système IA, cartographie des risques.",
+      "levels": [
+        "Les risques IA ne sont pas évalués.",
+        "Des analyses ponctuelles sont réalisées sans méthode commune.",
+        "Une méthode documentée (inspirée d'ISO/IEC 23894) couvre biais, robustesse, sécurité et vie privée, et est appliquée à chaque système.",
+        "Les résultats sont consolidés dans la cartographie des risques de l'entreprise et revus périodiquement.",
+        "La méthode s'appuie sur les incidents internes et externes et est améliorée en continu."
+      ],
+      "recommendations": [
+        "Réaliser une première analyse des risques des systèmes IA les plus critiques.",
+        "Formaliser une méthode d'appréciation des risques IA basée sur ISO/IEC 23894.",
+        "Intégrer les risques IA à la cartographie globale des risques et planifier des revues.",
+        "Exploiter les bases d'incidents (AI Incident Database, MITRE ATLAS) pour enrichir la méthode."
+      ]
+    },
+    {
+      "code": "RISK.1.2", "subdomain": "RISK.1", "criticality": 2, "effort": "MEDIUM",
+      "text": "Les menaces adversariales propres à l'IA (empoisonnement, évasion, extraction de modèle, injection) sont-elles prises en compte ?",
+      "evidence": "Modélisation des menaces (MITRE ATLAS, STRIDE), scénarios d'attaque documentés.",
+      "levels": [
+        "Ces menaces sont inconnues de l'organisation.",
+        "Elles sont connues de quelques experts mais ne sont pas analysées.",
+        "Une modélisation des menaces est réalisée pour chaque système IA exposé.",
+        "Les scénarios de menace sont testés et les résultats alimentent les mesures de protection.",
+        "La modélisation est mise à jour en continu grâce à la veille et au renseignement sur les menaces."
+      ],
+      "recommendations": [
+        "Sensibiliser les équipes aux menaces adversariales (MITRE ATLAS, OWASP Top 10 LLM).",
+        "Réaliser une modélisation des menaces pour chaque système IA exposé.",
+        "Transformer les scénarios de menace en cas de test et vérifier les protections.",
+        "S'abonner à des sources de renseignement sur les menaces IA et mettre à jour les modèles de menace."
+      ]
+    },
+    {
+      "code": "RISK.2.1", "subdomain": "RISK.2", "criticality": 3, "effort": "MEDIUM",
+      "text": "Une analyse d'impact sur les personnes, les groupes et la société est-elle réalisée avant le déploiement d'un système IA ?",
+      "evidence": "Analyses d'impact signées, procédure de mise en production faisant référence à l'analyse.",
+      "levels": [
+        "Aucune analyse d'impact.",
+        "Des analyses sont réalisées uniquement à la demande d'un client ou d'un régulateur.",
+        "Une analyse d'impact documentée est obligatoire avant la mise en production de tout système IA à risque élevé.",
+        "Les analyses sont revues par une fonction indépendante et réactualisées à chaque changement significatif.",
+        "Les impacts réels sont mesurés après déploiement et comparés aux prévisions pour améliorer la méthode."
+      ],
+      "recommendations": [
+        "Réaliser une analyse d'impact pilote sur le système IA le plus sensible.",
+        "Rendre l'analyse d'impact obligatoire pour les systèmes à risque élevé (modèle ISO/IEC 42005).",
+        "Faire revoir les analyses par une fonction indépendante et les actualiser à chaque changement.",
+        "Mesurer les impacts réels après déploiement et ajuster la méthode."
+      ]
+    },
+    {
+      "code": "RISK.2.2", "subdomain": "RISK.2", "criticality": 2, "effort": "LOW",
+      "text": "L'analyse d'impact relative à la protection des données (AIPD) est-elle articulée avec l'analyse d'impact IA ?",
+      "evidence": "AIPD intégrant les spécificités IA, avis du DPO.",
+      "levels": [
+        "Aucune AIPD pour les traitements IA.",
+        "Des AIPD sont faites séparément sans prendre en compte les spécificités de l'IA.",
+        "Une démarche commune intègre l'AIPD et les impacts IA pour les traitements de données personnelles.",
+        "Le DPO valide systématiquement les traitements IA et suit les mesures décidées.",
+        "La démarche est outillée, réutilisable et enrichie par les retours des autorités (CNDP, CNIL)."
+      ],
+      "recommendations": [
+        "Identifier les traitements IA utilisant des données personnelles et impliquer le DPO.",
+        "Intégrer les spécificités IA (inférence, réidentification, biais) au modèle d'AIPD.",
+        "Rendre obligatoire la validation du DPO et suivre les mesures décidées.",
+        "Outiller la démarche et capitaliser sur les retours des autorités."
+      ]
+    },
+    {
+      "code": "RISK.3.1", "subdomain": "RISK.3", "criticality": 2, "effort": "LOW",
+      "text": "Chaque risque IA identifié dispose-t-il d'un plan de traitement, d'un propriétaire et d'une échéance ?",
+      "evidence": "Plans de traitement des risques, registre d'acceptation des risques résiduels.",
+      "levels": [
+        "Les risques identifiés ne sont pas traités.",
+        "Certaines mesures sont prises sans suivi formel.",
+        "Un plan documente pour chaque risque la mesure, le propriétaire, l'échéance et l'acceptation formelle du risque résiduel.",
+        "L'avancement des plans est suivi par indicateurs et l'efficacité des mesures est vérifiée.",
+        "Le traitement des risques est optimisé par analyse coût/bénéfice et retours d'expérience."
+      ],
+      "recommendations": [
+        "Attribuer un propriétaire à chaque risque IA majeur.",
+        "Formaliser des plans de traitement avec échéances et acceptation du risque résiduel.",
+        "Suivre l'avancement des plans et vérifier l'efficacité des mesures.",
+        "Prioriser les mesures selon une analyse coût/bénéfice."
+      ]
+    },
+    {
+      "code": "RISK.3.2", "subdomain": "RISK.3", "criticality": 2, "effort": "LOW",
+      "text": "Les risques IA sont-ils réévalués périodiquement et à chaque changement (nouveau modèle, nouvelles données, nouvel usage) ?",
+      "evidence": "Calendrier de revue, historique des réévaluations.",
+      "levels": [
+        "Les risques ne sont jamais réévalués.",
+        "Ils sont réévalués uniquement après un incident.",
+        "Une revue est planifiée au moins une fois par an et à chaque changement significatif.",
+        "Des déclencheurs automatiques (dérive, incident, nouvelle version) lancent une réévaluation.",
+        "La réévaluation est continue et s'appuie sur la surveillance en temps réel."
+      ],
+      "recommendations": [
+        "Planifier une revue annuelle des risques IA.",
+        "Définir les changements significatifs qui imposent une réévaluation.",
+        "Mettre en place des déclencheurs automatiques liés à la surveillance.",
+        "Évoluer vers une évaluation continue des risques."
+      ]
+    }
+  ]
+}

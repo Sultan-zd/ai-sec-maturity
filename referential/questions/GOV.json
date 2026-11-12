@@ -1,0 +1,167 @@
+{
+  "domain": "GOV",
+  "questions": [
+    {
+      "code": "GOV.1.1", "subdomain": "GOV.1", "criticality": 2, "effort": "MEDIUM",
+      "text": "La direction a-t-elle défini une stratégie IA alignée sur les objectifs de l'entreprise ?",
+      "evidence": "Document de stratégie IA, compte rendu de comité de direction, feuille de route IA.",
+      "levels": [
+        "Aucune stratégie IA ; les projets naissent au gré des initiatives individuelles.",
+        "Des orientations IA existent oralement ou dans des présentations ponctuelles, sans validation formelle.",
+        "Une stratégie IA écrite, validée par la direction, fixe les objectifs, les cas d'usage prioritaires et l'appétit au risque.",
+        "La stratégie est déclinée en objectifs mesurables suivis par des indicateurs revus en comité de direction.",
+        "La stratégie est revue au moins annuellement à partir des résultats, de la veille technologique et réglementaire."
+      ],
+      "recommendations": [
+        "Organiser un atelier de direction pour identifier les usages IA actuels et souhaités et formuler des orientations.",
+        "Formaliser une stratégie IA écrite (objectifs, cas d'usage, appétit au risque) et la faire valider par la direction.",
+        "Définir des indicateurs (valeur créée, incidents, conformité) et les suivre en comité de direction.",
+        "Instaurer une revue annuelle de la stratégie intégrant la veille réglementaire et les retours d'expérience."
+      ]
+    },
+    {
+      "code": "GOV.1.2", "subdomain": "GOV.1", "criticality": 3, "effort": "LOW",
+      "text": "Existe-t-il une politique IA (usage acceptable, principes éthiques, exigences de sécurité) approuvée et diffusée ?",
+      "evidence": "Politique IA signée, preuve de diffusion (intranet, e-mail), attestations de lecture.",
+      "levels": [
+        "Aucune politique IA.",
+        "Des règles éparses (e-mails, notes) sans document de référence.",
+        "Une politique IA approuvée par la direction est publiée et communiquée à tous les collaborateurs.",
+        "L'application de la politique est contrôlée (attestations de lecture, contrôles de conformité, dérogations tracées).",
+        "La politique est révisée périodiquement en fonction des incidents, des audits et des évolutions réglementaires."
+      ],
+      "recommendations": [
+        "Rédiger une première politique IA en s'appuyant sur l'Annexe A.2 de l'ISO/IEC 42001.",
+        "Consolider les règles existantes dans une politique unique, la faire approuver et la diffuser.",
+        "Mettre en place des attestations de lecture et un registre des dérogations.",
+        "Instaurer un cycle de révision annuel de la politique alimenté par les audits et les incidents."
+      ]
+    },
+    {
+      "code": "GOV.2.1", "subdomain": "GOV.2", "criticality": 3, "effort": "LOW",
+      "text": "Les rôles et responsabilités liés à l'IA sont-ils formellement attribués ?",
+      "evidence": "Note de nomination du responsable IA, matrice RACI, fiches de poste.",
+      "levels": [
+        "Personne n'est identifié comme responsable des systèmes IA.",
+        "Des référents informels existent selon les projets.",
+        "Un responsable IA et un propriétaire par système IA sont nommés ; une matrice RACI est documentée.",
+        "Les responsabilités sont intégrées aux fiches de poste et aux objectifs ; leur exercice est vérifié en audit.",
+        "L'organisation des rôles est ajustée en continu selon la charge, les incidents et les nouveaux usages."
+      ],
+      "recommendations": [
+        "Désigner un responsable IA et un propriétaire pour chaque système IA.",
+        "Formaliser une matrice RACI couvrant conception, déploiement, risques et conformité.",
+        "Intégrer ces responsabilités aux fiches de poste et vérifier leur exercice lors des audits.",
+        "Réévaluer annuellement l'organisation à partir des indicateurs et des retours d'expérience."
+      ]
+    },
+    {
+      "code": "GOV.2.2", "subdomain": "GOV.2", "criticality": 2, "effort": "MEDIUM",
+      "text": "Un comité de gouvernance IA supervise-t-il les décisions et les risques liés à l'IA ?",
+      "evidence": "Charte du comité IA, ordres du jour, comptes rendus de réunion.",
+      "levels": [
+        "Aucune instance ; les décisions IA sont prises projet par projet.",
+        "Des réunions ponctuelles ont lieu sur certains projets IA importants.",
+        "Un comité IA pluridisciplinaire (métier, sécurité, juridique, données) se réunit régulièrement avec un mandat écrit.",
+        "Le comité valide chaque nouveau système IA à risque, suit des indicateurs et rend compte à la direction générale.",
+        "Le comité fait évoluer le dispositif à partir des tendances, des audits et des comparaisons sectorielles."
+      ],
+      "recommendations": [
+        "Identifier les parties prenantes clés et organiser une première revue des projets IA.",
+        "Créer un comité IA pluridisciplinaire doté d'une charte et d'un calendrier de réunions.",
+        "Soumettre tout nouveau système IA à risque à la validation du comité et établir un reporting à la direction.",
+        "Évaluer annuellement l'efficacité du comité et ajuster son mandat."
+      ]
+    },
+    {
+      "code": "GOV.2.3", "subdomain": "GOV.2", "criticality": 2, "effort": "LOW",
+      "text": "La direction générale (ou le conseil d'administration) reçoit-elle un reporting régulier sur les risques et la performance de l'IA ?",
+      "evidence": "Tableaux de bord présentés à la direction, procès-verbaux du conseil.",
+      "levels": [
+        "Aucun reporting.",
+        "Information ponctuelle en cas d'incident ou de projet majeur.",
+        "Un reporting périodique formalisé (au moins semestriel) couvre les usages, risques et incidents IA.",
+        "Un tableau de bord avec indicateurs clés et seuils d'alerte est discuté et donne lieu à des décisions tracées.",
+        "La direction ajuste l'appétit au risque et les investissements IA sur la base de ce reporting."
+      ],
+      "recommendations": [
+        "Présenter à la direction un premier état des lieux des usages et des risques IA.",
+        "Instaurer un reporting semestriel formalisé vers la direction.",
+        "Construire un tableau de bord avec indicateurs et seuils d'alerte.",
+        "Relier le reporting aux décisions d'appétit au risque et d'investissement."
+      ]
+    },
+    {
+      "code": "GOV.3.1", "subdomain": "GOV.3", "criticality": 3, "effort": "MEDIUM",
+      "text": "L'entreprise dispose-t-elle d'un inventaire de ses systèmes IA (développés en interne, achetés, SaaS) ?",
+      "evidence": "Registre des systèmes IA avec propriétaire, finalité, données traitées et fournisseur.",
+      "levels": [
+        "Aucun inventaire ; la direction ne connaît pas les usages IA.",
+        "Une liste partielle existe, limitée aux projets IA internes.",
+        "Un registre couvre tous les systèmes IA (internes, fournisseurs, SaaS) avec propriétaire, finalité et données traitées.",
+        "Le registre est mis à jour à chaque changement et rapproché périodiquement des outils réellement utilisés.",
+        "Le registre est intégré à l'outil GRC / CMDB et alimente automatiquement l'analyse des risques."
+      ],
+      "recommendations": [
+        "Lancer un recensement des usages IA auprès des directions métiers et de la DSI.",
+        "Étendre l'inventaire aux outils achetés et SaaS et attribuer un propriétaire à chaque système.",
+        "Rendre la mise à jour obligatoire à chaque changement et rapprocher le registre des achats et flux réseau.",
+        "Intégrer le registre à l'outil GRC / CMDB et l'automatiser avec l'analyse des risques."
+      ]
+    },
+    {
+      "code": "GOV.3.2", "subdomain": "GOV.3", "criticality": 2, "effort": "LOW",
+      "text": "Les systèmes IA sont-ils classés selon leur niveau de risque (par exemple selon les catégories de l'AI Act) ?",
+      "evidence": "Grille de classification, colonne « niveau de risque » dans le registre.",
+      "levels": [
+        "Aucune classification.",
+        "Une distinction intuitive « sensible / non sensible » est faite au cas par cas.",
+        "Une grille documentée (inacceptable, élevé, limité, minimal) est appliquée à chaque système.",
+        "La classification détermine automatiquement les exigences applicables (analyse d'impact, tests, validation).",
+        "La grille est revue selon l'évolution réglementaire et les retours d'expérience."
+      ],
+      "recommendations": [
+        "Définir des critères simples de sensibilité (données personnelles, décisions sur des personnes, exposition externe).",
+        "Adopter une grille documentée inspirée de l'AI Act et l'appliquer à l'inventaire.",
+        "Associer à chaque classe de risque un socle d'exigences obligatoires.",
+        "Mettre en place une veille réglementaire et réviser la grille chaque année."
+      ]
+    },
+    {
+      "code": "GOV.4.1", "subdomain": "GOV.4", "criticality": 3, "effort": "MEDIUM",
+      "text": "Les obligations légales et réglementaires applicables à l'IA sont-elles identifiées et suivies ?",
+      "evidence": "Registre des obligations, avis juridiques, rapports de contrôle de conformité.",
+      "levels": [
+        "Les obligations ne sont pas identifiées.",
+        "Le service juridique est consulté ponctuellement sur certains projets.",
+        "Un registre des obligations (AI Act, RGPD, loi 09-08, réglementations sectorielles) est tenu et rattaché aux systèmes.",
+        "La conformité est contrôlée périodiquement et les écarts sont suivis dans un plan d'action.",
+        "Une veille réglementaire structurée anticipe les nouvelles obligations et adapte le dispositif."
+      ],
+      "recommendations": [
+        "Faire réaliser par le service juridique un état des lieux des textes applicables aux usages IA.",
+        "Constituer un registre des obligations rattaché aux systèmes IA.",
+        "Planifier des contrôles de conformité périodiques et suivre les écarts.",
+        "Mettre en place une veille réglementaire formelle avec analyse d'impact des nouveaux textes."
+      ]
+    },
+    {
+      "code": "GOV.4.2", "subdomain": "GOV.4", "criticality": 1, "effort": "MEDIUM",
+      "text": "Les questions de propriété intellectuelle et de responsabilité liées à l'IA (contenus générés, données d'entraînement, contrats) sont-elles traitées ?",
+      "evidence": "Clauses contractuelles types IA, analyses juridiques sur les droits des données.",
+      "levels": [
+        "Ces questions ne sont pas traitées.",
+        "Elles sont traitées au cas par cas lors de litiges ou de demandes.",
+        "Des clauses types IA (responsabilité, propriété intellectuelle, usage des données) sont intégrées aux contrats.",
+        "Les contrats existants sont revus et le respect des clauses est contrôlé.",
+        "Les clauses évoluent en fonction de la jurisprudence et des retours d'expérience."
+      ],
+      "recommendations": [
+        "Identifier les risques de propriété intellectuelle et de responsabilité liés aux contenus générés.",
+        "Rédiger des clauses types IA avec le service juridique.",
+        "Réviser les contrats en cours et contrôler l'application des clauses.",
+        "Suivre la jurisprudence et mettre à jour les clauses types."
+      ]
+    }
+  ]
+}
