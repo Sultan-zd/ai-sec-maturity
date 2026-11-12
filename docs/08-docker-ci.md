@@ -107,7 +107,7 @@ Le workflow se déclenche à chaque `push` sur `main` et à chaque *pull request
 | Job | Vérifications |
 |---|---|
 | **Référentiel** | Cohérence du JSON (codes uniques, 5 niveaux, poids = 100 %…) et grille `docs/03b` à jour avec le JSON |
-| **Backend** | `./mvnw verify` : 31 tests unitaires et d'intégration sur un vrai PostgreSQL (Testcontainers). Les rapports de tests sont archivés. |
+| **Backend** | `./mvnw verify` : 35 tests unitaires et d'intégration sur un vrai PostgreSQL (Testcontainers). Les rapports de tests sont archivés. |
 | **Frontend** | `npm ci`, lint (oxlint), vérification TypeScript et build de production |
 | **Docker** | Construction des deux images (cache GitHub Actions), seulement si les tests passent |
 

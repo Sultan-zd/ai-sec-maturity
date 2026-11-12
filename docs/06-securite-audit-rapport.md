@@ -28,6 +28,10 @@ Navigateur / client                         API AIMA
 - **Énumération de comptes** : « mauvais mot de passe » et « e-mail inconnu » renvoient
   exactement la même réponse, dans le même temps (un hash factice est vérifié quand
   l'e-mail n'existe pas).
+- **Force brute** (ajouté à l'étape 10) : après 5 échecs pour un même e-mail en 15 minutes,
+  la connexion répond `429 Too Many Requests` avec un en-tête `Retry-After`, jusqu'à la fin de
+  la fenêtre (`LoginAttemptService`). Le blocage est volontairement temporaire, pour qu'un
+  attaquant ne puisse pas verrouiller un compte durablement.
 - **Jeton falsifié** : une signature modifiée donne 401 (testé).
 - **Politique de mot de passe** : 10 caractères minimum, au moins une lettre et un chiffre.
 - **E-mails uniques sans tenir compte de la casse** : index unique sur `LOWER(email)`.

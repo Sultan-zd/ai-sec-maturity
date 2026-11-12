@@ -1,6 +1,7 @@
 package ma.uca.aima.security;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,6 +61,20 @@ class SecurityIntegrationTest {
         // Pas d'énumération possible des comptes : même message dans les deux cas
         assertThat(wrongPassword.replaceAll("\"instance\":\"[^\"]*\"", ""))
                 .isEqualTo(unknownEmail.replaceAll("\"instance\":\"[^\"]*\"", ""));
+    }
+
+    @Test
+    void bruteForceIsThrottledAfterFiveFailures() throws Exception {
+        Map<String, String> attempt = Map.of("email", "force-brute@test.local", "password", "essai-incorrect-1");
+        for (int i = 0; i < 5; i++) {
+            api.post(null, "/api/v1/auth/login", attempt).andExpect(status().isUnauthorized());
+        }
+        api.post(null, "/api/v1/auth/login", attempt)
+                .andExpect(status().isTooManyRequests())
+                .andExpect(header().exists("Retry-After"))
+                .andExpect(jsonPath("$.title").value("Trop de tentatives"));
+        // Les autres comptes ne sont pas affectés
+        assertThat(api.adminToken()).isNotBlank();
     }
 
     @Test

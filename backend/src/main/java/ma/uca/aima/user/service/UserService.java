@@ -4,6 +4,7 @@ import java.util.List;
 import ma.uca.aima.common.BusinessRuleException;
 import ma.uca.aima.organization.model.Organization;
 import ma.uca.aima.organization.service.OrganizationService;
+import ma.uca.aima.security.LoginAttemptService;
 import ma.uca.aima.security.TokenService;
 import ma.uca.aima.security.TokenService.IssuedToken;
 import ma.uca.aima.user.api.UserDtos.CreateUserRequest;
@@ -28,11 +29,13 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
     private final OrganizationService organizationService;
+    private final LoginAttemptService loginAttempts;
     /** Hash factice : vérifié quand l'e-mail est inconnu, pour que la réponse prenne le même temps. */
     private final String dummyHash;
 
     public UserService(AppUserRepository repository, PasswordEncoder passwordEncoder, TokenService tokenService,
-                       OrganizationService organizationService) {
+                       OrganizationService organizationService, LoginAttemptService loginAttempts) {
+        this.loginAttempts = loginAttempts;
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
@@ -45,15 +48,18 @@ public class UserService {
      * aussi : un attaquant ne peut pas deviner quels comptes existent (énumération d'utilisateurs).
      */
     public LoginResponse login(LoginRequest request) {
+        loginAttempts.checkAllowed(request.email());
         AppUser user = repository.findByEmail(request.email().trim()).orElse(null);
         boolean passwordOk = passwordEncoder.matches(request.password(),
                 user == null ? dummyHash : user.getPasswordHash());
         if (user == null || !passwordOk || !user.isEnabled()) {
+            loginAttempts.recordFailure(request.email());
             ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED,
                     "E-mail ou mot de passe incorrect");
             problem.setTitle("Identifiants invalides");
             throw new ErrorResponseException(HttpStatus.UNAUTHORIZED, problem, null);
         }
+        loginAttempts.recordSuccess(request.email());
         user.recordLogin();
         IssuedToken token = tokenService.issue(user);
         return new LoginResponse(token.value(), "Bearer", token.expiresAt(), UserDto.from(user));
