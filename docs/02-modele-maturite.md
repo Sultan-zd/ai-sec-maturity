@@ -75,6 +75,10 @@ l'injection de prompt ne peut pas prétendre à un niveau 4 en sécurité LLM.
 ### 4.5 Score global
 $$ S_{global} = \sum_{d} W_d \cdot S_d \qquad \sum_d W_d = 1 $$
 
+Si un domaine est entièrement « Non applicable » (ex. aucune application LLM),
+il est exclu et les poids des autres domaines sont **renormalisés** :
+$ S_{global} = \sum W_d S_d / \sum W_d $ sur les seuls domaines évalués.
+
 ### 4.6 Conversion score → niveau et pourcentage
 
 | Score | Niveau affiché |
@@ -121,6 +125,12 @@ Chaque recommandation a aussi un **effort estimé** (Faible / Moyen / Élevé).
 | **Court terme (3-6 mois)** | Questions critiques au niveau 1, ou priorité élevée | Fermer les failles graves |
 | **Moyen terme (6-12 mois)** | Priorité moyenne | Structurer et documenter |
 | **Long terme (12-18 mois)** | Reste | Mesurer et optimiser |
+
+Seuils retenus : priorité **élevée ≥ 45**, **moyenne ≥ 20**. Exemple : une question
+critique (c = 3) d'un domaine pesant 15 %, un niveau sous la cible, donne
+1 × 3 × 0,15 × 100 = 45, donc une priorité élevée. Les priorités sont calculées en
+arithmétique décimale exacte (`BigDecimal`), pour éviter les erreurs d'arrondi
+des nombres à virgule flottante.
 
 ## 7. Cycle d'une évaluation dans la plateforme
 
