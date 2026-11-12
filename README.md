@@ -12,6 +12,8 @@ OWASP Top 10 for LLM Applications.
 ai-maturity-assessment/
 ├── docs/                 Livrables méthodologiques (analyse, modèle, grille, étude de cas)
 ├── referential/          Référentiel AIMA au format JSON (source unique de vérité)
+│   └── questions/        Questionnaire : un fichier par domaine
+├── scripts/              Outil de validation et de génération de la grille
 ├── backend/              API Java 21 / Spring Boot          (à venir)
 ├── frontend/             Interface React / TypeScript       (à venir)
 └── docker-compose.yml    Lancement complet                  (à venir)
@@ -22,6 +24,14 @@ ai-maturity-assessment/
 1. [Cadrage du projet](docs/00-cadrage.md)
 2. [Analyse comparative des normes](docs/01-analyse-comparative.md)
 3. [Modèle de maturité et méthode de scoring](docs/02-modele-maturite.md)
+4. [Grille d'audit : méthodologie](docs/03-grille-audit.md)
+5. [Grille d'audit détaillée — 59 questions](docs/03b-grille-audit-detaillee.md)
+
+## Mettre à jour le référentiel
+
+```bash
+node scripts/referential-tool.mjs   # valide le JSON et régénère docs/03b
+```
 
 ## Stack technique
 
