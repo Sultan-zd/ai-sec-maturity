@@ -1,0 +1,65 @@
+# =====================================================================
+# AIMA — lancement complet : base de données + backend + frontend
+#   cp .env.example .env     (puis changer les secrets)
+#   docker compose up -d --build
+#   → http://localhost:8088
+# =====================================================================
+name: aima
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: aima
+      POSTGRES_USER: aima
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Définir POSTGRES_PASSWORD dans .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aima -d aima"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [backend]
+    # Aucun port publié : la base n'est joignable que par le backend
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: aima-backend:local
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/aima
+      SPRING_DATASOURCE_USERNAME: aima
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DOCKER_COMPOSE_ENABLED: "false"
+      AIMA_JWT_SECRET: ${AIMA_JWT_SECRET:?Définir AIMA_JWT_SECRET dans .env (>= 32 caractères)}
+      AIMA_ADMIN_EMAIL: ${AIMA_ADMIN_EMAIL:-admin@aima.local}
+      AIMA_ADMIN_PASSWORD: ${AIMA_ADMIN_PASSWORD:?Définir AIMA_ADMIN_PASSWORD dans .env}
+    networks: [backend, frontend]
+    # Pas de port publié : l'API passe par le Nginx du frontend
+
+  frontend:
+    build:
+      context: frontend
+    image: aima-frontend:local
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${AIMA_HTTP_PORT:-8088}:8080"
+    networks: [frontend]
+
+volumes:
+  pgdata:
+
+# Deux réseaux : le frontend ne peut pas joindre la base de données directement
+networks:
+  backend:
+  frontend:

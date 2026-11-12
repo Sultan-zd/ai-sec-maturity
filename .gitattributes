@@ -1,0 +1,7 @@
+# Fins de ligne : scripts shell toujours en LF (sinon ils échouent dans les conteneurs Linux)
+* text=auto
+mvnw text eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf
+*.pdf binary
+*.png binary

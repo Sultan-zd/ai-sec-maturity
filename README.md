@@ -1,5 +1,7 @@
 # AIMA — AI Security Maturity Assessment
 
+[![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+
 Référentiel et plateforme web d'évaluation de la maturité des entreprises en
 **cybersécurité et gouvernance de l'intelligence artificielle**.
 
@@ -16,7 +18,8 @@ PFS/
 ├── scripts/              Outil de validation et de génération de la grille
 ├── backend/              API Java 21 / Spring Boot 4 (port 8090)
 ├── frontend/             Interface React 19 / TypeScript (port 5173)
-└── docker-compose.yml    Lancement complet                  (à venir)
+├── .github/              Intégration continue (GitHub Actions) et Dependabot
+└── docker-compose.yml    Lancement complet : PostgreSQL + backend + frontend (Nginx)
 ```
 
 ## Documentation
@@ -30,6 +33,19 @@ PFS/
 7. [Évaluations, scoring et feuille de route](docs/05-evaluations-scoring.md)
 8. [Sécurité, mode audit et rapport PDF](docs/06-securite-audit-rapport.md)
 9. [Frontend React](docs/07-frontend.md)
+10. [Conteneurisation et intégration continue](docs/08-docker-ci.md)
+
+## Démarrage rapide (Docker)
+
+Prérequis : Docker Desktop uniquement.
+
+```bash
+cp .env.example .env          # puis remplacer les secrets
+docker compose up -d --build  # premier lancement : quelques minutes
+```
+
+Application : http://localhost:8088 · Swagger : http://localhost:8088/swagger-ui.html
+Arrêt : `docker compose down` (ajouter `-v` pour effacer aussi la base).
 
 ## Mettre à jour le référentiel
 
@@ -42,7 +58,9 @@ node scripts/referential-tool.mjs   # valide le JSON et régénère docs/03b
 Java 21 · Spring Boot · Spring Security (JWT) · PostgreSQL · Flyway ·
 React · TypeScript · Vite · Tailwind CSS · Recharts · Docker
 
-## Lancer le backend
+## Développement (sans Docker pour l'application)
+
+### Backend
 
 Prérequis : Java 21 et Docker Desktop démarré.
 
@@ -54,11 +72,11 @@ cd backend
 
 ## Comptes
 
-Au premier démarrage, un administrateur est créé : `admin@aima.local` / `Admin@2026!`
-(à changer en production via la variable `AIMA_ADMIN_PASSWORD`). Il crée ensuite les
+Au premier démarrage, un administrateur est créé : `admin@aima.local` / `Admin@2026!` en
+développement, ou les valeurs `AIMA_ADMIN_EMAIL` / `AIMA_ADMIN_PASSWORD` du fichier `.env` avec Docker. Il crée ensuite les
 organisations, les utilisateurs `ORG_USER` et les auditeurs (`AUDITOR`).
 
-## Lancer le frontend
+### Frontend
 
 ```bash
 cd frontend

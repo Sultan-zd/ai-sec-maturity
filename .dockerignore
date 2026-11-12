@@ -1,0 +1,8 @@
+# Contexte de build du backend = racine du dépôt : on n'envoie que le nécessaire
+**
+!backend/.mvn/**
+!backend/mvnw
+!backend/pom.xml
+!backend/src/main/**
+!backend/src/test/**
+!referential/**
