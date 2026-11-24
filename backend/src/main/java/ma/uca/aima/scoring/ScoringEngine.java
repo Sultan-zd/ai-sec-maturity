@@ -206,7 +206,11 @@ public class ScoringEngine {
     }
 
     static Horizon horizon(double priority, QuestionSpec q, int level) {
-        if (priority >= HIGH_PRIORITY && q.effort() == Effort.LOW) {
+        // Une action critique et facile est un quick win quel que soit le poids de son domaine.
+        // Sans cette règle, la charte d'usage de l'IA (PEOPLE.2.1, critique, effort faible) tombait
+        // en « long terme » à cause des 5 % du domaine PEOPLE (étude de cas, docs/09 §6).
+        boolean criticalAndEasy = q.criticality() == 3 && q.effort() == Effort.LOW;
+        if (q.effort() == Effort.LOW && (priority >= HIGH_PRIORITY || criticalAndEasy)) {
             return Horizon.QUICK_WIN;
         }
         if ((q.criticality() == 3 && level == 1) || priority >= HIGH_PRIORITY) {

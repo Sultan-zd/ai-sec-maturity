@@ -148,7 +148,7 @@ pistes pour une version 2 du référentiel.
 
 | Limite constatée | Exemple dans ce cas | Amélioration proposée (v2) |
 |---|---|---|
-| Le poids du domaine peut repousser une action critique et facile | **PEOPLE.2.1** (charte d'usage de l'IA générative) est **critique** et d'**effort faible**, mais le domaine PEOPLE pèse 5 %. Priorité : 15, donc long terme. Or c'est en pratique un quick win évident. | Règle « critique + effort faible ⇒ quick win », quel que soit le poids du domaine |
+| Le poids du domaine peut repousser une action critique et facile | **PEOPLE.2.1** (charte d'usage de l'IA générative) est **critique** et d'**effort faible**, mais le domaine PEOPLE pèse 5 %. Priorité : 15, donc long terme. Or c'est en pratique un quick win évident. | ✅ **Implémenté (v2)** : règle « critique + effort faible ⇒ quick win », quel que soit le poids du domaine |
 | Le score ne tient pas compte du niveau de preuve | Une réponse sans preuve compte autant qu'une réponse prouvée ; l'indice de confiance (25 %) est affiché à côté du score, mais ne le modifie pas | Afficher un intervalle (score prouvé / score déclaré), ou rendre la preuve obligatoire à partir du niveau 3 |
 | Les poids sont les mêmes pour tous les secteurs | Pour une banque, DATA et TRUST (crédit) mériteraient un poids plus fort ; les cibles ne compensent qu'en partie | Profils de pondération sectoriels (le secteur de l'organisation est déjà enregistré) |
 

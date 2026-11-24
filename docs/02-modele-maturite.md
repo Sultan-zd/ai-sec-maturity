@@ -121,7 +121,7 @@ Chaque recommandation a aussi un **effort estimé** (Faible / Moyen / Élevé).
 
 | Horizon | Règle | Esprit |
 |---|---|---|
-| **Quick wins (0-3 mois)** | Priorité élevée **et** effort faible | Gains rapides et visibles |
+| **Quick wins (0-3 mois)** | Effort faible **et** (priorité élevée **ou** question critique) | Gains rapides et visibles |
 | **Court terme (3-6 mois)** | Questions critiques au niveau 1, ou priorité élevée | Fermer les failles graves |
 | **Moyen terme (6-12 mois)** | Priorité moyenne | Structurer et documenter |
 | **Long terme (12-18 mois)** | Reste | Mesurer et optimiser |

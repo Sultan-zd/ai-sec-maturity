@@ -178,12 +178,18 @@ class ScoringEngineTest {
         QuestionSpec criticalMedium = question("X", 3, Effort.MEDIUM);
         QuestionSpec importantMedium = question("Y", 2, Effort.MEDIUM);
         QuestionSpec importantLow = question("Z", 2, Effort.LOW);
+        QuestionSpec criticalLow = question("W", 3, Effort.LOW);
 
         assertThat(ScoringEngine.horizon(50, importantLow, 2)).isEqualTo(Horizon.QUICK_WIN);
         assertThat(ScoringEngine.horizon(10, criticalMedium, 1)).isEqualTo(Horizon.SHORT_TERM);
         assertThat(ScoringEngine.horizon(50, importantMedium, 2)).isEqualTo(Horizon.SHORT_TERM);
         assertThat(ScoringEngine.horizon(30, importantMedium, 2)).isEqualTo(Horizon.MEDIUM_TERM);
         assertThat(ScoringEngine.horizon(10, importantMedium, 2)).isEqualTo(Horizon.LONG_TERM);
+        // Critique + effort faible ⇒ quick win, même avec une priorité faible (domaine peu pondéré).
+        // Cas réel : PEOPLE.2.1, priorité (3 − 2) × 3 × 0,05 × 100 = 15 → long terme avant la correction.
+        assertThat(ScoringEngine.horizon(15, criticalLow, 2)).isEqualTo(Horizon.QUICK_WIN);
+        // Une question importante (non critique), facile, mais peu prioritaire n'en profite pas
+        assertThat(ScoringEngine.horizon(15, importantLow, 2)).isEqualTo(Horizon.LONG_TERM);
     }
 
     /**
