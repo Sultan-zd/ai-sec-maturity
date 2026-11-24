@@ -132,13 +132,23 @@ public class ReportService {
         left.setBorder(Rectangle.NO_BORDER);
         left.setBackgroundColor(PdfStyle.LIGHT);
         left.setPadding(10);
-        left.addElement(paragraph(global == null ? "—" : fmt(global.value()) + " / 5", PdfStyle.BIG_SCORE, 0, 0));
+        boolean reliable = r.scoring().globalReliable();
+        left.addElement(paragraph(global == null || !reliable ? "—" : fmt(global.value()) + " / 5",
+                PdfStyle.BIG_SCORE, 0, 0));
         left.addElement(paragraph("Score global de maturité", PdfStyle.SMALL_MUTED, 0, 0));
         PdfPCell right = new PdfPCell();
         right.setBorder(Rectangle.NO_BORDER);
         right.setBackgroundColor(PdfStyle.LIGHT);
         right.setPadding(10);
-        if (global != null) {
+        if (global != null && !reliable) {
+            // Moins de 80 % de réponses : on n'affiche pas de score comme s'il était définitif.
+            right.addElement(paragraph("Score provisoire", new Font(PdfStyle.BOLD, 16, Font.NORMAL,
+                    PdfStyle.levelColor(1)), 0, 4));
+            right.addElement(paragraph("Seulement " + fmt(r.scoring().completionPercent())
+                    + " % des questions ont une réponse. Le score global n'est considéré comme fiable qu'à partir de "
+                    + fmt(r.scoring().minCompletionPercent()) + " %. Estimation actuelle, à titre indicatif : "
+                    + fmt(global.value()) + " / 5.", PdfStyle.BODY, 0, 0));
+        } else if (global != null) {
             right.addElement(paragraph("Niveau " + global.level() + " — " + global.levelName(),
                     new Font(PdfStyle.BOLD, 16, Font.NORMAL, PdfStyle.levelColor(global.level())), 0, 4));
             right.addElement(paragraph(fmt(global.percent()) + " % de maturité. "

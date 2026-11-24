@@ -200,6 +200,9 @@ export interface ScoringResult {
   completionPercent: number
   domains: DomainResult[]
   recommendations: Recommendation[]
+  /** false tant que la complétion est sous minCompletionPercent : le score global n'est qu'une estimation */
+  globalReliable: boolean
+  minCompletionPercent: number
 }
 
 export interface AssessmentResults {

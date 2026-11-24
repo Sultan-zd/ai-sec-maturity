@@ -4,10 +4,18 @@ import java.math.BigDecimal;
 import java.util.List;
 import ma.uca.aima.referential.model.Effort;
 
-/** Résultat complet du calcul d'une évaluation. */
+/**
+ * Résultat complet du calcul d'une évaluation.
+ *
+ * @param globalReliable       {@code true} si la complétion atteint {@code minCompletionPercent} : en dessous,
+ *                             le score global n'est qu'une estimation provisoire (calculée sur trop peu de
+ *                             réponses) et ne doit pas être présenté comme un résultat
+ * @param minCompletionPercent seuil de complétion à partir duquel le score global est considéré comme fiable
+ */
 public record ScoringResult(Score global, int answered, int notApplicable, int total,
                             BigDecimal completionPercent, List<DomainResult> domains,
-                            List<RecommendationItem> recommendations) {
+                            List<RecommendationItem> recommendations,
+                            boolean globalReliable, BigDecimal minCompletionPercent) {
 
     /**
      * Un score (1,00 à 5,00), le niveau de maturité correspondant et le pourcentage (0 à 100 %).

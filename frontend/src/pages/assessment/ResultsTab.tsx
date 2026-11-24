@@ -21,9 +21,22 @@ export function ResultsTab({ summary, canEditTargets }: { summary: AssessmentSum
     <div className="space-y-6">
       {/* Chiffres clés */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Score global" value={s.global ? `${fmt2(s.global.value)} / 5` : '—'}
-          detail={s.global ? <LevelBadge level={s.global.level} /> : 'Répondez aux questions pour obtenir un score'} />
-        <Stat label="Maturité" value={s.global ? `${Math.round(s.global.percent)} %` : '—'} detail="0 % = niveau 1, 100 % = niveau 5" />
+        {/* Sous le seuil de complétion, le score n'est qu'une estimation : on ne l'affiche pas comme un résultat */}
+        {s.global && s.globalReliable ? (
+          <>
+            <Stat label="Score global" value={`${fmt2(s.global.value)} / 5`} detail={<LevelBadge level={s.global.level} />} />
+            <Stat label="Maturité" value={`${Math.round(s.global.percent)} %`} detail="0 % = niveau 1, 100 % = niveau 5" />
+          </>
+        ) : (
+          <>
+            <Stat label="Score global" value="—"
+              detail={s.global
+                ? `Provisoire : ${fmt2(s.global.value)} / 5 (estimation sur ${Math.round(s.completionPercent)} % des questions)`
+                : 'Répondez aux questions pour obtenir un score'} />
+            <Stat label="Maturité" value="—"
+              detail={`Disponible à partir de ${Math.round(s.minCompletionPercent)} % de complétion`} />
+          </>
+        )}
         <Stat label="Complétion" value={`${Math.round(s.completionPercent)} %`}
           detail={`${s.answered} évaluées · ${s.notApplicable} non applicables · ${s.total} au total`} />
         <Stat label="Indice de confiance" value={`${Math.round(data.evidenceRatePercent)} %`} detail="Réponses appuyées par une preuve" />
