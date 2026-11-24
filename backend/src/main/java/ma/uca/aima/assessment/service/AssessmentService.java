@@ -37,6 +37,7 @@ import ma.uca.aima.scoring.ScoringModel.DomainSpec;
 import ma.uca.aima.scoring.ScoringModelFactory;
 import ma.uca.aima.scoring.ScoringResult;
 import ma.uca.aima.scoring.ScoringResult.RecommendationItem;
+import ma.uca.aima.measurement.service.MeasurementService;
 import ma.uca.aima.security.AccessGuard;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,11 +60,13 @@ public class AssessmentService {
     private final ScoringModelFactory modelFactory;
     private final ScoringEngine engine;
     private final AccessGuard accessGuard;
+    private final MeasurementService measurementService;
 
     public AssessmentService(AssessmentRepository assessmentRepository, AnswerRepository answerRepository,
                              QuestionRepository questionRepository, OrganizationService organizationService,
                              ReferentialQueryService referentialService, ScoringModelFactory modelFactory,
-                             ScoringEngine engine, AccessGuard accessGuard) {
+                             ScoringEngine engine, AccessGuard accessGuard,
+                             MeasurementService measurementService) {
         this.assessmentRepository = assessmentRepository;
         this.answerRepository = answerRepository;
         this.questionRepository = questionRepository;
@@ -72,6 +75,7 @@ public class AssessmentService {
         this.modelFactory = modelFactory;
         this.engine = engine;
         this.accessGuard = accessGuard;
+        this.measurementService = measurementService;
     }
 
     // ------------------------------------------------------------------ cycle de vie
@@ -255,13 +259,18 @@ public class AssessmentService {
         return compute(assessment, answerRepository.findByAssessmentWithQuestion(assessment.getId()));
     }
 
-    /** Le calcul utilise les niveaux « effectifs » : niveau corrigé par l'auditeur s'il existe. */
+    /**
+     * Le calcul utilise, pour chaque question, la source la plus fiable disponible :
+     * <b>mesuré</b> (test du labo red-team) &gt; <b>audité</b> (niveau corrigé par l'auditeur) &gt; <b>déclaré</b>.
+     */
     private ScoringResult compute(Assessment assessment, List<Answer> answers) {
         Map<String, AnswerInput> inputs = new HashMap<>();
         for (Answer a : answers) {
             inputs.put(a.getQuestion().getCode(),
                     new AnswerInput(a.effectiveLevel(), a.effectivelyNotApplicable()));
         }
+        measurementService.measuredLevels(assessment.getId())
+                .forEach((code, level) -> inputs.put(code, AnswerInput.ofLevel(level)));
         return engine.compute(model(assessment), inputs, assessment.getTargets());
     }
 
