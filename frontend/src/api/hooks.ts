@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { api } from './client'
 import type {
   Answer, AnswerRequest, AssessmentResults, AssessmentSummary, CompanySize, Organization, Referential,
-  Measurement, ReviewRequest, Roadmap, Role, Sector, User,
+  AssessmentProgress, Measurement, ReviewRequest, Roadmap, Role, Sector, User,
 } from './types'
 
 /**
@@ -43,6 +43,14 @@ export const useResults = (id: string) =>
   useQuery({
     queryKey: keys.results(id),
     queryFn: () => api.get<AssessmentResults>(`/assessments/${id}/results`),
+  })
+
+/** Progression entre deux évaluations (désactivé tant que les deux ne sont pas choisies). */
+export const useProgress = (from?: string, to?: string) =>
+  useQuery({
+    queryKey: ['progress', from, to],
+    queryFn: () => api.get<AssessmentProgress>(`/assessments/compare?from=${from}&to=${to}`),
+    enabled: !!from && !!to && from !== to,
   })
 
 /** Mesures du labo red-team (lecture seule dans l'interface : elles arrivent par l'API d'import). */

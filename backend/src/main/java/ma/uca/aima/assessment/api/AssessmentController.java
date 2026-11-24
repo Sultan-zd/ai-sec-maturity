@@ -64,6 +64,12 @@ public class AssessmentController {
         return service.list(organizationId);
     }
 
+    @GetMapping("/compare")
+    @Operation(summary = "Progression entre deux évaluations de la même organisation (avant → après)")
+    public AssessmentDtos.AssessmentProgress compare(@RequestParam UUID from, @RequestParam UUID to) {
+        return service.compare(from, to);
+    }
+
     @GetMapping("/{id}")
     @Operation(summary = "Résumé d'une évaluation (statut, avancement, revue, score figé)")
     public AssessmentSummary get(@PathVariable UUID id) {

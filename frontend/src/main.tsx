@@ -9,7 +9,7 @@ import { Layout } from './components/Layout'
 import { Spinner } from './components/ui'
 import { AssessmentsPage } from './pages/AssessmentsPage'
 import { LoginPage } from './pages/LoginPage'
-import { AssessmentPage, OrganizationsPage, UsersPage } from './pages/lazyPages'
+import { AssessmentPage, OrganizationsPage, ProgressPage, UsersPage } from './pages/lazyPages'
 import './index.css'
 
 const queryClient = new QueryClient({
@@ -31,6 +31,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <AssessmentsPage /> },
       { path: '/evaluations/:id', element: page(<AssessmentPage />) },
+      { path: '/progression', element: page(<ProgressPage />) },
       { path: '/organisations', element: <RequireAuth roles={['ADMIN']}>{page(<OrganizationsPage />)}</RequireAuth> },
       { path: '/utilisateurs', element: <RequireAuth roles={['ADMIN']}>{page(<UsersPage />)}</RequireAuth> },
       { path: '*', element: <Navigate to="/" replace /> },

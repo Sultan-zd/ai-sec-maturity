@@ -230,6 +230,38 @@ export interface AssessmentResults {
   comparison: ScoreComparison
 }
 
+export interface DomainDelta {
+  code: string
+  name: string
+  from: number | null
+  to: number | null
+  delta: number | null
+}
+
+export interface QuestionChange {
+  questionCode: string
+  fromLevel: number
+  toLevel: number
+}
+
+/** Progression entre deux évaluations d'une même organisation (scores officiels). */
+export interface AssessmentProgress {
+  from: AssessmentSummary
+  to: AssessmentSummary
+  sameReferential: boolean
+  fromGlobal: Score | null
+  toGlobal: Score | null
+  fromReliable: boolean
+  toReliable: boolean
+  globalDelta: number | null
+  domains: DomainDelta[]
+  improved: QuestionChange[]
+  regressed: QuestionChange[]
+  fromRecommendations: number
+  toRecommendations: number
+  closedRecommendations: string[]
+}
+
 export type AttackFamily = 'PROMPT_INJECTION' | 'PROMPT_LEAKING' | 'DATA_DISCLOSURE' | 'UNSAFE_TOOL_USE' | 'RAG_ACCESS_BREAK' | 'OTHER'
 
 /** Mesure du labo red-team, comparée aux niveaux déclaré et audité (gap = déclaré − mesuré). */

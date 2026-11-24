@@ -124,6 +124,29 @@ public final class AssessmentDtos {
     public record DomainComparison(String code, BigDecimal declared, BigDecimal official, BigDecimal proven) {
     }
 
+    // ------------------------------------------------------------------ progression dans le temps
+
+    /**
+     * Comparaison de deux évaluations d'une même organisation (scores officiels).
+     *
+     * @param sameReferential      faux si les deux évaluations n'utilisent pas la même version du référentiel :
+     *                             seuls les domaines et questions communs sont alors comparés
+     * @param closedRecommendations recommandations présentes « avant » et disparues « après » (action réalisée)
+     */
+    public record AssessmentProgress(AssessmentSummary from, AssessmentSummary to, boolean sameReferential,
+                                     ScoringResult.Score fromGlobal, ScoringResult.Score toGlobal,
+                                     boolean fromReliable, boolean toReliable, BigDecimal globalDelta,
+                                     List<DomainDelta> domains, List<QuestionChange> improved,
+                                     List<QuestionChange> regressed, int fromRecommendations,
+                                     int toRecommendations, List<String> closedRecommendations) {
+    }
+
+    public record DomainDelta(String code, String name, BigDecimal from, BigDecimal to, BigDecimal delta) {
+    }
+
+    public record QuestionChange(String questionCode, int fromLevel, int toLevel) {
+    }
+
     public record Roadmap(UUID assessmentId, int totalActions, List<RoadmapPhase> phases) {
     }
 

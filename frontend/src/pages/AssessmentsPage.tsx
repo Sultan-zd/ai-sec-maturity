@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { Plus } from 'lucide-react'
+import { Plus, TrendingUp } from 'lucide-react'
 import { useAssessments, useCreateAssessment, useOrganizations } from '../api/hooks'
 import type { AssessmentStatus } from '../api/types'
 import { useAuth } from '../auth/context'
@@ -28,9 +28,16 @@ export function AssessmentsPage() {
               : 'Auto-évaluations de maturité de votre organisation.'}
           </p>
         </div>
-        {hasRole('ADMIN', 'ORG_USER') && !creating && (
-          <Button onClick={() => setCreating(true)}><Plus className="size-4" aria-hidden />Nouvelle évaluation</Button>
-        )}
+        <div className="flex flex-wrap gap-2">
+          {data && data.length >= 2 && (
+            <Link to="/progression" className="inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-medium text-ink hover:bg-surface-2">
+              <TrendingUp className="size-4" aria-hidden />Comparer deux évaluations
+            </Link>
+          )}
+          {hasRole('ADMIN', 'ORG_USER') && !creating && (
+            <Button onClick={() => setCreating(true)}><Plus className="size-4" aria-hidden />Nouvelle évaluation</Button>
+          )}
+        </div>
       </div>
 
       {creating && <CreateAssessmentForm onClose={() => setCreating(false)} />}

@@ -72,7 +72,7 @@ Prérequis : Java 21 et Docker Desktop démarré.
 ```bash
 cd backend
 ./mvnw spring-boot:run    # API sur http://localhost:8090 — Swagger : /swagger-ui.html
-./mvnw test               # 37 tests unitaires + intégration (PostgreSQL via Testcontainers)
+./mvnw test               # 39 tests unitaires + intégration (PostgreSQL via Testcontainers)
 ```
 
 ## Comptes

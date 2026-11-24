@@ -16,6 +16,9 @@ import ma.uca.aima.assessment.api.AssessmentDtos.CreateAssessmentRequest;
 import ma.uca.aima.assessment.api.AssessmentDtos.ReviewRequest;
 import ma.uca.aima.assessment.api.AssessmentDtos.Roadmap;
 import ma.uca.aima.assessment.api.AssessmentDtos.RoadmapPhase;
+import ma.uca.aima.assessment.api.AssessmentDtos.AssessmentProgress;
+import ma.uca.aima.assessment.api.AssessmentDtos.DomainDelta;
+import ma.uca.aima.assessment.api.AssessmentDtos.QuestionChange;
 import ma.uca.aima.assessment.api.AssessmentDtos.ScoreComparison;
 import ma.uca.aima.assessment.model.Answer;
 import ma.uca.aima.assessment.model.Assessment;
@@ -147,6 +150,74 @@ public class AssessmentService {
     @Transactional(readOnly = true)
     public AssessmentSummary get(UUID id) {
         return summary(findAccessible(id));
+    }
+
+    /**
+     * Progression entre deux évaluations de la même organisation (ex. janvier → juin), sur les scores officiels.
+     */
+    @Transactional(readOnly = true)
+    public AssessmentProgress compare(UUID fromId, UUID toId) {
+        if (fromId.equals(toId)) {
+            throw BusinessRuleException.invalid("Choisissez deux évaluations différentes");
+        }
+        Assessment from = findAccessible(fromId);
+        Assessment to = findAccessible(toId);
+        if (!from.getOrganization().getId().equals(to.getOrganization().getId())) {
+            throw BusinessRuleException.invalid("Les deux évaluations doivent concerner la même organisation");
+        }
+        Map<String, AnswerInput> fromLevels = inputs(from, answerRepository.findByAssessmentWithQuestion(fromId)).official();
+        Map<String, AnswerInput> toLevels = inputs(to, answerRepository.findByAssessmentWithQuestion(toId)).official();
+        ScoringResult rf = engine.compute(model(from), fromLevels, from.getTargets());
+        ScoringResult rt = engine.compute(model(to), toLevels, to.getTargets());
+
+        Map<String, ScoringResult.DomainResult> fromDomains = new HashMap<>();
+        rf.domains().forEach(d -> fromDomains.put(d.code(), d));
+        List<DomainDelta> domains = rt.domains().stream()
+                .filter(d -> fromDomains.containsKey(d.code()))
+                .map(d -> {
+                    BigDecimal before = scoreValue(fromDomains.get(d.code()).score());
+                    BigDecimal after = scoreValue(d.score());
+                    return new DomainDelta(d.code(), d.name(), before, after, delta(before, after));
+                })
+                .toList();
+
+        List<QuestionChange> improved = new java.util.ArrayList<>();
+        List<QuestionChange> regressed = new java.util.ArrayList<>();
+        for (Map.Entry<String, AnswerInput> e : new java.util.TreeMap<>(toLevels).entrySet()) {
+            AnswerInput before = fromLevels.get(e.getKey());
+            AnswerInput after = e.getValue();
+            if (before == null || before.notApplicable() || after.notApplicable()) {
+                continue;
+            }
+            if (after.level() > before.level()) {
+                improved.add(new QuestionChange(e.getKey(), before.level(), after.level()));
+            } else if (after.level() < before.level()) {
+                regressed.add(new QuestionChange(e.getKey(), before.level(), after.level()));
+            }
+        }
+        java.util.Set<String> stillOpen = rt.recommendations().stream()
+                .map(RecommendationItem::questionCode).collect(java.util.stream.Collectors.toSet());
+        // Clôturée = la question a bien une réponse « après » et n'est plus sous la cible.
+        // (Une question simplement laissée sans réponse ne génère plus de recommandation : ce n'est pas un progrès.)
+        List<String> closed = rf.recommendations().stream().map(RecommendationItem::questionCode)
+                .filter(code -> !stillOpen.contains(code))
+                .filter(code -> toLevels.containsKey(code) && !toLevels.get(code).notApplicable())
+                .sorted().toList();
+
+        BigDecimal before = scoreValue(rf.global());
+        BigDecimal after = scoreValue(rt.global());
+        return new AssessmentProgress(summary(from), summary(to),
+                from.getReferential().getId().equals(to.getReferential().getId()),
+                rf.global(), rt.global(), rf.globalReliable(), rt.globalReliable(), delta(before, after),
+                domains, improved, regressed, rf.recommendations().size(), rt.recommendations().size(), closed);
+    }
+
+    private static BigDecimal scoreValue(ScoringResult.Score score) {
+        return score == null ? null : score.value();
+    }
+
+    private static BigDecimal delta(BigDecimal before, BigDecimal after) {
+        return before == null || after == null ? null : after.subtract(before);
     }
 
     // ------------------------------------------------------------------ réponses (organisation)
