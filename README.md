@@ -53,7 +53,8 @@ Arrêt : `docker compose down` (ajouter `-v` pour effacer aussi la base).
 ## Mettre à jour le référentiel
 
 ```bash
-node scripts/referential-tool.mjs   # valide le JSON et régénère docs/03b
+(cd scripts && npm ci)            # une seule fois : installe le validateur de schéma
+node scripts/referential-tool.mjs   # vérifie le contrat (referential/schema/) et la cohérence, régénère docs/03b
 ```
 
 ## Stack technique

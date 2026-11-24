@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aima.local/schema/questions.schema.json",
+  "title": "Référentiel AIMA — fichier de questions d'un domaine",
+  "description": "Un fichier par domaine dans referential/questions/. Le code d'une question (ex. LLM.1.1) est la clé utilisée par les autres modules, notamment le labo red-team pour envoyer ses mesures : il ne doit jamais être réutilisé pour une autre question.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["domain", "questions"],
+  "properties": {
+    "domain": { "type": "string", "pattern": "^[A-Z]{2,10}$" },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "subdomain", "criticality", "effort", "text", "evidence", "levels", "recommendations"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[A-Z]{2,10}\\.[0-9]+\\.[0-9]+$" },
+          "subdomain": { "type": "string", "pattern": "^[A-Z]{2,10}\\.[0-9]+$" },
+          "criticality": { "type": "integer", "enum": [1, 2, 3], "description": "1 normale, 2 importante, 3 critique" },
+          "effort": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH"] },
+          "text": { "type": "string", "pattern": "\\?\\s*$" },
+          "evidence": { "type": "string", "minLength": 1 },
+          "levels": {
+            "type": "array",
+            "description": "Situation constatée pour les niveaux 1 à 5, dans l'ordre.",
+            "minItems": 5,
+            "maxItems": 5,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "recommendations": {
+            "type": "array",
+            "description": "Action pour passer du niveau 1 à 2, 2 à 3, 3 à 4, 4 à 5.",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  }
+}

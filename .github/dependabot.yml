@@ -10,6 +10,9 @@ updates:
     groups:
       frontend:
         patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /scripts
+    schedule: { interval: weekly }
   - package-ecosystem: docker
     directories: [/backend, /frontend]
     schedule: { interval: weekly }

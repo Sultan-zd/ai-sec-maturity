@@ -1,0 +1,13 @@
+{
+  "name": "aima-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Outils du référentiel AIMA (validation, génération de la grille, étude de cas)",
+  "scripts": {
+    "check": "node referential-tool.mjs --check",
+    "generate": "node referential-tool.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.17.1"
+  }
+}
