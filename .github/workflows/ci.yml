@@ -23,6 +23,11 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+      - run: npm ci
+        working-directory: scripts
+      # Contrat (JSON Schema, referential/schema/) puis règles de cohérence
       - run: node scripts/referential-tool.mjs --check
       # La grille Markdown est générée : elle doit être à jour avec le JSON
       - name: Grille d'audit à jour

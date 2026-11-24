@@ -7,16 +7,64 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const refDir = join(root, "referential");
-const referential = JSON.parse(readFileSync(join(refDir, "referentiel-v1.json"), "utf8"));
+const readJson = (path) => JSON.parse(readFileSync(path, "utf8"));
+const referential = readJson(join(refDir, "referentiel-v1.json"));
 const questionFiles = readdirSync(join(refDir, "questions")).filter((f) => f.endsWith(".json"));
-const questions = questionFiles.flatMap(
-  (f) => JSON.parse(readFileSync(join(refDir, "questions", f), "utf8")).questions
-);
+const questionDocs = questionFiles.map((f) => ({ file: f, doc: readJson(join(refDir, "questions", f)) }));
+const questions = questionDocs.flatMap(({ doc }) => doc.questions);
 
-// ---------- Validation ----------
 const errors = [];
+
+// ---------- 1. Contrat : forme des fichiers (JSON Schema, referential/schema/) ----------
+// La forme du JSON est partagée avec les autres modules (labo red-team, gouvernance) :
+// un champ inconnu, manquant ou mal typé est refusé ici, avant toute autre vérification.
+let Ajv2020;
+try {
+  ({ default: Ajv2020 } = await import("ajv/dist/2020.js"));
+} catch {
+  console.error("❌ Dépendance manquante : lancer « npm ci » dans le dossier scripts/");
+  process.exit(1);
+}
+const ajv = new Ajv2020({ allErrors: true });
+const validators = new Map();   // un schéma n'est compilé qu'une fois
+const checkShape = (schemaFile, data, label) => {
+  if (!validators.has(schemaFile)) validators.set(schemaFile, ajv.compile(readJson(join(refDir, "schema", schemaFile))));
+  const validate = validators.get(schemaFile);
+  if (!validate(data)) {
+    for (const e of validate.errors) errors.push(`${label}${e.instancePath || "/"} : ${e.message}`);
+  }
+};
+checkShape("referentiel.schema.json", referential, "referentiel-v1.json");
+for (const { file, doc } of questionDocs) checkShape("questions.schema.json", doc, `questions/${file}`);
+if (errors.length) {
+  console.error(`❌ Le référentiel ne respecte pas le contrat (${errors.length} erreur(s)) :\n - ` + errors.join("\n - "));
+  process.exit(1);
+}
+
+// ---------- 2. Cohérence (règles que le schéma ne peut pas exprimer) ----------
+for (const { file, doc } of questionDocs) {
+  if (`${doc.domain}.json` !== file) errors.push(`questions/${file} : le domaine déclaré est ${doc.domain}`);
+  for (const q of doc.questions) {
+    if (!q.code.startsWith(`${doc.domain}.`)) errors.push(`${q.code} : rangée dans le fichier du domaine ${doc.domain}`);
+  }
+}
+const sourceCodes = new Set(referential.sources.map((s) => s.code));
 const subdomains = new Map();
-for (const d of referential.domains) for (const sd of d.subdomains) subdomains.set(sd.code, { ...sd, domain: d.code });
+for (const d of referential.domains) {
+  for (const sd of d.subdomains) {
+    if (subdomains.has(sd.code)) errors.push(`${sd.code} : code de sous-domaine en double`);
+    if (!sd.code.startsWith(`${d.code}.`)) errors.push(`${sd.code} : rangé dans le domaine ${d.code}`);
+    for (const src of Object.keys(sd.references)) {
+      if (!sourceCodes.has(src)) errors.push(`${sd.code} : référence à une source non déclarée (${src})`);
+    }
+    subdomains.set(sd.code, { ...sd, domain: d.code });
+  }
+}
+const domainCodes = referential.domains.map((d) => d.code);
+if (new Set(domainCodes).size !== domainCodes.length) errors.push("Code de domaine en double");
+for (const d of domainCodes) {
+  if (!questionDocs.some(({ doc }) => doc.domain === d)) errors.push(`${d} : aucun fichier questions/${d}.json`);
+}
 
 const weightSum = referential.domains.reduce((s, d) => s + d.weight, 0);
 if (Math.abs(weightSum - 1) > 1e-9) errors.push(`Somme des poids des domaines = ${weightSum} (attendu 1)`);

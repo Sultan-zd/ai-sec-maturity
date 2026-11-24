@@ -88,7 +88,63 @@ public final class AssessmentDtos {
      * @param evidenceRatePercent indice de confiance : part des réponses évaluées appuyées par une preuve
      */
     public record AssessmentResults(UUID assessmentId, AssessmentStatus status, BigDecimal evidenceRatePercent,
-                                    ScoringResult scoring) {
+                                    ScoringResult scoring, ScoreComparison comparison) {
+    }
+
+    /**
+     * Fourchette de scores : ce que l'organisation déclare, le score officiel, et ce qui est prouvé.
+     *
+     * @param declared       uniquement les réponses de l'organisation
+     * @param official       source la plus fiable par question : mesuré &gt; audité &gt; déclaré (= scoring.global)
+     * @param proven         officiel, mais une réponse sans preuve, sans revue et sans mesure compte au niveau 1
+     * @param provenAnswers  réponses évaluées prouvées (preuve, revue de l'auditeur ou mesure)
+     * @param evaluatedAnswers réponses évaluées (hors « Non applicable »)
+     */
+    public record ScoreComparison(ScoringResult.Score declared, ScoringResult.Score official,
+                                  ScoringResult.Score proven, int provenAnswers, int evaluatedAnswers,
+                                  List<DomainComparison> domains) {
+
+        public static ScoreComparison of(ScoringResult declared, ScoringResult official, ScoringResult proven,
+                                         int provenAnswers, int evaluatedAnswers) {
+            List<DomainComparison> domains = new java.util.ArrayList<>();
+            for (int i = 0; i < official.domains().size(); i++) {
+                domains.add(new DomainComparison(official.domains().get(i).code(),
+                        value(declared.domains().get(i).score()), value(official.domains().get(i).score()),
+                        value(proven.domains().get(i).score())));
+            }
+            return new ScoreComparison(declared.global(), official.global(), proven.global(), provenAnswers,
+                    evaluatedAnswers, domains);
+        }
+
+        private static BigDecimal value(ScoringResult.Score score) {
+            return score == null ? null : score.value();
+        }
+    }
+
+    public record DomainComparison(String code, BigDecimal declared, BigDecimal official, BigDecimal proven) {
+    }
+
+    // ------------------------------------------------------------------ progression dans le temps
+
+    /**
+     * Comparaison de deux évaluations d'une même organisation (scores officiels).
+     *
+     * @param sameReferential      faux si les deux évaluations n'utilisent pas la même version du référentiel :
+     *                             seuls les domaines et questions communs sont alors comparés
+     * @param closedRecommendations recommandations présentes « avant » et disparues « après » (action réalisée)
+     */
+    public record AssessmentProgress(AssessmentSummary from, AssessmentSummary to, boolean sameReferential,
+                                     ScoringResult.Score fromGlobal, ScoringResult.Score toGlobal,
+                                     boolean fromReliable, boolean toReliable, BigDecimal globalDelta,
+                                     List<DomainDelta> domains, List<QuestionChange> improved,
+                                     List<QuestionChange> regressed, int fromRecommendations,
+                                     int toRecommendations, List<String> closedRecommendations) {
+    }
+
+    public record DomainDelta(String code, String name, BigDecimal from, BigDecimal to, BigDecimal delta) {
+    }
+
+    public record QuestionChange(String questionCode, int fromLevel, int toLevel) {
     }
 
     public record Roadmap(UUID assessmentId, int totalActions, List<RoadmapPhase> phases) {

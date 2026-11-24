@@ -16,6 +16,8 @@ import ma.uca.aima.scoring.ScoringResult.DomainResult;
 import ma.uca.aima.scoring.ScoringResult.RecommendationItem;
 import ma.uca.aima.scoring.ScoringResult.Score;
 import ma.uca.aima.scoring.ScoringResult.SubdomainResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -30,6 +32,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ScoringEngine {
+
+    /** Complétion minimale (en %) pour que le score global soit présenté comme un résultat fiable. */
+    static final BigDecimal DEFAULT_MIN_COMPLETION = BigDecimal.valueOf(80);
+
+    private final BigDecimal minCompletionPercent;
+
+    public ScoringEngine() {
+        this(DEFAULT_MIN_COMPLETION);
+    }
+
+    @Autowired
+    public ScoringEngine(@Value("${aima.scoring.min-completion-percent:80}") BigDecimal minCompletionPercent) {
+        this.minCompletionPercent = minCompletionPercent;
+    }
 
     /** Seuils de priorité utilisés pour placer une recommandation dans la feuille de route. */
     static final double HIGH_PRIORITY = 45;
@@ -74,7 +90,11 @@ public class ScoringEngine {
         Score global = globalWeight > 0 ? score(globalSum / globalWeight, model.levels()) : null;
         BigDecimal completion = total == 0 ? BigDecimal.ZERO
                 : round(100.0 * (answered + notApplicable) / total);
-        return new ScoringResult(global, answered, notApplicable, total, completion, domainResults, recommendations);
+        // Score calculé sur trop peu de réponses : on le signale comme provisoire au lieu de le présenter
+        // comme un résultat (ex. 6 réponses sur 59 donnaient un « 2,00 / 5 » trompeur).
+        boolean reliable = global != null && completion.compareTo(minCompletionPercent) >= 0;
+        return new ScoringResult(global, answered, notApplicable, total, completion, domainResults, recommendations,
+                reliable, minCompletionPercent);
     }
 
     // ------------------------------------------------------------------ sous-domaine
@@ -186,7 +206,11 @@ public class ScoringEngine {
     }
 
     static Horizon horizon(double priority, QuestionSpec q, int level) {
-        if (priority >= HIGH_PRIORITY && q.effort() == Effort.LOW) {
+        // Une action critique et facile est un quick win quel que soit le poids de son domaine.
+        // Sans cette règle, la charte d'usage de l'IA (PEOPLE.2.1, critique, effort faible) tombait
+        // en « long terme » à cause des 5 % du domaine PEOPLE (étude de cas, docs/09 §6).
+        boolean criticalAndEasy = q.criticality() == 3 && q.effort() == Effort.LOW;
+        if (q.effort() == Effort.LOW && (priority >= HIGH_PRIORITY || criticalAndEasy)) {
             return Horizon.QUICK_WIN;
         }
         if ((q.criticality() == 3 && level == 1) || priority >= HIGH_PRIORITY) {

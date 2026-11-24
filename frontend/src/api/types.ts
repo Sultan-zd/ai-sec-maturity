@@ -200,6 +200,26 @@ export interface ScoringResult {
   completionPercent: number
   domains: DomainResult[]
   recommendations: Recommendation[]
+  /** false tant que la complétion est sous minCompletionPercent : le score global n'est qu'une estimation */
+  globalReliable: boolean
+  minCompletionPercent: number
+}
+
+export interface DomainComparison {
+  code: string
+  declared: number | null
+  official: number | null
+  proven: number | null
+}
+
+/** Fourchette : déclaré (organisation) / officiel (mesuré > audité > déclaré) / prouvé (sans preuve = niveau 1) */
+export interface ScoreComparison {
+  declared: Score | null
+  official: Score | null
+  proven: Score | null
+  provenAnswers: number
+  evaluatedAnswers: number
+  domains: DomainComparison[]
 }
 
 export interface AssessmentResults {
@@ -207,6 +227,57 @@ export interface AssessmentResults {
   status: AssessmentStatus
   evidenceRatePercent: number
   scoring: ScoringResult
+  comparison: ScoreComparison
+}
+
+export interface DomainDelta {
+  code: string
+  name: string
+  from: number | null
+  to: number | null
+  delta: number | null
+}
+
+export interface QuestionChange {
+  questionCode: string
+  fromLevel: number
+  toLevel: number
+}
+
+/** Progression entre deux évaluations d'une même organisation (scores officiels). */
+export interface AssessmentProgress {
+  from: AssessmentSummary
+  to: AssessmentSummary
+  sameReferential: boolean
+  fromGlobal: Score | null
+  toGlobal: Score | null
+  fromReliable: boolean
+  toReliable: boolean
+  globalDelta: number | null
+  domains: DomainDelta[]
+  improved: QuestionChange[]
+  regressed: QuestionChange[]
+  fromRecommendations: number
+  toRecommendations: number
+  closedRecommendations: string[]
+}
+
+export type AttackFamily = 'PROMPT_INJECTION' | 'PROMPT_LEAKING' | 'DATA_DISCLOSURE' | 'UNSAFE_TOOL_USE' | 'RAG_ACCESS_BREAK' | 'OTHER'
+
+/** Mesure du labo red-team, comparée aux niveaux déclaré et audité (gap = déclaré − mesuré). */
+export interface Measurement {
+  questionCode: string
+  attackFamily: AttackFamily
+  measuredLevel: number
+  declaredLevel: number | null
+  auditedLevel: number | null
+  gap: number | null
+  tool: string
+  runId: string
+  evidence: string
+  evidenceUrl: string | null
+  measuredAt: string
+  recordedAt: string
 }
 
 export interface RoadmapPhase {

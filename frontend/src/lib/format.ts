@@ -1,4 +1,4 @@
-import type { AssessmentStatus, CompanySize, Effort, Horizon, Role, Sector } from '../api/types'
+import type { AssessmentStatus, AttackFamily, CompanySize, Effort, Horizon, Role, Sector } from '../api/types'
 
 const number2 = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const number1 = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
@@ -64,4 +64,13 @@ export const sizeLabels: Record<CompanySize, string> = {
   PME: 'PME (< 250)',
   ETI: 'ETI (< 5 000)',
   GE: 'Grande entreprise',
+}
+
+export const attackFamilyLabels: Record<AttackFamily, string> = {
+  PROMPT_INJECTION: 'Injection de prompt',
+  PROMPT_LEAKING: 'Fuite du prompt système',
+  DATA_DISCLOSURE: 'Divulgation de données',
+  UNSAFE_TOOL_USE: 'Utilisation dangereuse d\'outils',
+  RAG_ACCESS_BREAK: 'Contournement des droits RAG',
+  OTHER: 'Autre attaque',
 }

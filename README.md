@@ -37,6 +37,7 @@ PFS/
 11. [Étude de cas : Banque Atlas Digitale](docs/09-etude-de-cas.md)
 12. [Synthèse, bilan et perspectives](docs/10-synthese.md)
 13. [Plan de soutenance et démonstration](docs/11-soutenance.md)
+14. [Contrats entre les modules (référentiel, API red-team)](docs/12-contrats-modules.md)
 
 ## Démarrage rapide (Docker)
 
@@ -53,7 +54,8 @@ Arrêt : `docker compose down` (ajouter `-v` pour effacer aussi la base).
 ## Mettre à jour le référentiel
 
 ```bash
-node scripts/referential-tool.mjs   # valide le JSON et régénère docs/03b
+(cd scripts && npm ci)            # une seule fois : installe le validateur de schéma
+node scripts/referential-tool.mjs   # vérifie le contrat (referential/schema/) et la cohérence, régénère docs/03b
 ```
 
 ## Stack technique
@@ -70,7 +72,7 @@ Prérequis : Java 21 et Docker Desktop démarré.
 ```bash
 cd backend
 ./mvnw spring-boot:run    # API sur http://localhost:8090 — Swagger : /swagger-ui.html
-./mvnw test               # 35 tests unitaires + intégration (PostgreSQL via Testcontainers)
+./mvnw test               # 39 tests unitaires + intégration (PostgreSQL via Testcontainers)
 ```
 
 ## Comptes

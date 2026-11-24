@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aima.local/schema/referentiel.schema.json",
+  "title": "Référentiel AIMA — fichier principal",
+  "description": "Contrat partagé entre les modules (plateforme, labo red-team, gouvernance). Toute modification de cette forme se décide en équipe et donne lieu à une nouvelle version majeure du référentiel.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "version", "name", "sources", "maturityLevels", "scoringRules", "domains"],
+  "properties": {
+    "code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,19}$" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Version sémantique : une version publiée n'est jamais modifiée." },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "name"],
+        "properties": {
+          "code": { "$ref": "#/$defs/sourceCode" },
+          "name": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "maturityLevels": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["level", "name", "minScore"],
+        "properties": {
+          "level": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "name": { "type": "string", "minLength": 1 },
+          "minScore": { "type": "number", "minimum": 1, "maximum": 5 },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "scoringRules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criticalityWeights", "weakestLinkCaps", "defaultTargetLevel"],
+      "properties": {
+        "criticalityWeights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["1", "2", "3"],
+          "patternProperties": { "^[1-3]$": { "type": "integer", "minimum": 1 } }
+        },
+        "weakestLinkCaps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["criticality", "answerLevel", "domainCap"],
+            "properties": {
+              "criticality": { "type": "integer", "minimum": 1, "maximum": 3 },
+              "answerLevel": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "domainCap": { "type": "number", "minimum": 1, "maximum": 5 }
+            }
+          }
+        },
+        "defaultTargetLevel": { "type": "integer", "minimum": 1, "maximum": 5 }
+      }
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "order", "weight", "name", "subdomains"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[A-Z]{2,10}$" },
+          "order": { "type": "integer", "minimum": 1 },
+          "weight": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "La somme des poids des domaines doit valoir 1 (vérifié par scripts/referential-tool.mjs)." },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string" },
+          "subdomains": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["code", "name", "references"],
+              "properties": {
+                "code": { "type": "string", "pattern": "^[A-Z]{2,10}\\.[0-9]+$" },
+                "name": { "type": "string", "minLength": 1 },
+                "description": { "type": "string" },
+                "references": {
+                  "type": "object",
+                  "description": "Correspondance avec les normes : code de source → liste de clauses (ex. ISO42001 → [\"5.2\", \"A.2.2\"]).",
+                  "propertyNames": { "$ref": "#/$defs/sourceCode" },
+                  "additionalProperties": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sourceCode": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" }
+  }
+}

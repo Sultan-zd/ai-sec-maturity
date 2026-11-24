@@ -100,11 +100,39 @@ class ScoringEngineTest {
         assertThat(result.completionPercent()).isEqualByComparingTo("100.00");
     }
 
+    /**
+     * Bug corrigé : avec 1 réponse sur 5 (20 %), le moteur affichait un score global comme s'il était
+     * définitif. Le score est toujours calculé (estimation), mais il est signalé comme non fiable
+     * tant que la complétion est inférieure à 80 %.
+     */
+    @Test
+    void globalScoreIsFlaggedAsProvisionalBelowEightyPercentCompletion() {
+        ScoringResult oneOfFive = engine.compute(model, Map.of("A.1.1", AnswerInput.ofLevel(2)), Map.of());
+        assertThat(oneOfFive.completionPercent()).isEqualByComparingTo("20.00");
+        assertThat(oneOfFive.global()).isNotNull();
+        assertThat(oneOfFive.globalReliable()).isFalse();
+        assertThat(oneOfFive.minCompletionPercent()).isEqualByComparingTo("80");
+
+        // 4 réponses sur 5 = exactement 80 % : le seuil est atteint (N/A compté comme une réponse)
+        ScoringResult fourOfFive = engine.compute(model, Map.of(
+                "A.1.1", AnswerInput.ofLevel(3), "A.1.2", AnswerInput.ofLevel(3),
+                "A.2.1", AnswerInput.ofNotApplicable(), "B.1.1", AnswerInput.ofLevel(3)), Map.of());
+        assertThat(fourOfFive.completionPercent()).isEqualByComparingTo("80.00");
+        assertThat(fourOfFive.globalReliable()).isTrue();
+
+        // Le seuil est paramétrable (aima.scoring.min-completion-percent)
+        ScoringResult strict = new ScoringEngine(java.math.BigDecimal.valueOf(100))
+                .compute(model, Map.of("A.1.1", AnswerInput.ofLevel(3), "A.1.2", AnswerInput.ofLevel(3),
+                        "A.2.1", AnswerInput.ofLevel(3), "B.1.1", AnswerInput.ofLevel(3)), Map.of());
+        assertThat(strict.globalReliable()).isFalse();
+    }
+
     @Test
     void emptyAssessmentHasNoScore() {
         ScoringResult result = engine.compute(model, Map.of(), Map.of());
 
         assertThat(result.global()).isNull();
+        assertThat(result.globalReliable()).isFalse();
         assertThat(result.completionPercent()).isEqualByComparingTo("0.00");
         assertThat(result.recommendations()).isEmpty();
         assertThat(result.domains()).allSatisfy(d -> assertThat(d.score()).isNull());
@@ -150,12 +178,18 @@ class ScoringEngineTest {
         QuestionSpec criticalMedium = question("X", 3, Effort.MEDIUM);
         QuestionSpec importantMedium = question("Y", 2, Effort.MEDIUM);
         QuestionSpec importantLow = question("Z", 2, Effort.LOW);
+        QuestionSpec criticalLow = question("W", 3, Effort.LOW);
 
         assertThat(ScoringEngine.horizon(50, importantLow, 2)).isEqualTo(Horizon.QUICK_WIN);
         assertThat(ScoringEngine.horizon(10, criticalMedium, 1)).isEqualTo(Horizon.SHORT_TERM);
         assertThat(ScoringEngine.horizon(50, importantMedium, 2)).isEqualTo(Horizon.SHORT_TERM);
         assertThat(ScoringEngine.horizon(30, importantMedium, 2)).isEqualTo(Horizon.MEDIUM_TERM);
         assertThat(ScoringEngine.horizon(10, importantMedium, 2)).isEqualTo(Horizon.LONG_TERM);
+        // Critique + effort faible ⇒ quick win, même avec une priorité faible (domaine peu pondéré).
+        // Cas réel : PEOPLE.2.1, priorité (3 − 2) × 3 × 0,05 × 100 = 15 → long terme avant la correction.
+        assertThat(ScoringEngine.horizon(15, criticalLow, 2)).isEqualTo(Horizon.QUICK_WIN);
+        // Une question importante (non critique), facile, mais peu prioritaire n'en profite pas
+        assertThat(ScoringEngine.horizon(15, importantLow, 2)).isEqualTo(Horizon.LONG_TERM);
     }
 
     /**
