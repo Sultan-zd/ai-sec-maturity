@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { api } from './client'
 import type {
   Answer, AnswerRequest, AssessmentResults, AssessmentSummary, CompanySize, Organization, Referential,
-  ReviewRequest, Roadmap, Role, Sector, User,
+  Measurement, ReviewRequest, Roadmap, Role, Sector, User,
 } from './types'
 
 /**
@@ -19,6 +19,7 @@ export const keys = {
   answers: (id: string) => ['assessment', id, 'answers'] as const,
   results: (id: string) => ['assessment', id, 'results'] as const,
   roadmap: (id: string) => ['assessment', id, 'roadmap'] as const,
+  measurements: (id: string) => ['assessment', id, 'measurements'] as const,
   referential: (id: number) => ['referential', id] as const,
 }
 
@@ -43,6 +44,10 @@ export const useResults = (id: string) =>
     queryKey: keys.results(id),
     queryFn: () => api.get<AssessmentResults>(`/assessments/${id}/results`),
   })
+
+/** Mesures du labo red-team (lecture seule dans l'interface : elles arrivent par l'API d'import). */
+export const useMeasurements = (id: string) =>
+  useQuery({ queryKey: keys.measurements(id), queryFn: () => api.get<Measurement[]>(`/assessments/${id}/measurements`) })
 
 export const useRoadmap = (id: string) =>
   useQuery({ queryKey: keys.roadmap(id), queryFn: () => api.get<Roadmap>(`/assessments/${id}/roadmap`) })

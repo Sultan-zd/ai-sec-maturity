@@ -4,6 +4,7 @@ import { useResults, useUpdateTargets } from '../../api/hooks'
 import type { AssessmentSummary } from '../../api/types'
 import { GapBars } from '../../components/charts/GapBars'
 import { MaturityRadar } from '../../components/charts/MaturityRadar'
+import { MeasurementsCard, ScoreRangeCard } from './EvidencePanels'
 import { Card, ErrorBox, LevelBadge, Select, Spinner } from '../../components/ui'
 import { fmt2, levelColor, levelNames } from '../../lib/format'
 
@@ -56,6 +57,9 @@ export function ResultsTab({ summary, canEditTargets }: { summary: AssessmentSum
         <Card title="Profil de maturité : actuel / cible"><MaturityRadar domains={s.domains} /></Card>
         <Card title="Écart à la cible (en niveaux)"><GapBars domains={s.domains} /></Card>
       </div>
+
+      <ScoreRangeCard comparison={data.comparison} domains={s.domains} />
+      <MeasurementsCard assessmentId={summary.id} />
 
       <Card title="Détail par domaine">
         <ErrorBox error={updateTargets.error} />

@@ -16,6 +16,7 @@ import ma.uca.aima.assessment.api.AssessmentDtos.CreateAssessmentRequest;
 import ma.uca.aima.assessment.api.AssessmentDtos.ReviewRequest;
 import ma.uca.aima.assessment.api.AssessmentDtos.Roadmap;
 import ma.uca.aima.assessment.api.AssessmentDtos.RoadmapPhase;
+import ma.uca.aima.assessment.api.AssessmentDtos.ScoreComparison;
 import ma.uca.aima.assessment.model.Answer;
 import ma.uca.aima.assessment.model.Assessment;
 import ma.uca.aima.assessment.model.ReviewStatus;
@@ -238,10 +239,17 @@ public class AssessmentService {
         Assessment assessment = findAccessible(id);
         List<Answer> answers = answerRepository.findByAssessmentWithQuestion(id);
         long evaluated = answers.stream().filter(a -> !a.isNotApplicable()).count();
-        long proven = answers.stream().filter(a -> !a.isNotApplicable() && a.hasEvidence()).count();
+        long withEvidence = answers.stream().filter(a -> !a.isNotApplicable() && a.hasEvidence()).count();
         BigDecimal evidenceRate = evaluated == 0 ? BigDecimal.ZERO
-                : BigDecimal.valueOf(100.0 * proven / evaluated).setScale(2, RoundingMode.HALF_UP);
-        return new AssessmentResults(id, assessment.getStatus(), evidenceRate, compute(assessment, answers));
+                : BigDecimal.valueOf(100.0 * withEvidence / evaluated).setScale(2, RoundingMode.HALF_UP);
+
+        ScoreInputs in = inputs(assessment, answers);
+        ScoringModel model = model(assessment);
+        ScoringResult official = engine.compute(model, in.official(), assessment.getTargets());
+        ScoringResult declared = engine.compute(model, in.declared(), assessment.getTargets());
+        ScoringResult proven = engine.compute(model, in.proven(), assessment.getTargets());
+        return new AssessmentResults(id, assessment.getStatus(), evidenceRate, official,
+                ScoreComparison.of(declared, official, proven, in.provenCount(), in.evaluatedCount()));
     }
 
     @Transactional(readOnly = true)
@@ -259,19 +267,57 @@ public class AssessmentService {
         return compute(assessment, answerRepository.findByAssessmentWithQuestion(assessment.getId()));
     }
 
-    /**
-     * Le calcul utilise, pour chaque question, la source la plus fiable disponible :
-     * <b>mesuré</b> (test du labo red-team) &gt; <b>audité</b> (niveau corrigé par l'auditeur) &gt; <b>déclaré</b>.
-     */
+    /** Score officiel : voir {@link #inputs}. */
     private ScoringResult compute(Assessment assessment, List<Answer> answers) {
-        Map<String, AnswerInput> inputs = new HashMap<>();
+        return engine.compute(model(assessment), inputs(assessment, answers).official(), assessment.getTargets());
+    }
+
+    /**
+     * Les trois jeux de niveaux utilisés pour le calcul.
+     * <ul>
+     *   <li><b>officiel</b> : pour chaque question, la source la plus fiable disponible —
+     *       mesuré (labo red-team) &gt; audité (correction de l'auditeur) &gt; déclaré ;</li>
+     *   <li><b>déclaré</b> : uniquement les réponses de l'organisation ;</li>
+     *   <li><b>prouvé</b> : l'officiel, mais une réponse ni appuyée par une preuve, ni revue par l'auditeur,
+     *       ni mesurée compte au niveau 1 (« ce qui n'est pas prouvé n'est pas acquis »).</li>
+     * </ul>
+     */
+    private ScoreInputs inputs(Assessment assessment, List<Answer> answers) {
+        Map<String, Integer> measured = measurementService.measuredLevels(assessment.getId());
+        Map<String, AnswerInput> declared = new HashMap<>();
+        Map<String, AnswerInput> official = new HashMap<>();
+        Map<String, Answer> byCode = new HashMap<>();
         for (Answer a : answers) {
-            inputs.put(a.getQuestion().getCode(),
-                    new AnswerInput(a.effectiveLevel(), a.effectivelyNotApplicable()));
+            String code = a.getQuestion().getCode();
+            byCode.put(code, a);
+            declared.put(code, new AnswerInput(a.getLevel(), a.isNotApplicable()));
+            official.put(code, new AnswerInput(a.effectiveLevel(), a.effectivelyNotApplicable()));
         }
-        measurementService.measuredLevels(assessment.getId())
-                .forEach((code, level) -> inputs.put(code, AnswerInput.ofLevel(level)));
-        return engine.compute(model(assessment), inputs, assessment.getTargets());
+        measured.forEach((code, level) -> official.put(code, AnswerInput.ofLevel(level)));
+
+        Map<String, AnswerInput> proven = new HashMap<>();
+        int provenCount = 0;
+        int evaluatedCount = 0;
+        for (Map.Entry<String, AnswerInput> e : official.entrySet()) {
+            AnswerInput input = e.getValue();
+            if (input.notApplicable()) {
+                proven.put(e.getKey(), input);                 // N/A : justification obligatoire, inchangé
+                continue;
+            }
+            evaluatedCount++;
+            Answer answer = byCode.get(e.getKey());
+            boolean isProven = measured.containsKey(e.getKey())
+                    || (answer != null && (answer.hasEvidence() || answer.getReviewStatus() != ReviewStatus.PENDING));
+            if (isProven) {
+                provenCount++;
+            }
+            proven.put(e.getKey(), isProven ? input : AnswerInput.ofLevel(1));
+        }
+        return new ScoreInputs(declared, official, proven, provenCount, evaluatedCount);
+    }
+
+    private record ScoreInputs(Map<String, AnswerInput> declared, Map<String, AnswerInput> official,
+                               Map<String, AnswerInput> proven, int provenCount, int evaluatedCount) {
     }
 
     // ------------------------------------------------------------------ utilitaires

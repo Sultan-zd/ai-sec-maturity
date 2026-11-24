@@ -120,6 +120,13 @@ public class ReportService {
         infoRow(info, "Complétion", fmt(r.scoring().completionPercent()) + " % (" + s.answeredCount() + "/"
                 + s.totalQuestions() + " questions)");
         infoRow(info, "Indice de confiance", fmt(r.evidenceRatePercent()) + " % des réponses appuyées par une preuve");
+        var c = r.comparison();
+        if (c.official() != null) {
+            infoRow(info, "Déclaré / officiel / prouvé",
+                    fmt(c.declared().value()) + " / " + fmt(c.official().value()) + " / " + fmt(c.proven().value())
+                            + "   (prouvé : " + c.provenAnswers() + " réponse(s) démontrée(s) sur "
+                            + c.evaluatedAnswers() + " ; une réponse sans preuve compte au niveau 1)");
+        }
         infoRow(info, "Généré le", ZonedDateTime.now(ZONE).format(DATE));
         doc.add(info);
 

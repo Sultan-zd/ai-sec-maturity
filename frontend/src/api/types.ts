@@ -205,11 +205,47 @@ export interface ScoringResult {
   minCompletionPercent: number
 }
 
+export interface DomainComparison {
+  code: string
+  declared: number | null
+  official: number | null
+  proven: number | null
+}
+
+/** Fourchette : déclaré (organisation) / officiel (mesuré > audité > déclaré) / prouvé (sans preuve = niveau 1) */
+export interface ScoreComparison {
+  declared: Score | null
+  official: Score | null
+  proven: Score | null
+  provenAnswers: number
+  evaluatedAnswers: number
+  domains: DomainComparison[]
+}
+
 export interface AssessmentResults {
   assessmentId: string
   status: AssessmentStatus
   evidenceRatePercent: number
   scoring: ScoringResult
+  comparison: ScoreComparison
+}
+
+export type AttackFamily = 'PROMPT_INJECTION' | 'PROMPT_LEAKING' | 'DATA_DISCLOSURE' | 'UNSAFE_TOOL_USE' | 'RAG_ACCESS_BREAK' | 'OTHER'
+
+/** Mesure du labo red-team, comparée aux niveaux déclaré et audité (gap = déclaré − mesuré). */
+export interface Measurement {
+  questionCode: string
+  attackFamily: AttackFamily
+  measuredLevel: number
+  declaredLevel: number | null
+  auditedLevel: number | null
+  gap: number | null
+  tool: string
+  runId: string
+  evidence: string
+  evidenceUrl: string | null
+  measuredAt: string
+  recordedAt: string
 }
 
 export interface RoadmapPhase {
