@@ -2,7 +2,10 @@
   "domain": "TRUST",
   "questions": [
     {
-      "code": "TRUST.1.1", "subdomain": "TRUST.1", "criticality": 2, "effort": "LOW",
+      "code": "TRUST.1.1",
+      "subdomain": "TRUST.1",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les utilisateurs sont-ils informés lorsqu'ils interagissent avec une IA ou reçoivent un contenu généré par IA ?",
       "evidence": "Mentions d'information dans les interfaces, marquage des contenus générés.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "TRUST.1.2", "subdomain": "TRUST.1", "criticality": 2, "effort": "HIGH",
+      "code": "TRUST.1.2",
+      "subdomain": "TRUST.1",
+      "criticality": 2,
+      "effort": "HIGH",
       "text": "Les décisions des systèmes IA ayant un impact sur les personnes sont-elles explicables ?",
       "evidence": "Model cards, méthodes d'explicabilité utilisées (SHAP, LIME), exemples d'explications fournies.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "TRUST.2.1", "subdomain": "TRUST.2", "criticality": 3, "effort": "HIGH",
+      "code": "TRUST.2.1",
+      "subdomain": "TRUST.2",
+      "criticality": 3,
+      "effort": "HIGH",
       "text": "Les biais des modèles sont-ils mesurés et corrigés ?",
       "evidence": "Métriques d'équité retenues, rapports d'analyse des biais, plans de correction.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "TRUST.2.2", "subdomain": "TRUST.2", "criticality": 1, "effort": "MEDIUM",
+      "code": "TRUST.2.2",
+      "subdomain": "TRUST.2",
+      "criticality": 1,
+      "effort": "MEDIUM",
       "text": "Les parties prenantes concernées sont-elles consultées et la diversité des équipes est-elle prise en compte dans les projets IA à impact ?",
       "evidence": "Comptes rendus de consultation, composition des équipes projet.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "TRUST.3.1", "subdomain": "TRUST.3", "criticality": 3, "effort": "MEDIUM",
+      "code": "TRUST.3.1",
+      "subdomain": "TRUST.3",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Un humain peut-il surveiller, contester et corriger les décisions d'un système IA à risque élevé ?",
       "evidence": "Description du dispositif de supervision humaine, procédure de contestation, statistiques de correction.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "TRUST.3.2", "subdomain": "TRUST.3", "criticality": 2, "effort": "LOW",
+      "code": "TRUST.3.2",
+      "subdomain": "TRUST.3",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Est-il possible d'arrêter ou de désactiver rapidement un système IA en cas de problème ?",
       "evidence": "Procédure d'arrêt d'urgence (kill switch), responsables désignés, test d'arrêt.",
       "levels": [
@@ -110,7 +128,10 @@
       ]
     },
     {
-      "code": "TRUST.4.1", "subdomain": "TRUST.4", "criticality": 2, "effort": "MEDIUM",
+      "code": "TRUST.4.1",
+      "subdomain": "TRUST.4",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Des mesures limitent-elles les hallucinations et la désinformation produites par les systèmes IA ?",
       "evidence": "Architecture RAG, citations des sources, avertissements, résultats des jeux d'évaluation.",
       "levels": [
@@ -128,7 +149,10 @@
       ]
     },
     {
-      "code": "TRUST.4.2", "subdomain": "TRUST.4", "criticality": 2, "effort": "MEDIUM",
+      "code": "TRUST.4.2",
+      "subdomain": "TRUST.4",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "L'exactitude des systèmes IA est-elle évaluée par rapport à des critères métier définis ?",
       "evidence": "Critères d'exactitude, jeux d'évaluation de référence, rapports d'évaluation.",
       "levels": [

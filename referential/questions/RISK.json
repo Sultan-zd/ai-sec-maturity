@@ -2,7 +2,10 @@
   "domain": "RISK",
   "questions": [
     {
-      "code": "RISK.1.1", "subdomain": "RISK.1", "criticality": 3, "effort": "MEDIUM",
+      "code": "RISK.1.1",
+      "subdomain": "RISK.1",
+      "criticality": 3,
+      "effort": "MEDIUM",
       "text": "Une méthode d'appréciation des risques spécifiques à l'IA est-elle définie et appliquée ?",
       "evidence": "Méthodologie documentée, analyses de risques par système IA, cartographie des risques.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "RISK.1.2", "subdomain": "RISK.1", "criticality": 2, "effort": "MEDIUM",
+      "code": "RISK.1.2",
+      "subdomain": "RISK.1",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les menaces adversariales propres à l'IA (empoisonnement, évasion, extraction de modèle, injection) sont-elles prises en compte ?",
       "evidence": "Modélisation des menaces (MITRE ATLAS, STRIDE), scénarios d'attaque documentés.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "RISK.2.1", "subdomain": "RISK.2", "criticality": 3, "effort": "MEDIUM",
+      "code": "RISK.2.1",
+      "subdomain": "RISK.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Une analyse d'impact sur les personnes, les groupes et la société est-elle réalisée avant le déploiement d'un système IA ?",
       "evidence": "Analyses d'impact signées, procédure de mise en production faisant référence à l'analyse.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "RISK.2.2", "subdomain": "RISK.2", "criticality": 2, "effort": "LOW",
+      "code": "RISK.2.2",
+      "subdomain": "RISK.2",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "L'analyse d'impact relative à la protection des données (AIPD) est-elle articulée avec l'analyse d'impact IA ?",
       "evidence": "AIPD intégrant les spécificités IA, avis du DPO.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "RISK.3.1", "subdomain": "RISK.3", "criticality": 2, "effort": "LOW",
+      "code": "RISK.3.1",
+      "subdomain": "RISK.3",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Chaque risque IA identifié dispose-t-il d'un plan de traitement, d'un propriétaire et d'une échéance ?",
       "evidence": "Plans de traitement des risques, registre d'acceptation des risques résiduels.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "RISK.3.2", "subdomain": "RISK.3", "criticality": 2, "effort": "LOW",
+      "code": "RISK.3.2",
+      "subdomain": "RISK.3",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les risques IA sont-ils réévalués périodiquement et à chaque changement (nouveau modèle, nouvelles données, nouvel usage) ?",
       "evidence": "Calendrier de revue, historique des réévaluations.",
       "levels": [

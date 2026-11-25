@@ -2,7 +2,10 @@
   "domain": "DEV",
   "questions": [
     {
-      "code": "DEV.1.1", "subdomain": "DEV.1", "criticality": 2, "effort": "MEDIUM",
+      "code": "DEV.1.1",
+      "subdomain": "DEV.1",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Des exigences de sécurité sont-elles intégrées dès la conception des systèmes IA (security by design) ?",
       "evidence": "Catalogue d'exigences de sécurité IA, comptes rendus de revue de conception, configuration CI/CD.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "DEV.1.2", "subdomain": "DEV.1", "criticality": 3, "effort": "LOW",
+      "code": "DEV.1.2",
+      "subdomain": "DEV.1",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les secrets (clés API des fournisseurs IA, identifiants) sont-ils gérés de manière sécurisée ?",
       "evidence": "Coffre-fort de secrets, rapport de scan de secrets (gitleaks), procédure de rotation.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "DEV.2.1", "subdomain": "DEV.2", "criticality": 3, "effort": "MEDIUM",
+      "code": "DEV.2.1",
+      "subdomain": "DEV.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les fournisseurs et services IA tiers (API de LLM, SaaS IA) sont-ils évalués avant utilisation ?",
       "evidence": "Questionnaires fournisseurs, clauses contractuelles (non-réutilisation des données, localisation), certifications.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "DEV.2.2", "subdomain": "DEV.2", "criticality": 3, "effort": "MEDIUM",
+      "code": "DEV.2.2",
+      "subdomain": "DEV.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les modèles pré-entraînés et bibliothèques open source sont-ils vérifiés (origine, intégrité, vulnérabilités) ?",
       "evidence": "Liste des sources autorisées, AI-BOM / SBOM, rapports de scan des modèles.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "DEV.3.1", "subdomain": "DEV.3", "criticality": 3, "effort": "MEDIUM",
+      "code": "DEV.3.1",
+      "subdomain": "DEV.3",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les modèles sont-ils testés (performance, robustesse, biais, sécurité) avant leur mise en production ?",
       "evidence": "Plan de tests, critères d'acceptation, rapports de tests archivés.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "DEV.3.2", "subdomain": "DEV.3", "criticality": 2, "effort": "HIGH",
+      "code": "DEV.3.2",
+      "subdomain": "DEV.3",
+      "criticality": 2,
+      "effort": "HIGH",
       "text": "Des exercices de red teaming ou des tests d'intrusion spécifiques à l'IA sont-ils réalisés ?",
       "evidence": "Rapports de red teaming, méthodologie utilisée, plan de remédiation.",
       "levels": [
@@ -110,7 +128,10 @@
       ]
     },
     {
-      "code": "DEV.4.1", "subdomain": "DEV.4", "criticality": 2, "effort": "MEDIUM",
+      "code": "DEV.4.1",
+      "subdomain": "DEV.4",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Le déploiement des modèles suit-il un processus de validation et de gestion des changements ?",
       "evidence": "Procédure de mise en production, tickets de changement, historique des déploiements.",
       "levels": [
@@ -128,7 +149,10 @@
       ]
     },
     {
-      "code": "DEV.4.2", "subdomain": "DEV.4", "criticality": 1, "effort": "LOW",
+      "code": "DEV.4.2",
+      "subdomain": "DEV.4",
+      "criticality": 1,
+      "effort": "LOW",
       "text": "Les modèles sont-ils versionnés avec leur documentation (model card), avec possibilité de revenir à une version antérieure ?",
       "evidence": "Registre de modèles, model cards, test de retour arrière.",
       "levels": [

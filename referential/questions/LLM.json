@@ -2,7 +2,10 @@
   "domain": "LLM",
   "questions": [
     {
-      "code": "LLM.1.1", "subdomain": "LLM.1", "criticality": 3, "effort": "MEDIUM",
+      "code": "LLM.1.1",
+      "subdomain": "LLM.1",
+      "criticality": 3,
+      "effort": "MEDIUM",
       "text": "Des protections contre l'injection de prompt (directe et indirecte) sont-elles en place ?",
       "evidence": "Architecture des garde-fous, configuration des filtres, rapports de tests d'injection.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "LLM.1.2", "subdomain": "LLM.1", "criticality": 2, "effort": "LOW",
+      "code": "LLM.1.2",
+      "subdomain": "LLM.1",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Le prompt système est-il protégé et dépourvu d'informations sensibles ?",
       "evidence": "Revue des prompts système, tests d'extraction du prompt.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "LLM.2.1", "subdomain": "LLM.2", "criticality": 3, "effort": "MEDIUM",
+      "code": "LLM.2.1",
+      "subdomain": "LLM.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les sorties des LLM sont-elles validées avant d'être affichées ou transmises à d'autres systèmes ?",
       "evidence": "Code de validation / encodage des sorties, tests XSS / injection SQL sur les sorties.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "LLM.2.2", "subdomain": "LLM.2", "criticality": 3, "effort": "MEDIUM",
+      "code": "LLM.2.2",
+      "subdomain": "LLM.2",
+      "criticality": 3,
+      "effort": "MEDIUM",
       "text": "Des mécanismes empêchent-ils le LLM de divulguer des données sensibles ?",
       "evidence": "Configuration du masquage des données personnelles, tests d'extraction de données.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "LLM.3.1", "subdomain": "LLM.3", "criticality": 3, "effort": "MEDIUM",
+      "code": "LLM.3.1",
+      "subdomain": "LLM.3",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les outils et permissions des agents IA sont-ils limités au strict nécessaire ?",
       "evidence": "Liste des outils accessibles aux agents, comptes de service dédiés, revue des permissions.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "LLM.3.2", "subdomain": "LLM.3", "criticality": 3, "effort": "LOW",
+      "code": "LLM.3.2",
+      "subdomain": "LLM.3",
+      "criticality": 3,
+      "effort": "LOW",
       "text": "Les actions sensibles déclenchées par une IA (paiement, suppression, envoi externe) nécessitent-elles une validation humaine ?",
       "evidence": "Liste des actions sensibles, captures du flux de validation, journaux d'approbation.",
       "levels": [
@@ -110,7 +128,10 @@
       ]
     },
     {
-      "code": "LLM.4.1", "subdomain": "LLM.4", "criticality": 3, "effort": "HIGH",
+      "code": "LLM.4.1",
+      "subdomain": "LLM.4",
+      "criticality": 3,
+      "effort": "HIGH",
       "text": "L'accès aux documents d'une base RAG respecte-t-il les droits de l'utilisateur qui interroge ?",
       "evidence": "Conception du filtrage par permissions, tests de cloisonnement entre utilisateurs.",
       "levels": [
@@ -128,7 +149,10 @@
       ]
     },
     {
-      "code": "LLM.4.2", "subdomain": "LLM.4", "criticality": 2, "effort": "MEDIUM",
+      "code": "LLM.4.2",
+      "subdomain": "LLM.4",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "L'intégrité des documents indexés et de la base vectorielle est-elle contrôlée ?",
       "evidence": "Procédure d'ingestion, liste des sources autorisées, droits d'écriture sur la base vectorielle.",
       "levels": [

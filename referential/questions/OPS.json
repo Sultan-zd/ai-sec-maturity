@@ -2,7 +2,10 @@
   "domain": "OPS",
   "questions": [
     {
-      "code": "OPS.1.1", "subdomain": "OPS.1", "criticality": 3, "effort": "MEDIUM",
+      "code": "OPS.1.1",
+      "subdomain": "OPS.1",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "L'accès aux systèmes IA (modèles, données, plateformes MLOps, consoles des fournisseurs) est-il contrôlé selon le moindre privilège ?",
       "evidence": "Procédure de gestion des accès, configuration MFA, comptes rendus de revue des accès.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "OPS.1.2", "subdomain": "OPS.1", "criticality": 2, "effort": "LOW",
+      "code": "OPS.1.2",
+      "subdomain": "OPS.1",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les API exposant des systèmes IA sont-elles protégées (authentification, autorisation, chiffrement) ?",
       "evidence": "Configuration de la passerelle API, documentation OAuth2 / JWT, rapports de tests de sécurité.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "OPS.2.1", "subdomain": "OPS.2", "criticality": 2, "effort": "MEDIUM",
+      "code": "OPS.2.1",
+      "subdomain": "OPS.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les interactions avec les systèmes IA (requêtes, réponses, décisions) sont-elles journalisées ?",
       "evidence": "Politique de journalisation, extraits de journaux, règles de détection dans le SIEM.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "OPS.2.2", "subdomain": "OPS.2", "criticality": 2, "effort": "MEDIUM",
+      "code": "OPS.2.2",
+      "subdomain": "OPS.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "La performance et la dérive des modèles en production sont-elles surveillées ?",
       "evidence": "Tableaux de bord de surveillance des modèles, seuils d'alerte, historique des alertes.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "OPS.3.1", "subdomain": "OPS.3", "criticality": 2, "effort": "LOW",
+      "code": "OPS.3.1",
+      "subdomain": "OPS.3",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Des limites (quotas, limitation de débit, taille des requêtes) protègent-elles contre la consommation excessive de ressources ?",
       "evidence": "Configuration des quotas et limites, budgets et alertes de coûts.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "OPS.3.2", "subdomain": "OPS.3", "criticality": 2, "effort": "HIGH",
+      "code": "OPS.3.2",
+      "subdomain": "OPS.3",
+      "criticality": 2,
+      "effort": "HIGH",
       "text": "La continuité des services IA critiques est-elle assurée (plan de secours, fournisseur alternatif, mode dégradé) ?",
       "evidence": "Plan de continuité, comptes rendus de tests de bascule.",
       "levels": [
@@ -110,7 +128,10 @@
       ]
     },
     {
-      "code": "OPS.4.1", "subdomain": "OPS.4", "criticality": 3, "effort": "MEDIUM",
+      "code": "OPS.4.1",
+      "subdomain": "OPS.4",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "La procédure de gestion des incidents couvre-t-elle les incidents propres à l'IA ?",
       "evidence": "Procédure d'incident incluant les scénarios IA, comptes rendus d'exercices, indicateurs de traitement.",
       "levels": [
@@ -128,7 +149,10 @@
       ]
     },
     {
-      "code": "OPS.4.2", "subdomain": "OPS.4", "criticality": 1, "effort": "LOW",
+      "code": "OPS.4.2",
+      "subdomain": "OPS.4",
+      "criticality": 1,
+      "effort": "LOW",
       "text": "Les utilisateurs peuvent-ils facilement signaler un comportement anormal d'un système IA ?",
       "evidence": "Canal de signalement (bouton, formulaire), statistiques des signalements.",
       "levels": [

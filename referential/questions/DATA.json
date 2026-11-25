@@ -2,7 +2,10 @@
   "domain": "DATA",
   "questions": [
     {
-      "code": "DATA.1.1", "subdomain": "DATA.1", "criticality": 2, "effort": "MEDIUM",
+      "code": "DATA.1.1",
+      "subdomain": "DATA.1",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "L'origine, les droits d'utilisation et le lignage des données utilisées par les systèmes IA sont-ils documentés ?",
       "evidence": "Fiches descriptives des jeux de données (datasheets), outil de lignage, catalogue de données.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "DATA.1.2", "subdomain": "DATA.1", "criticality": 2, "effort": "MEDIUM",
+      "code": "DATA.1.2",
+      "subdomain": "DATA.1",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "La qualité des données (exactitude, complétude, représentativité) est-elle évaluée avant l'entraînement ?",
       "evidence": "Critères de qualité documentés, rapports de contrôle qualité des données.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "DATA.2.1", "subdomain": "DATA.2", "criticality": 3, "effort": "MEDIUM",
+      "code": "DATA.2.1",
+      "subdomain": "DATA.2",
+      "criticality": 3,
+      "effort": "MEDIUM",
       "text": "Les principes de protection des données personnelles (base légale, minimisation, durée de conservation) sont-ils appliqués aux traitements IA ?",
       "evidence": "Registre des traitements, déclarations / autorisations CNDP, mentions d'information.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "DATA.2.2", "subdomain": "DATA.2", "criticality": 3, "effort": "MEDIUM",
+      "code": "DATA.2.2",
+      "subdomain": "DATA.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Des mesures empêchent-elles l'envoi de données sensibles vers des services IA externes non autorisés ?",
       "evidence": "Règle écrite, liste des outils IA autorisés, configuration DLP / CASB / proxy.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "DATA.3.1", "subdomain": "DATA.3", "criticality": 3, "effort": "HIGH",
+      "code": "DATA.3.1",
+      "subdomain": "DATA.3",
+      "criticality": 2,
+      "effort": "HIGH",
       "text": "L'intégrité des données d'entraînement est-elle protégée contre l'empoisonnement ?",
       "evidence": "Contrôles d'accès aux jeux de données, empreintes (hash), rapports de détection d'anomalies.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "DATA.3.2", "subdomain": "DATA.3", "criticality": 2, "effort": "LOW",
+      "code": "DATA.3.2",
+      "subdomain": "DATA.3",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les données d'entraînement et les modèles sont-ils chiffrés et sauvegardés ?",
       "evidence": "Configuration du chiffrement, politique de sauvegarde, procès-verbaux de tests de restauration.",
       "levels": [

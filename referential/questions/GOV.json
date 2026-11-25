@@ -2,7 +2,10 @@
   "domain": "GOV",
   "questions": [
     {
-      "code": "GOV.1.1", "subdomain": "GOV.1", "criticality": 2, "effort": "MEDIUM",
+      "code": "GOV.1.1",
+      "subdomain": "GOV.1",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "La direction a-t-elle défini une stratégie IA alignée sur les objectifs de l'entreprise ?",
       "evidence": "Document de stratégie IA, compte rendu de comité de direction, feuille de route IA.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "GOV.1.2", "subdomain": "GOV.1", "criticality": 3, "effort": "LOW",
+      "code": "GOV.1.2",
+      "subdomain": "GOV.1",
+      "criticality": 3,
+      "effort": "LOW",
       "text": "Existe-t-il une politique IA (usage acceptable, principes éthiques, exigences de sécurité) approuvée et diffusée ?",
       "evidence": "Politique IA signée, preuve de diffusion (intranet, e-mail), attestations de lecture.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "GOV.2.1", "subdomain": "GOV.2", "criticality": 3, "effort": "LOW",
+      "code": "GOV.2.1",
+      "subdomain": "GOV.2",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les rôles et responsabilités liés à l'IA sont-ils formellement attribués ?",
       "evidence": "Note de nomination du responsable IA, matrice RACI, fiches de poste.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "GOV.2.2", "subdomain": "GOV.2", "criticality": 2, "effort": "MEDIUM",
+      "code": "GOV.2.2",
+      "subdomain": "GOV.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Un comité de gouvernance IA supervise-t-il les décisions et les risques liés à l'IA ?",
       "evidence": "Charte du comité IA, ordres du jour, comptes rendus de réunion.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "GOV.2.3", "subdomain": "GOV.2", "criticality": 2, "effort": "LOW",
+      "code": "GOV.2.3",
+      "subdomain": "GOV.2",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "La direction générale (ou le conseil d'administration) reçoit-elle un reporting régulier sur les risques et la performance de l'IA ?",
       "evidence": "Tableaux de bord présentés à la direction, procès-verbaux du conseil.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "GOV.3.1", "subdomain": "GOV.3", "criticality": 3, "effort": "MEDIUM",
+      "code": "GOV.3.1",
+      "subdomain": "GOV.3",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "L'entreprise dispose-t-elle d'un inventaire de ses systèmes IA (développés en interne, achetés, SaaS) ?",
       "evidence": "Registre des systèmes IA avec propriétaire, finalité, données traitées et fournisseur.",
       "levels": [
@@ -110,7 +128,10 @@
       ]
     },
     {
-      "code": "GOV.3.2", "subdomain": "GOV.3", "criticality": 2, "effort": "LOW",
+      "code": "GOV.3.2",
+      "subdomain": "GOV.3",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les systèmes IA sont-ils classés selon leur niveau de risque (par exemple selon les catégories de l'AI Act) ?",
       "evidence": "Grille de classification, colonne « niveau de risque » dans le registre.",
       "levels": [
@@ -128,7 +149,10 @@
       ]
     },
     {
-      "code": "GOV.4.1", "subdomain": "GOV.4", "criticality": 3, "effort": "MEDIUM",
+      "code": "GOV.4.1",
+      "subdomain": "GOV.4",
+      "criticality": 3,
+      "effort": "MEDIUM",
       "text": "Les obligations légales et réglementaires applicables à l'IA sont-elles identifiées et suivies ?",
       "evidence": "Registre des obligations, avis juridiques, rapports de contrôle de conformité.",
       "levels": [
@@ -146,7 +170,10 @@
       ]
     },
     {
-      "code": "GOV.4.2", "subdomain": "GOV.4", "criticality": 1, "effort": "MEDIUM",
+      "code": "GOV.4.2",
+      "subdomain": "GOV.4",
+      "criticality": 1,
+      "effort": "MEDIUM",
       "text": "Les questions de propriété intellectuelle et de responsabilité liées à l'IA (contenus générés, données d'entraînement, contrats) sont-elles traitées ?",
       "evidence": "Clauses contractuelles types IA, analyses juridiques sur les droits des données.",
       "levels": [

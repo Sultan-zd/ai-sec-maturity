@@ -2,7 +2,10 @@
   "domain": "PEOPLE",
   "questions": [
     {
-      "code": "PEOPLE.1.1", "subdomain": "PEOPLE.1", "criticality": 2, "effort": "LOW",
+      "code": "PEOPLE.1.1",
+      "subdomain": "PEOPLE.1",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les collaborateurs sont-ils sensibilisés aux risques liés à l'IA ?",
       "evidence": "Supports de sensibilisation, taux de participation, résultats de quiz.",
       "levels": [
@@ -20,7 +23,10 @@
       ]
     },
     {
-      "code": "PEOPLE.1.2", "subdomain": "PEOPLE.1", "criticality": 2, "effort": "MEDIUM",
+      "code": "PEOPLE.1.2",
+      "subdomain": "PEOPLE.1",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Les équipes techniques (data scientists, développeurs, exploitants) sont-elles formées à la sécurité de l'IA ?",
       "evidence": "Plan de formation, attestations, certifications obtenues.",
       "levels": [
@@ -38,7 +44,10 @@
       ]
     },
     {
-      "code": "PEOPLE.2.1", "subdomain": "PEOPLE.2", "criticality": 3, "effort": "LOW",
+      "code": "PEOPLE.2.1",
+      "subdomain": "PEOPLE.2",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Une charte d'usage de l'IA générative définit-elle les outils autorisés et les usages interdits ?",
       "evidence": "Charte d'usage de l'IA, liste des outils autorisés, preuve d'acceptation par les collaborateurs.",
       "levels": [
@@ -56,7 +65,10 @@
       ]
     },
     {
-      "code": "PEOPLE.2.2", "subdomain": "PEOPLE.2", "criticality": 2, "effort": "MEDIUM",
+      "code": "PEOPLE.2.2",
+      "subdomain": "PEOPLE.2",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "L'usage d'outils IA non autorisés (shadow AI) est-il détecté ?",
       "evidence": "Rapports du proxy / CASB sur les services IA, actions de suivi.",
       "levels": [
@@ -74,7 +86,10 @@
       ]
     },
     {
-      "code": "PEOPLE.3.1", "subdomain": "PEOPLE.3", "criticality": 2, "effort": "MEDIUM",
+      "code": "PEOPLE.3.1",
+      "subdomain": "PEOPLE.3",
+      "criticality": 2,
+      "effort": "MEDIUM",
       "text": "Des audits internes du dispositif de gouvernance et de sécurité de l'IA sont-ils réalisés ?",
       "evidence": "Programme d'audit, rapports d'audit, revue de direction.",
       "levels": [
@@ -92,7 +107,10 @@
       ]
     },
     {
-      "code": "PEOPLE.3.2", "subdomain": "PEOPLE.3", "criticality": 2, "effort": "LOW",
+      "code": "PEOPLE.3.2",
+      "subdomain": "PEOPLE.3",
+      "criticality": 2,
+      "effort": "LOW",
       "text": "Les non-conformités et incidents donnent-ils lieu à des actions correctives suivies jusqu'à leur clôture ?",
       "evidence": "Registre des actions correctives, taux de clôture, analyses des causes.",
       "levels": [
