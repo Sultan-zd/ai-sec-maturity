@@ -1,0 +1,327 @@
+{
+  "standard": "ISO/IEC 42001:2023",
+  "annex": "A",
+  "total_controls": 38,
+  "objectives": [
+    {
+      "id": "A.2",
+      "title": "Policies related to AI",
+      "controls": [
+        {
+          "ref": "A.2.2",
+          "title": "AI policy",
+          "status": "full",
+          "aima_questions": ["GOV.1.2"],
+          "note": "GOV.1.2 requires an approved and communicated AI policy covering acceptable use, ethical principles and security requirements."
+        },
+        {
+          "ref": "A.2.3",
+          "title": "Alignment with other organizational policies",
+          "status": "partial",
+          "aima_questions": ["GOV.1.2", "GOV.4.1"],
+          "note": "GOV.1.2 covers the AI policy content and GOV.4.1 covers regulatory alignment, but consistency with the information-security, data-protection and HR policies is only implicit."
+        },
+        {
+          "ref": "A.2.4",
+          "title": "Review of the AI policy",
+          "status": "partial",
+          "aima_questions": ["PEOPLE.3.1", "RISK.3.2"],
+          "note": "Internal audits and periodic risk reviews imply a policy review, but no AIMA question explicitly requires the AI policy itself to be reviewed and re-approved."
+        }
+      ]
+    },
+    {
+      "id": "A.3",
+      "title": "Internal organization",
+      "controls": [
+        {
+          "ref": "A.3.2",
+          "title": "AI roles and responsibilities",
+          "status": "full",
+          "aima_questions": ["GOV.2.1", "GOV.2.2"],
+          "note": "GOV.2.1 assigns AI roles formally and GOV.2.2 covers the AI governance committee."
+        },
+        {
+          "ref": "A.3.3",
+          "title": "Reporting of concerns",
+          "status": "gap",
+          "aima_questions": [],
+          "note": "No AIMA question covers a confidential concern-reporting / whistleblowing channel for staff. OPS.4.2 only covers users reporting abnormal AI behaviour."
+        }
+      ]
+    },
+    {
+      "id": "A.4",
+      "title": "Resources for AI systems",
+      "controls": [
+        {
+          "ref": "A.4.2",
+          "title": "Resource documentation",
+          "status": "partial",
+          "aima_questions": ["GOV.3.1"],
+          "note": "GOV.3.1 documents the AI system inventory, but not the data, tooling, compute and human resources each system depends on."
+        },
+        {
+          "ref": "A.4.3",
+          "title": "Data resources",
+          "status": "full",
+          "aima_questions": ["DATA.1.1", "DATA.1.2"],
+          "note": "DATA.1.1 and DATA.1.2 cover data origin, usage rights, lineage and quality."
+        },
+        {
+          "ref": "A.4.4",
+          "title": "Tooling resources",
+          "status": "full",
+          "aima_questions": ["DEV.2.1", "DEV.2.2"],
+          "note": "DEV.2.1 and DEV.2.2 cover assessment of third-party AI services, pre-trained models and open-source libraries."
+        },
+        {
+          "ref": "A.4.5",
+          "title": "System and computing resources",
+          "status": "partial",
+          "aima_questions": ["OPS.3.1", "OPS.3.2"],
+          "note": "OPS.3.1 and OPS.3.2 cover capacity limits and continuity, but not documentation of the compute resources used."
+        },
+        {
+          "ref": "A.4.6",
+          "title": "Human resources",
+          "status": "full",
+          "aima_questions": ["PEOPLE.1.1", "PEOPLE.1.2"],
+          "note": "PEOPLE.1.1 and PEOPLE.1.2 cover staff awareness and technical training."
+        }
+      ]
+    },
+    {
+      "id": "A.5",
+      "title": "Assessing impacts of AI systems",
+      "controls": [
+        {
+          "ref": "A.5.2",
+          "title": "AI system impact assessment process",
+          "status": "full",
+          "aima_questions": ["RISK.2.1", "RISK.2.2"],
+          "note": "RISK.2.1 requires an impact assessment before deployment and RISK.2.2 links it to the DPIA."
+        },
+        {
+          "ref": "A.5.3",
+          "title": "Documentation of AI system impact assessments",
+          "status": "partial",
+          "aima_questions": ["RISK.2.1", "RISK.3.1"],
+          "note": "RISK.2.1 requires the assessment and RISK.3.1 requires documented treatment plans, but retention of the impact-assessment record is not explicit."
+        },
+        {
+          "ref": "A.5.4",
+          "title": "Assessing AI system impact on individuals or groups of individuals",
+          "status": "full",
+          "aima_questions": ["RISK.2.1", "TRUST.2.2"],
+          "note": "RISK.2.1 covers impacts on people and groups; TRUST.2.2 covers stakeholder consultation."
+        },
+        {
+          "ref": "A.5.5",
+          "title": "Assessing societal impacts of AI systems",
+          "status": "full",
+          "aima_questions": ["RISK.2.1"],
+          "note": "RISK.2.1 explicitly includes impacts on society."
+        }
+      ]
+    },
+    {
+      "id": "A.6",
+      "title": "AI system life cycle",
+      "controls": [
+        {
+          "ref": "A.6.1.2",
+          "title": "Objectives for responsible development of AI system",
+          "status": "full",
+          "aima_questions": ["GOV.1.1", "DEV.1.1"],
+          "note": "GOV.1.1 sets the AI strategy and objectives; DEV.1.1 embeds security requirements by design."
+        },
+        {
+          "ref": "A.6.1.3",
+          "title": "Processes for responsible AI system design and development",
+          "status": "full",
+          "aima_questions": ["DEV.1.1", "DEV.1.2"],
+          "note": "DEV.1.1 and DEV.1.2 define security-by-design and secret-management practices."
+        },
+        {
+          "ref": "A.6.2.2",
+          "title": "AI system requirements and specification",
+          "status": "partial",
+          "aima_questions": ["DEV.1.1", "DEV.3.1"],
+          "note": "DEV.1.1 covers security requirements and DEV.3.1 covers test criteria, but functional, performance and ethical specifications are not explicitly required."
+        },
+        {
+          "ref": "A.6.2.3",
+          "title": "Documentation of AI system design and development",
+          "status": "partial",
+          "aima_questions": ["DEV.4.2"],
+          "note": "DEV.4.2 requires a model card and versioning, but not full design and development documentation."
+        },
+        {
+          "ref": "A.6.2.4",
+          "title": "AI system verification and validation",
+          "status": "full",
+          "aima_questions": ["DEV.3.1", "DEV.3.2"],
+          "note": "DEV.3.1 (performance, robustness, bias, security testing) and DEV.3.2 (red teaming) cover verification and validation."
+        },
+        {
+          "ref": "A.6.2.5",
+          "title": "AI system deployment",
+          "status": "full",
+          "aima_questions": ["DEV.4.1"],
+          "note": "DEV.4.1 requires a validation and change-management process before deployment."
+        },
+        {
+          "ref": "A.6.2.6",
+          "title": "AI system operation and monitoring",
+          "status": "full",
+          "aima_questions": ["OPS.2.1", "OPS.2.2"],
+          "note": "OPS.2.1 covers logging; OPS.2.2 covers performance and drift monitoring."
+        },
+        {
+          "ref": "A.6.2.7",
+          "title": "AI system technical documentation",
+          "status": "partial",
+          "aima_questions": ["DEV.4.2"],
+          "note": "DEV.4.2 requires a model card, but not the full technical documentation set (architecture, training data, evaluation results)."
+        },
+        {
+          "ref": "A.6.2.8",
+          "title": "AI system recording of event logs",
+          "status": "full",
+          "aima_questions": ["OPS.2.1"],
+          "note": "OPS.2.1 requires logging of requests, responses and decisions."
+        }
+      ]
+    },
+    {
+      "id": "A.7",
+      "title": "Data for AI systems",
+      "controls": [
+        {
+          "ref": "A.7.2",
+          "title": "Data for development and enhancement of AI system",
+          "status": "full",
+          "aima_questions": ["DATA.1.1", "DATA.1.2"],
+          "note": "DATA.1.1 and DATA.1.2 cover provenance and quality of training data."
+        },
+        {
+          "ref": "A.7.3",
+          "title": "Acquisition of data",
+          "status": "partial",
+          "aima_questions": ["DATA.1.1", "DATA.2.1"],
+          "note": "DATA.1.1 covers origin and usage rights and DATA.2.1 covers legal basis, but the acquisition process itself (contracts, consent, collection methods) is not explicit."
+        },
+        {
+          "ref": "A.7.4",
+          "title": "Quality of data for AI systems",
+          "status": "full",
+          "aima_questions": ["DATA.1.2"],
+          "note": "DATA.1.2 evaluates accuracy, completeness and representativeness before training."
+        },
+        {
+          "ref": "A.7.5",
+          "title": "Data provenance",
+          "status": "full",
+          "aima_questions": ["DATA.1.1"],
+          "note": "DATA.1.1 documents origin, usage rights and lineage."
+        },
+        {
+          "ref": "A.7.6",
+          "title": "Data preparation",
+          "status": "partial",
+          "aima_questions": ["DATA.1.2", "DATA.3.1"],
+          "note": "DATA.1.2 covers quality checks and DATA.3.1 covers poisoning protection, but preparation steps (labelling, cleaning, splitting) are not explicit."
+        }
+      ]
+    },
+    {
+      "id": "A.8",
+      "title": "Information for interested parties of AI systems",
+      "controls": [
+        {
+          "ref": "A.8.2",
+          "title": "System documentation and information for users",
+          "status": "full",
+          "aima_questions": ["TRUST.1.1", "TRUST.1.2"],
+          "note": "TRUST.1.1 covers AI interaction disclosure; TRUST.1.2 covers explainability of decisions."
+        },
+        {
+          "ref": "A.8.3",
+          "title": "External reporting",
+          "status": "gap",
+          "aima_questions": [],
+          "note": "No AIMA question covers reporting to regulators, certification bodies or the public (e.g. AI Act serious-incident reporting and EU database registration)."
+        },
+        {
+          "ref": "A.8.4",
+          "title": "Communication of incidents",
+          "status": "full",
+          "aima_questions": ["OPS.4.1", "OPS.4.2"],
+          "note": "OPS.4.1 covers AI incident management; OPS.4.2 covers user reporting of abnormal behaviour."
+        },
+        {
+          "ref": "A.8.5",
+          "title": "Information for interested parties",
+          "status": "partial",
+          "aima_questions": ["TRUST.1.1", "TRUST.2.2"],
+          "note": "TRUST.1.1 informs users and TRUST.2.2 consults stakeholders, but no question covers a broader interested-party communication plan."
+        }
+      ]
+    },
+    {
+      "id": "A.9",
+      "title": "Use of AI systems",
+      "controls": [
+        {
+          "ref": "A.9.2",
+          "title": "Processes for responsible use of AI systems",
+          "status": "full",
+          "aima_questions": ["GOV.1.2", "PEOPLE.2.1"],
+          "note": "GOV.1.2 defines acceptable use and PEOPLE.2.1 defines the generative-AI usage charter."
+        },
+        {
+          "ref": "A.9.3",
+          "title": "Objectives for responsible use of AI system",
+          "status": "partial",
+          "aima_questions": ["GOV.1.1"],
+          "note": "GOV.1.1 defines the AI strategy and objectives, but responsible-use objectives (e.g. fairness and transparency targets) are not separately required."
+        },
+        {
+          "ref": "A.9.4",
+          "title": "Intended use of the AI system",
+          "status": "gap",
+          "aima_questions": [],
+          "note": "No AIMA question verifies that each AI system is used only for its documented intended purpose, or that misuse is detected."
+        }
+      ]
+    },
+    {
+      "id": "A.10",
+      "title": "Third-party and customer relationships",
+      "controls": [
+        {
+          "ref": "A.10.2",
+          "title": "Allocating responsibilities",
+          "status": "partial",
+          "aima_questions": ["GOV.2.1", "DEV.2.1"],
+          "note": "GOV.2.1 assigns internal roles and DEV.2.1 assesses suppliers, but the provider/customer responsibility split is not explicit."
+        },
+        {
+          "ref": "A.10.3",
+          "title": "Suppliers",
+          "status": "full",
+          "aima_questions": ["DEV.2.1", "DEV.2.2"],
+          "note": "DEV.2.1 and DEV.2.2 cover supplier and third-party component assessment."
+        },
+        {
+          "ref": "A.10.4",
+          "title": "Customers",
+          "status": "gap",
+          "aima_questions": [],
+          "note": "No AIMA question covers the information, instructions or contractual obligations passed to customers and deployers."
+        }
+      ]
+    }
+  ]
+}

@@ -22,6 +22,21 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parents[1]
+REFERENTIAL_PATH = REPO_ROOT / "referential" / "referentiel-v1.json"
+DEFAULT_REPORT_PATH = SCRIPT_DIR / "eu-ai-act-report.md"
+
+
+def load_referential_version() -> str:
+    """Read the AIMA version from the referential, with a safe fallback."""
+    try:
+        data = json.loads(REFERENTIAL_PATH.read_text(encoding="utf-8"))
+        return data.get("version", "2.0.0")
+    except (OSError, json.JSONDecodeError):
+        return "2.0.0"
+
+
 # ---------------------------------------------------------------------------
 # Risk category metadata
 # ---------------------------------------------------------------------------
@@ -203,7 +218,7 @@ def classify_system(system: dict) -> dict:
     return result
 
 
-def classify_portfolio(systems: list) -> dict:
+def classify_portfolio(systems: list, referential_version: str | None = None) -> dict:
     """Classify a list of AI systems and produce a summary report."""
     classifications = [classify_system(s) for s in systems]
     summary = {cat: 0 for cat in RISK_CATEGORIES}
@@ -212,7 +227,7 @@ def classify_portfolio(systems: list) -> dict:
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "regulation": "EU AI Act 2024/1689",
-        "referential_version": "AIMA 1.1.0",
+        "referential_version": referential_version or load_referential_version(),
         "total_systems": len(systems),
         "summary": summary,
         "classifications": classifications,
@@ -308,9 +323,12 @@ DEMO_SYSTEMS = [
         "processes_personal_data": True,
         "has_human_interaction": False,
         "is_generative": False,
-        # Fraud detection in financial services is debated under AI Act;
-        # EBA guidelines suggest Annex III.5b may apply. We use explicit override.
-        "annex_iii_category": "Annex III.5b -- Financial services AI: fraud/risk management (EBA guidance)",
+        # Fraud detection is NOT listed in Annex III. Annex III.5b only covers
+        # creditworthiness/credit scoring, and Annex III.5c covers insurance
+        # pricing. Transaction fraud detection therefore remains MINIMAL RISK
+        # under the AI Act (GDPR still applies to the personal data processed).
+        # It is kept in the demo to show that a "risky-sounding" system is not
+        # automatically high-risk: the legal basis matters, not the label.
     },
 ]
 
@@ -343,14 +361,17 @@ def main():
     # Save JSON
     if args.output:
         out_json = Path(args.output)
-        out_json.write_text(json.dumps(report, ensure_ascii=False, indent=2))
+        out_json.write_text(
+            json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
         out_md = out_json.with_suffix(".md")
-        out_md.write_text(markdown)
+        out_md.write_text(markdown, encoding="utf-8")
         print(f"\n[JSON saved to {out_json}]")
         print(f"[Markdown saved to {out_md}]")
     else:
-        Path("eu-ai-act-report.md").write_text(markdown)
-        print("[Markdown saved to eu-ai-act-report.md]")
+        # Stable default: write next to the script, never in the caller's CWD.
+        DEFAULT_REPORT_PATH.write_text(markdown, encoding="utf-8")
+        print(f"[Markdown saved to {DEFAULT_REPORT_PATH}]")
 
 
 if __name__ == "__main__":

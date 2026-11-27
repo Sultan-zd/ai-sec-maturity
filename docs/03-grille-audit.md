@@ -6,9 +6,9 @@
 |---|---|
 | Questions | **59** |
 | Sous-domaines couverts | 29 (minimum 2 questions chacun) |
-| Questions critiques (c = 3) | 24 |
-| Questions importantes (c = 2) | 31 |
-| Questions normales (c = 1) | 4 |
+| Questions critiques (c = 3) | 9 (15,3 %) |
+| Questions importantes (c = 2) | 46 (78,0 %) |
+| Questions normales (c = 1) | 4 (6,8 %) |
 | Durée estimée d'une auto-évaluation | 2 à 3 heures (en équipe) |
 
 - **Grille complète** : [03b-grille-audit-detaillee.md](03b-grille-audit-detaillee.md), générée automatiquement.
@@ -82,19 +82,19 @@ L'application gère ces deux modes grâce aux rôles `ORGANISATION` et `AUDITEUR
 
 ## 6. Exemple de calcul complet (sous-domaine LLM.3)
 
-Réponses : **LLM.3.1** (criticité 3) → niveau **2** ; **LLM.3.2** (criticité 3) → niveau **1**
+Réponses : **LLM.3.1** (criticité 2) → niveau **2** ; **LLM.3.2** (criticité 3) → niveau **1**
 
-$$ S_{LLM.3} = \frac{3 \times 2 + 3 \times 1}{3 + 3} = 1{,}5 $$
+$$ S_{LLM.3} = \frac{2 \times 2 + 3 \times 1}{2 + 3} = 1{,}4 $$
 
 Supposons que les autres sous-domaines du domaine LLM donnent : LLM.1 = 3,2 ;
 LLM.2 = 3,0 ; LLM.4 = 2,8.
 
-$$ S_{LLM}^{brut} = \frac{3{,}2 + 3{,}0 + 1{,}5 + 2{,}8}{4} = 2{,}625 $$
+$$ S_{LLM}^{brut} = \frac{3{,}2 + 3{,}0 + 1{,}4 + 2{,}8}{4} = 2{,}6 $$
 
 **Maillon faible** : LLM.3.2 est critique et au niveau 1, donc le domaine est
 plafonné à **2,0**.
 
-$$ S_{LLM} = \min(2{,}625 ;\ 2{,}0) = 2{,}0 \Rightarrow \text{Niveau 2 — Reproductible (25 \%)} $$
+$$ S_{LLM} = \min(2{,}6 ;\ 2{,}0) = 2{,}0 \Rightarrow \text{Niveau 2 — Reproductible (25 \%)} $$
 
 Avec une cible de 3, l'écart vaut 1,0. Recommandation générée pour LLM.3.2 :
 « Identifier toutes les actions sensibles qu'une IA peut déclencher ».

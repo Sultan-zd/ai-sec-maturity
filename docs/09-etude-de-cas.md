@@ -8,6 +8,13 @@
 > - Rejouer l'étude de cas : `node scripts/case-study/run.mjs` (avec la plateforme démarrée)
 > - Rapport PDF produit : [`etude-de-cas/rapport-banque-atlas.pdf`](etude-de-cas/rapport-banque-atlas.pdf)
 > - Données brutes : [`etude-de-cas/resultats.json`](etude-de-cas/resultats.json)
+>
+> **Version du référentiel.** Les résultats publiés ci-dessous ont été calculés avec le référentiel
+> **1.0.0**. Le référentiel courant est en **2.0.0** : le rebalancement des criticités (9 critiques,
+> 46 importantes, 4 normales) peut modifier certaines priorités de la feuille de route. Les évaluations
+> historiques restent liées à leur version d'origine ; pour rejouer l'étude avec la version courante,
+> lancer `node scripts/case-study/run.mjs` avec la plateforme démarrée, puis comparer les deux évaluations
+> dans l'application.
 
 ## 1. Contexte
 

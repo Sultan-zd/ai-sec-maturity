@@ -39,6 +39,28 @@ PFS/
 13. [Plan de soutenance et démonstration](docs/11-soutenance.md)
 14. [Contrats entre les modules (référentiel, API red-team)](docs/12-contrats-modules.md)
 
+## Modules de gouvernance et de preuve
+
+Ces modules complètent la plateforme et sont documentés dans
+[`docs/mohamed/CONTRIB.md`](docs/mohamed/CONTRIB.md).
+
+| Module | Commande | Livrable |
+|---|---|---|
+| Classification EU AI Act | `python3 mohamed/eu-ai-act/eu_ai_act.py --demo` | `mohamed/eu-ai-act/eu-ai-act-report.md` |
+| Assistant de preuves (LLM) | `python3 mohamed/evidence-assistant/assistant.py --document <doc>` | Suggestions JSON + revue auditeur |
+| Revue auditeur | `python3 mohamed/evidence-assistant/review.py --input suggestions.json` | `suggestions.reviewed.json` |
+| Validation AHP et sensibilité | `python3 mohamed/ahp/ahp_weights.py` | [`docs/mohamed/ahp-sensitivity.md`](docs/mohamed/ahp-sensitivity.md) |
+| Matrice ISO/IEC 42001 (38 contrôles) | `python3 mohamed/iso42001/iso42001_matrix.py` | [`docs/mohamed/iso42001-matrix.md`](docs/mohamed/iso42001-matrix.md) |
+| Fiabilité inter-évaluateurs | `node scripts/case-study/multi-respondent.mjs` | [`docs/mohamed/inter-rater-reliability.md`](docs/mohamed/inter-rater-reliability.md) |
+
+Les tests de ces modules s'exécutent sans réseau ni clé API :
+
+```bash
+python3 -m unittest discover -s mohamed/eu-ai-act -p 'test_*.py'
+python3 -m unittest discover -s mohamed/evidence-assistant -p 'test_*.py'
+python3 mohamed/iso42001/iso42001_matrix.py --check
+```
+
 ## Démarrage rapide (Docker)
 
 Prérequis : Docker Desktop uniquement.

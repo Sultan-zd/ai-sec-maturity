@@ -1,4 +1,4 @@
-# 03b — Grille d'audit détaillée AIMA v1.0.0
+# 03b — Grille d'audit détaillée AIMA v2.0.0
 
 > Fichier **généré automatiquement** par `scripts/referential-tool.mjs` à partir de `referential/`. Ne pas modifier à la main.
 
@@ -62,7 +62,7 @@ Rôles IA définis (responsable IA, comité), redevabilité de la direction, sé
 
 #### GOV.2.1 — Les rôles et responsabilités liés à l'IA sont-ils formellement attribués ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Faible  
+Criticité : Importante · Effort de mise en œuvre : Faible  
 Preuves attendues : Note de nomination du responsable IA, matrice RACI, fiches de poste.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -107,7 +107,7 @@ Registre à jour des systèmes IA (internes, achetés, SaaS) classés par niveau
 
 #### GOV.3.1 — L'entreprise dispose-t-elle d'un inventaire de ses systèmes IA (développés en interne, achetés, SaaS) ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Registre des systèmes IA avec propriétaire, finalité, données traitées et fournisseur.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -210,7 +210,7 @@ Preuves attendues : Modélisation des menaces (MITRE ATLAS, STRIDE), scénarios 
 
 #### RISK.2.1 — Une analyse d'impact sur les personnes, les groupes et la société est-elle réalisée avant le déploiement d'un système IA ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Analyses d'impact signées, procédure de mise en production faisant référence à l'analyse.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -326,7 +326,7 @@ Preuves attendues : Registre des traitements, déclarations / autorisations CNDP
 
 #### DATA.2.2 — Des mesures empêchent-elles l'envoi de données sensibles vers des services IA externes non autorisés ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Règle écrite, liste des outils IA autorisés, configuration DLP / CASB / proxy.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -345,7 +345,7 @@ Protection contre l'empoisonnement des données et du modèle, contrôle d'inté
 
 #### DATA.3.1 — L'intégrité des données d'entraînement est-elle protégée contre l'empoisonnement ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Élevé  
+Criticité : Importante · Effort de mise en œuvre : Élevé  
 Preuves attendues : Contrôles d'accès aux jeux de données, empreintes (hash), rapports de détection d'anomalies.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -397,7 +397,7 @@ Preuves attendues : Catalogue d'exigences de sécurité IA, comptes rendus de re
 
 #### DEV.1.2 — Les secrets (clés API des fournisseurs IA, identifiants) sont-ils gérés de manière sécurisée ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Faible  
+Criticité : Importante · Effort de mise en œuvre : Faible  
 Preuves attendues : Coffre-fort de secrets, rapport de scan de secrets (gitleaks), procédure de rotation.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -416,7 +416,7 @@ Preuves attendues : Coffre-fort de secrets, rapport de scan de secrets (gitleaks
 
 #### DEV.2.1 — Les fournisseurs et services IA tiers (API de LLM, SaaS IA) sont-ils évalués avant utilisation ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Questionnaires fournisseurs, clauses contractuelles (non-réutilisation des données, localisation), certifications.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -429,7 +429,7 @@ Preuves attendues : Questionnaires fournisseurs, clauses contractuelles (non-ré
 
 #### DEV.2.2 — Les modèles pré-entraînés et bibliothèques open source sont-ils vérifiés (origine, intégrité, vulnérabilités) ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Liste des sources autorisées, AI-BOM / SBOM, rapports de scan des modèles.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -448,7 +448,7 @@ Tests de performance, robustesse, sécurité adversariale et red teaming avant m
 
 #### DEV.3.1 — Les modèles sont-ils testés (performance, robustesse, biais, sécurité) avant leur mise en production ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Plan de tests, critères d'acceptation, rapports de tests archivés.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -551,7 +551,7 @@ Prévention des fuites de données sensibles et validation des sorties avant usa
 
 #### LLM.2.1 — Les sorties des LLM sont-elles validées avant d'être affichées ou transmises à d'autres systèmes ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Code de validation / encodage des sorties, tests XSS / injection SQL sur les sorties.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -583,7 +583,7 @@ Limitation des outils, des permissions et de l'autonomie des agents IA ; validat
 
 #### LLM.3.1 — Les outils et permissions des agents IA sont-ils limités au strict nécessaire ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Liste des outils accessibles aux agents, comptes de service dédiés, revue des permissions.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -654,7 +654,7 @@ Authentification forte, moindre privilège et revue des accès aux modèles, don
 
 #### OPS.1.1 — L'accès aux systèmes IA (modèles, données, plateformes MLOps, consoles des fournisseurs) est-il contrôlé selon le moindre privilège ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Procédure de gestion des accès, configuration MFA, comptes rendus de revue des accès.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -750,7 +750,7 @@ Procédure de détection, de réponse et de retour d'expérience pour les incide
 
 #### OPS.4.1 — La procédure de gestion des incidents couvre-t-elle les incidents propres à l'IA ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Procédure d'incident incluant les scénarios IA, comptes rendus d'exercices, indicateurs de traitement.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -853,7 +853,7 @@ Capacité humaine à surveiller, interpréter, contester et interrompre les déc
 
 #### TRUST.3.1 — Un humain peut-il surveiller, contester et corriger les décisions d'un système IA à risque élevé ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Moyen  
+Criticité : Importante · Effort de mise en œuvre : Moyen  
 Preuves attendues : Description du dispositif de supervision humaine, procédure de contestation, statistiques de correction.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
@@ -956,7 +956,7 @@ Charte d'usage de l'IA générative, outils autorisés, lutte contre le shadow A
 
 #### PEOPLE.2.1 — Une charte d'usage de l'IA générative définit-elle les outils autorisés et les usages interdits ?
 
-Criticité : **Critique** · Effort de mise en œuvre : Faible  
+Criticité : Importante · Effort de mise en œuvre : Faible  
 Preuves attendues : Charte d'usage de l'IA, liste des outils autorisés, preuve d'acceptation par les collaborateurs.
 
 | Niveau | Situation constatée | Recommandation pour passer au niveau suivant |
